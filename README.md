@@ -36,14 +36,17 @@ project
 ## 开发分支规范
 
 ### 分支
+
 #### master 暂时不用
-    与release分支同步,但是不会发布生产环境
+     与release分支同步,但是不会发布生产环境、
+
 #### dev
+     开发分支
 
 #### release  发布分支
-    开发完毕后，如果需要发布生产，则把master代码合并到release分支，push后会自动发布
+     开发完毕后，如果需要发布生产，则把master代码合并到release分支，push后会自动发布
 
 #### feature/xxx  开发功能分支
-      如果开发新功能，则从dev分支拉取feature/xxx(功能名)分支，开发完毕后，合并到dev分支，然后再统一合到master
+     如果开发新功能，则从dev分支拉取feature/xxx(功能名)分支，开发完毕后，合并到dev分支，然后再统一合到master
 
   
