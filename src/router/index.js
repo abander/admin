@@ -7,8 +7,8 @@ const routes = [
     component: () => import('../views/login/login.vue'),
     meta: {
       title: '登录',
-      hide: true, // 不在menus中展示
-    },
+      hide: true // 不在menus中展示
+    }
   },
   {
     path: '/',
@@ -33,7 +33,8 @@ const routes = [
         component: () => import('../views/main/index.vue'),
         meta: {
           title: '首页',
-        },
+          hide: true
+        }
       },
       {
         path: 'user',
@@ -42,23 +43,23 @@ const routes = [
         meta: {
           title: '用户管理',
           notMenu: false
-        },
+        }
       },
       {
         path: 'articleList',
         name: 'articleList',
         component: () => import('../views/article/index.vue'),
         meta: {
-          title: '文章管理',
-        },
+          title: '文章管理'
+        }
       },
       {
         path: 'test',
         name: 'test',
         component: () => import('../views/test/index.vue'),
         meta: {
-          title: '测试',
-        },
+          title: '测试'
+        }
       },
       // 地图
       {
@@ -66,8 +67,8 @@ const routes = [
         name: 'gaoDe',
         component: () => import('../views/map/gaoDe/index.vue'),
         meta: {
-          title: '高德地图',
-        },
+          title: '高德地图'
+        }
       },
       // 练习
       // mixins练习
@@ -76,36 +77,34 @@ const routes = [
         name: 'mixins',
         component: () => import('../views/practice/mixins/index.vue'),
         meta: {
-          title: '练习',
-        },
+          title: '练习'
+        }
       },
       // 父子传值
       {
         path: 'props',
         name: 'props',
-        component: () =>
-          import('../views/practice/component-transfer-value/props.vue'),
+        component: () => import('../views/practice/component-transfer-value/props.vue'),
         meta: {
-          title: 'props',
-        },
+          title: 'props'
+        }
       },
 
       {
         path: 'model',
         name: 'model',
-        component: () =>
-          import('../views/practice/component-transfer-value/model.vue'),
+        component: () => import('../views/practice/component-transfer-value/model.vue'),
         meta: {
-          title: 'model',
-        },
+          title: 'model'
+        }
       },
       {
         path: 'slot',
         name: 'slot',
         component: () => import('../views/practice/slot/index.vue'),
         meta: {
-          title: 'slot',
-        },
+          title: 'slot'
+        }
       },
       // 功能
       // 导入和导出
@@ -114,66 +113,60 @@ const routes = [
         name: 'uploadAndDownload',
         component: () => import('../views/fn/upload-and-download/index.vue'),
         meta: {
-          title: '导入和导出',
-        },
+          title: '导入和导出'
+        }
       },
       {
         path: 'pdf',
         name: 'pdf',
         component: () => import('../views/fn/pdf/index.vue'),
         meta: {
-          title: 'pdf',
-        },
+          title: 'pdf'
+        }
       },
       {
         path: 'theme',
         name: 'theme',
         component: () => import('../views/fn/theme/index.vue'),
         meta: {
-          title: '主题',
-        },
+          title: '主题'
+        }
       },
       // todo 1.有报错
       {
         path: 'tableCheckbox',
         name: 'tableCheckbox',
-        component: () =>
-          import('../views/firm/kaiyu/haitong/table-checkbox/index.vue'),
+        component: () => import('../views/firm/kaiyu/haitong/table-checkbox/index.vue'),
         meta: {
-          title: '表格复选框',
-        },
+          title: '表格复选框'
+        }
       },
       // 合并组件  弹出框形式
       {
         path: 'mergeBox',
         name: 'mergeBox',
-        component: () =>
-          import('../views/firm/kaiyu/haitong/merge-box/index.vue'),
+        component: () => import('../views/firm/kaiyu/haitong/merge-box/index.vue'),
         meta: {
-          title: '合并组件',
-        },
+          title: '合并组件'
+        }
       },
       // 合并组件 简便测试形式
       {
         path: 'versionsFirst',
         name: 'versionsFirst',
-        component: () =>
-          import(
-            '../views/firm/kaiyu/haitong/merge-box/components/versions-first/index.vue'
-          ),
+        component: () => import('../views/firm/kaiyu/haitong/merge-box/components/versions-first/index.vue'),
         meta: {
-          title: 'versionsFirst',
-        },
+          title: 'versionsFirst'
+        }
       },
       // todo 1.有报错
       {
         path: 'dynamicForm',
         name: 'dynamicForm',
-        component: () =>
-          import('../views/firm/kaiyu/haitong/parameter-edit/index.vue'),
+        component: () => import('../views/firm/kaiyu/haitong/parameter-edit/index.vue'),
         meta: {
-          title: 'dynamicForm',
-        },
+          title: 'dynamicForm'
+        }
       },
       // 原理
       // $set
@@ -182,8 +175,8 @@ const routes = [
         name: 'set',
         component: () => import('../views/principle/set/index.vue'),
         meta: {
-          title: 'set',
-        },
+          title: 'set'
+        }
       },
       // v-model
       {
@@ -191,8 +184,8 @@ const routes = [
         name: 'v-model',
         component: () => import('../views/principle/v-model/index.vue'),
         meta: {
-          title: 'v-model',
-        },
+          title: 'v-model'
+        }
       },
       // 组件示例
       {
@@ -200,40 +193,40 @@ const routes = [
         name: 'button',
         component: () => import('../views/c-example/button/index.vue'),
         meta: {
-          title: 'button',
-        },
+          title: 'button'
+        }
       },
       {
         path: 'container',
         name: 'container',
         component: () => import('../views/c-example/container/index.vue'),
         meta: {
-          title: 'container',
-        },
+          title: 'container'
+        }
       },
       {
         path: 'dialog',
         name: 'dialog',
         component: () => import('../views/c-example/dialog/index.vue'),
         meta: {
-          title: 'dialog',
-        },
+          title: 'dialog'
+        }
       },
       {
         path: 'tree',
         name: 'tree',
         component: () => import('../views/c-example/tree/index.vue'),
         meta: {
-          title: 'tree',
-        },
+          title: 'tree'
+        }
       },
       {
         path: 'upload',
         name: 'upload',
         component: () => import('../views/c-example/upload/index.vue'),
         meta: {
-          title: '上传',
-        },
+          title: '上传'
+        }
       },
       // 码表-》管理api
       {
@@ -241,19 +234,19 @@ const routes = [
         name: 'apiManage',
         component: () => import('../views/api-manage/index.vue'),
         meta: {
-          title: 'api管理',
-        },
-      },
+          title: 'api管理'
+        }
+      }
     ],
     meta: {
-      notMenu: true,
-    },
-  },
+      notMenu: true
+    }
+  }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 })
 
 export { routes }
