@@ -1,14 +1,5 @@
 const baseRoutes = [
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/login/login.vue'),
-    meta: {
-      title: '登录',
-      hide: true // 不在menus中展示
-    }
-  },
-  {
     // 这里不设置值，是把main作为默认页面
     path: 'home',
     name: 'Main',
@@ -30,4 +21,14 @@ const NOT_FOUND_ROUTE = {
   }
 }
 
-export { baseRoutes, NOT_FOUND_ROUTE }
+const LOGIN = {
+  path: '/login',
+  name: 'Login',
+  component: () => import('@/views/login/login.vue'),
+  meta: {
+    title: '登录',
+    hide: true, // 不在menus中展示,
+    notTab: true // 不在标签页中展示
+  }
+}
+export { baseRoutes, NOT_FOUND_ROUTE, LOGIN }

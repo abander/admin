@@ -21,20 +21,21 @@ function routerPush(to, newTab = false) {
   return router.push(to)
 }
 
+export const homeTab = {
+  name: 'root',
+  fullPath: '/home',
+  meta: {
+    title: '首页'
+  },
+  scrollPosition: {
+    left: 0,
+    top: 0
+  }
+}
 export const useTabStore = defineStore('tab-store', {
   state: () => ({
     tabs: [],
-    homeTab: {
-      name: 'root',
-      fullPath: '/home',
-      meta: {
-        title: '首页'
-      },
-      scrollPosition: {
-        left: 0,
-        top: 0
-      }
-    },
+    homeTab,
     activeTab: '',
     menus: []
   }),
@@ -48,7 +49,7 @@ export const useTabStore = defineStore('tab-store', {
     activeTabKey(state) {
       const { activeTab } = state
       const menus = state.menus.map((v) => v.children).flat()
-      console.log(menus);
+      console.log(menus)
       return menus.find((tab) => tab.menu.routePath === activeTab)?.index ?? ''
     }
   },

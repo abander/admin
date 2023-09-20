@@ -1,4 +1,5 @@
 import ls from '@/utils/localStorage.js'
+import { homeTab } from '@/stores/tab/index'
 /**
  * 根据vue路由获取tab路由
  * @param route
@@ -65,7 +66,7 @@ export function getTabRoutes() {
     }))
     routes.push(...defaultTabRoutes)
   } else {
-    ls.set('multiTabRoutes', [this.homeTab])
+    ls.set('multiTabRoutes', [homeTab])
   }
   return routes
 }

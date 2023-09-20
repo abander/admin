@@ -47,8 +47,10 @@ function init() {
 watch(
   () => route.fullPath,
   () => {
-    tab.addTab(route)
-    tab.setActiveTab(route.fullPath)
+    if (!route.meta.notTab) {
+      tab.addTab(route)
+      tab.setActiveTab(route.fullPath)
+    }
   }
 )
 
