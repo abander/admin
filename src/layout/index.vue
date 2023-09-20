@@ -34,13 +34,13 @@
 
         <!-- 主体模块：标签页 + 当前路由内容 -->
         <el-main class="layout-container-main">
-          <div class='tab-wrap'>
+          <div class="tab-wrap">
             <Tab />
           </div>
-          <div class='container'>
-              <el-card class='c-card'>
-                <router-view></router-view>
-              </el-card>
+          <div class="container">
+            <el-card class="c-card">
+              <router-view></router-view>
+            </el-card>
           </div>
         </el-main>
       </el-container>
@@ -49,12 +49,7 @@
 </template>
 
 <script setup>
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
+import { Document, Menu as IconMenu, Location, Setting } from '@element-plus/icons-vue'
 import Menu from './menu/index.vue'
 import Header from './header/index.vue'
 import Main from './main/index.vue'
@@ -158,7 +153,7 @@ const editableTabsMenu = (e) => {
   }
 }
 .container {
-  height: calc(100vh - 98px);
+  height: calc(100vh - 114px);
   padding: 16px;
   box-sizing: border-box;
   .c-card {

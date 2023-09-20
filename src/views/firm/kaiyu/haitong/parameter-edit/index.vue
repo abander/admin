@@ -23,8 +23,8 @@ export default {
       parameterDatas: [],
       defaultProps: {
         children: 'children',
-        label: 'vcName',
-      },
+        label: 'vcName'
+      }
     }
   },
   methods: {
@@ -52,7 +52,7 @@ export default {
           vcParamDefaultId: '850010,850013',
           vcControlTypeName: null,
           dupdate: '2022-07-28 14:35:28',
-          dcreate: '2022-07-28 14:35:28',
+          dcreate: '2022-07-28 14:35:28'
         },
         {
           vcId: '1552543242216673280',
@@ -74,7 +74,7 @@ export default {
           vcParamDefaultId: '20200622',
           vcControlTypeName: null,
           dupdate: '2022-07-28 14:35:28',
-          dcreate: '2022-07-28 14:35:28',
+          dcreate: '2022-07-28 14:35:28'
         },
         {
           vcId: '1552593772121034752',
@@ -96,7 +96,7 @@ export default {
           vcParamDefaultId: '850005',
           vcControlTypeName: '下拉多选',
           dcreate: '2022-07-28 17:56:15',
-          dupdate: '2022-07-28 17:56:15',
+          dupdate: '2022-07-28 17:56:15'
         },
         {
           vcId: '1552593772125229056',
@@ -118,7 +118,7 @@ export default {
           vcParamDefaultId: '20210216',
           vcControlTypeName: '下拉多选',
           dcreate: '2022-07-28 17:56:15',
-          dupdate: '2022-07-28 17:56:15',
+          dupdate: '2022-07-28 17:56:15'
         },
         {
           vcId: '1554717735764758528',
@@ -140,15 +140,15 @@ export default {
           vcParamDefaultId: '1',
           vcControlTypeName: null,
           dupdate: '2022-08-03 14:36:08',
-          dcreate: '2022-08-03 14:36:08',
-        },
+          dcreate: '2022-08-03 14:36:08'
+        }
       ]
     },
     // 参数确定按钮赋值
     parameterData(parameterForm, str) {
       console.log(parameterForm, '保存的值')
-    },
-  },
+    }
+  }
 }
 </script>
 

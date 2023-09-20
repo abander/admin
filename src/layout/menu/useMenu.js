@@ -1,126 +1,126 @@
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 export default function useArchive(props, emits) {
   // 左侧菜单选项配置
   const asideMenu = ref([
     {
       title: '用户',
-      index: 'user',
+      index: 'user'
     },
     {
       title: '文章',
       subs: [
         {
           title: '文章列表',
-          index: 'articleList',
-        },
-      ],
+          index: 'articleList'
+        }
+      ]
     },
     {
       title: '测试',
-      index: 'test',
+      index: 'test'
     },
     {
       title: '地图',
       subs: [
         {
           title: '高德地图',
-          index: 'gaoDe',
-        },
-      ],
+          index: 'gaoDe'
+        }
+      ]
     },
     {
       title: '练习',
       subs: [
         {
           title: 'mixins',
-          index: 'mixins',
+          index: 'mixins'
         },
         {
           title: '父子传值',
-          index: 'props',
+          index: 'props'
         },
         {
           title: 'v-model',
-          index: 'model',
+          index: 'model'
         },
         {
           title: '插槽',
-          index: 'slot',
-        },
-      ],
+          index: 'slot'
+        }
+      ]
     },
     {
       title: '功能',
       subs: [
         {
           title: '导入导出',
-          index: 'uploadAndDownload',
+          index: 'uploadAndDownload'
         },
         {
           title: 'pdf',
-          index: 'pdf',
+          index: 'pdf'
         },
         {
           title: '主题',
-          index: 'theme',
+          index: 'theme'
         },
         {
           title: 'tableCheckbox',
-          index: 'tableCheckbox',
+          index: 'tableCheckbox'
         },
         {
           title: '合并组件-弹出框形式',
-          index: 'mergeBox',
+          index: 'mergeBox'
         },
         {
           title: '合并组件-简便测试形式',
-          index: 'versionsFirst',
+          index: 'versionsFirst'
         },
         {
           title: 'dynamicForm',
-          index: 'dynamicForm',
-        },
-      ],
+          index: 'dynamicForm'
+        }
+      ]
     },
     {
       title: '原理',
       subs: [
         {
           title: 'set',
-          index: 'set',
+          index: 'set'
         },
         {
           title: 'v-model',
-          index: 'v-model',
-        },
-      ],
+          index: 'v-model'
+        }
+      ]
     },
     {
       title: '组件',
       subs: [
         {
           title: 'button',
-          index: 'button',
+          index: 'button'
         },
         {
           title: 'container',
-          index: 'container',
+          index: 'container'
         },
         {
           title: 'dialog',
-          index: 'dialog',
+          index: 'dialog'
         },
         {
           title: 'tree',
-          index: 'tree',
+          index: 'tree'
         },
         {
           title: 'upload',
-          index: 'upload',
-        },
-      ],
-    },
+          index: 'upload'
+        }
+      ]
+    }
   ])
   const router = useRouter()
   const activeTabName = ref('')
@@ -132,13 +132,15 @@ export default function useArchive(props, emits) {
   //点击二级菜单标题 和 没有下一级菜单的标题
   //添加显示的标签
   const handleMenuItem = (obj) => {
-    console.log(obj);
-    const {menu: { routePath }} = obj
-    router.push('/' + routePath)
+    console.log(obj)
+    const {
+      menu: { routePath }
+    } = obj
+    router.push(routePath)
   }
 
   return {
     asideMenu,
-    handleMenuItem,
+    handleMenuItem
   }
 }

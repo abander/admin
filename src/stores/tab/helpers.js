@@ -11,8 +11,8 @@ export function getTabRouteByVueRoute(route) {
     meta: route.meta,
     scrollPosition: {
       left: 0,
-      top: 0,
-    },
+      top: 0
+    }
   }
 }
 
@@ -60,10 +60,12 @@ export function getTabRoutes() {
       ...item,
       scrollPosition: {
         left: 0,
-        top: 0,
-      },
+        top: 0
+      }
     }))
     routes.push(...defaultTabRoutes)
+  } else {
+    ls.set('multiTabRoutes', [this.homeTab])
   }
   return routes
 }
