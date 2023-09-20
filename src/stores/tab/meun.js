@@ -2,26 +2,29 @@
  * 将权限路由转换成菜单
  * @param routes - 路由
  */
-export function transformAuthRouteToMenu(routes, key) {
+export function transformAuthRouteToMenu(routes, key, father = {}) {
+  const hasFather = Object.keys(father).length > 0
   const globalMenu = []
   routes.forEach((route, index) => {
     const { name, path, meta } = route
     const routeName = name
     let menuChildren
     if (route.children && route.children.length > 0) {
-      menuChildren = transformAuthRouteToMenu(route.children, index)
+      menuChildren = transformAuthRouteToMenu(route.children, index, route)
     }
+    route.index = key ? index : key ? `${key}-${index + 1}` : index + ''
+
     const menuItem = {
       menu: {
         key: routeName,
         label: meta.title,
         routeName,
-        routePath: path,
+        routePath: hasFather ? `/${father.path}/${path}` : '/' + path
       },
       index: key ? `${key}-${index + 1}` : index + '',
       icon: meta.icon,
       children: menuChildren,
-      name: meta.title,
+      name: meta.title
     }
 
     if (!hideInMenu(route)) {
@@ -47,11 +50,7 @@ function getActiveKeyPathsOfMenu(activeKey, menu) {
     keys.push(menu.routeName)
   }
   if (menu.children) {
-    keys.push(
-      ...menu.children
-        .map((item) => getActiveKeyPathsOfMenu(activeKey, item))
-        .flat(1),
-    )
+    keys.push(...menu.children.map((item) => getActiveKeyPathsOfMenu(activeKey, item)).flat(1))
   }
   return keys
 }

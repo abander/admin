@@ -9,8 +9,8 @@ import {
   getTabRoutes,
   isInTabRoutes
 } from './helpers'
-import router, { routes } from '@/router/index.js'
-import { useRouter } from "vue-router";
+import router, { allRoutes } from '@/router/index.js'
+import { useRouter } from 'vue-router'
 
 function routerPush(to, newTab = false) {
   if (newTab) {
@@ -43,12 +43,19 @@ export const useTabStore = defineStore('tab-store', {
     activeTabIndex(state) {
       const { tabs, activeTab } = state
       return tabs.findIndex((tab) => tab.fullPath === activeTab)
+    },
+
+    activeTabKey(state) {
+      const { activeTab } = state
+      const menus = state.menus.map((v) => v.children).flat()
+      console.log(menus);
+      return menus.find((tab) => tab.menu.routePath === activeTab)?.index ?? ''
     }
   },
   actions: {
     initMenus() {
       // 生成菜单
-      this.menus = transformAuthRouteToMenu(routes)
+      this.menus = transformAuthRouteToMenu(allRoutes)
     },
     /** 重置Tab状态 */
     resetTabStore() {
@@ -118,10 +125,12 @@ export const useTabStore = defineStore('tab-store', {
       const { multiTab = false } = route.meta
       if (!multiTab) {
         this.tabs.splice(index, 1, tab)
+        localStg.set('multiTabRoutes', this.tabs)
         return
       }
 
       this.tabs.push(tab)
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 删除多页签
@@ -146,6 +155,7 @@ export const useTabStore = defineStore('tab-store', {
           this.setActiveTab(activePath)
         }
       }
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 清空多页签(多页签首页保留)
@@ -165,6 +175,7 @@ export const useTabStore = defineStore('tab-store', {
           this.setActiveTab(activePath)
         }
       }
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 清除左边多页签

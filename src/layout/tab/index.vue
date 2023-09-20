@@ -1,12 +1,7 @@
 <template>
-  <div
-    class="global-tab flex-y-center w-full pl-16px"
-  >
+  <div class="global-tab flex-y-center w-full pl-16px">
     <div ref="bsWrapper" class="flex-1-hidden h-full">
-      <better-scroll
-        ref="bsScroll"
-        :options="{ scrollX: true, scrollY: false, click: canClick }"
-      >
+      <better-scroll ref="bsScroll" :options="{ scrollX: true, scrollY: false, click: canClick }">
         <tab-detail @scroll="handleScroll" />
       </better-scroll>
     </div>
@@ -28,8 +23,7 @@ const tab = useTabStore()
 const deviceInfo = { device: 9 }
 
 const bsWrapper = ref()
-const { width: bsWrapperWidth, left: bsWrapperLeft } =
-  useElementBounding(bsWrapper)
+const { width: bsWrapperWidth, left: bsWrapperLeft } = useElementBounding(bsWrapper)
 
 const bsScroll = ref()
 
@@ -41,8 +35,7 @@ function handleScroll(clientX) {
   if (bsScroll.value) {
     const { maxScrollX, x: leftX } = bsScroll.value.instance
     const rightX = maxScrollX - leftX
-    const update =
-      deltaX > 0 ? Math.max(-deltaX, rightX) : Math.min(-deltaX, -leftX)
+    const update = deltaX > 0 ? Math.max(-deltaX, rightX) : Math.min(-deltaX, -leftX)
     bsScroll.value?.instance.scrollBy(update, 0, 300)
   }
 }
@@ -56,19 +49,19 @@ watch(
   () => {
     tab.addTab(route)
     tab.setActiveTab(route.fullPath)
-  },
+  }
 )
 
 // 初始化
 init()
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .global-tab {
   box-shadow: 0 1px 2px rgb(0 21 41 / 8%);
 }
 .tab-box {
-// border: solid 1px red;
+  // border: solid 1px red;
   width: calc(100% - 50px - 64px);
   display: flex;
   align-items: center;
@@ -77,7 +70,7 @@ init()
   padding: 0 16px;
 
   .tab-panel {
-  // background-color: #48a148;
+    // background-color: #48a148;
     box-sizing: border-box;
     height: 32px;
     display: flex;
@@ -135,7 +128,7 @@ init()
 .el-tab-close {
   box-sizing: border-box;
   font-size: 16px;
-// border: solid 1px red;
+  // border: solid 1px red;
   width: 44px;
 }
 .global-tab {

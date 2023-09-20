@@ -7,7 +7,7 @@
       class="mx-1 tag"
       effect="light"
       type="info"
-      :closable="item.name !== 'root'"
+      :closable="item.fullPath !== '/home'"
       size="large"
       :disable-transitions="false"
       @close="tab.removeTab(item.fullPath)"
