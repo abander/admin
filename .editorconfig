@@ -1,0 +1,51 @@
+# http://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+max_line_length = 80
+trim_trailing_whitespace = true
+
+[*.md]
+max_line_length = 0
+trim_trailing_whitespace = false
+
+# 项目代码风格统一
+#
+# 1、root <boolean>
+#
+# 是否是顶级配置文件，设置为 true 的时候才会停止搜索.editorconfig 文件
+#
+# 2、charset <“latin” | “utf-8” | “utf-8-bom” | “utf-16be” | “utf-16le”>
+#
+# 编码格式
+#
+# 3、indent_style <“tab” | “space”>
+#
+# 缩进方式
+#
+# 4、indent_size <number>
+#
+# 缩进大小
+#
+# 5、end_of_line<“lf” | “cr” | “crlf”>
+#
+# 换行符类型
+#
+# 6、insert_final_newline <boolean>
+#
+# 是否让文件以空行结束
+#
+# 7、trim_trailing_whitespace <boolean>
+#
+# 是否删除行尾空格
+#
+# 8、max_line_length <number>
+#
+# 最大行宽。
+
+#
