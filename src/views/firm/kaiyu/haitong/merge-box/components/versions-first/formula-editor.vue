@@ -1,19 +1,12 @@
 <template>
   <!-- <div ref="formula" contenteditable="true" @click="click" v-html="html"></div> -->
-  <div
-    ref="formula"
-    :key="n"
-    class="k--formula-editor"
-    contenteditable="true"
-    @click="click"
-  >
+  <div ref="formula" :key="n" class="k--formula-editor" contenteditable="true" @click="click">
     <template v-for="(item, index) in itemList2">
       <span
         v-if="item.type == 'math' || item.type == 'brackets-start' || item.type == 'brackets-end'"
         :key="item[nodeKey] + '-' + index"
-                  class="k--formula-editor-item"
+        class="k--formula-editor-item"
         :class="'k--formula-editor-item-' + item.type"
-        "
         contenteditable="false"
         :node-key="item[nodeKey]"
         >{{ item[textName] }}</span
@@ -21,14 +14,17 @@
       <span
         v-else-if="item.type == 'empty'"
         :key="item[nodeKey] + '+' + index"
-            class="k--formula-editor-item" :class="'k--formula-editor-item-' + item.type" v-html="emptyText"></span>
+        class="k--formula-editor-item"
+        :class="'k--formula-editor-item-' + item.type"
+        v-html="emptyText"
+      ></span>
       <span
-v-else :key="item[nodeKey] + '_' + index" class="k--formula-editor-item" contenteditable="false"
+        v-else
+        :key="item[nodeKey] + '_' + index"
+        class="k--formula-editor-item"
+        contenteditable="false"
         :node-key="item[nodeKey]"
-        >{{ item[textName]
-        }}<i class="k--formula-editor-item-del" @click.stop="del(item)"
-          >X</i
-        ></span
+        >{{ item[textName] }}<i class="k--formula-editor-item-del" @click.stop="del(item)">X</i></span
       >
     </template>
   </div>
@@ -39,30 +35,30 @@ export default {
     // 文本名
     textName: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     // 数据id(唯一值)
     nodeKey: {
       type: String,
-      default: 'id',
+      default: 'id'
     },
     // 数据
     data: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 拦截器集合
     interceptorObj: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 拦截器名
     interceptor: {
       type: String,
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
   data() {
     // console.log('自定义拦截器集合', this.interceptorObj)
@@ -92,32 +88,21 @@ export default {
             // console.log('请先选择运算符')
             return { msg: '请先选择运算符' }
             // 插入运算符
-          } else if (
-            data.type == 'math' &&
-            (type == 'math' || type == 'brackets-start')
-          ) {
+          } else if (data.type == 'math' && (type == 'math' || type == 'brackets-start')) {
             // console.log('请先选择规则')
             return { type: 'math', msg: '请先选择规则' }
             // 插入开始括号符号
-          } else if (
-            data.type == 'brackets-start' &&
-            type != 'math' &&
-            type != 'brackets-start'
-          ) {
+          } else if (data.type == 'brackets-start' && type != 'math' && type != 'brackets-start') {
             // console.log('请先选择符号111', type)
             return { type: 'brackets-start', msg: '请先选择运算符号' }
             // 插入飘带括号符号
-          } else if (
-            data.type == 'brackets-end' &&
-            type &&
-            type != 'brackets-end'
-          ) {
+          } else if (data.type == 'brackets-end' && type && type != 'brackets-end') {
             // console.log('请先选择规则222', type)
             return { type: 'brackets-end', msg: '请先选择规则' }
           }
         },
-        ...this.interceptorObj,
-      },
+        ...this.interceptorObj
+      }
     }
   },
   computed: {
@@ -141,19 +126,18 @@ export default {
     itemList2() {
       // console.log('数据', this.itemList)
       return [...this.itemList, { type: 'empty' }]
-    },
+    }
   },
   watch: {
     emptyText() {
       console.log('文本变化', this.emptyText)
-    },
+    }
   },
   mounted() {
     this.init()
   },
   unmounted() {},
   methods: {
-
     // 初始化
     init() {
       this.rightClickDisable()
@@ -164,13 +148,13 @@ export default {
     // 禁用右键
     rightClickDisable() {
       this.$refs.formula.onselectstart = this.$refs.formula.oncontextmenu = function () {
-        return false; //取消浏览器默认操作
-      };
+        return false //取消浏览器默认操作
+      }
     },
     // 设置key
     setKeys() {
       this.itemList = []
-      this.data.forEach(item => {
+      this.data.forEach((item) => {
         this.dataKeys[item[this.nodeKey]] = item
         this.itemList.push(item)
       })
@@ -186,7 +170,6 @@ export default {
     },
     // 监听内容变化
     DOMNodeInserted() {
-
       let updateText = () => {
         // console.log('监听变化DOMNodeInserted')
         const node = this.$refs.formula.childNodes[this.$refs.formula.childNodes.length - 1]
@@ -214,7 +197,6 @@ export default {
 
       //     })
       // }
-
     },
     // div被点击
     click() {
@@ -223,7 +205,6 @@ export default {
     // 光标移动到最后
     moveEnd() {
       this.$nextTick(() => {
-
         let el = this.$refs.formula
         let length = el.childNodes.length
         if (length) {
@@ -234,14 +215,12 @@ export default {
           sel.removeAllRanges()
           sel.addRange(range)
         }
-
       })
-
     },
     // 获取当前数据
     getData() {
       const itemList = []
-      this.$refs.formula.childNodes.forEach(node => {
+      this.$refs.formula.childNodes.forEach((node) => {
         const key = node.getAttribute('node-key')
         // console.log('数据', key, this.dataKeys[key])
         if (key !== null) {
@@ -258,7 +237,6 @@ export default {
         this.onkeydown()
         // this.DOMNodeInserted()
       })
-
     },
     // 添加数据
     push(data) {
@@ -277,7 +255,6 @@ export default {
           return
         }
       }
-
 
       if (data) {
         this.dataKeys[data[this.nodeKey]] = data
@@ -305,7 +282,7 @@ export default {
       this.itemList = data
       this.update()
     }
-  },
+  }
 }
 </script>
 <style lang="scss">
