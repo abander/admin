@@ -30,7 +30,7 @@
       <div v-else class="empty">没有消息</div>
     </div>
     <div class="chat-bottom">
-      <el-input v-model="chatMsg" class="chat-input" placeholder="请输入内容" />
+      <el-input @keydown.enter="sendMsg" v-model="chatMsg" class="chat-input" placeholder="请输入内容" />
       <el-button class="chat-btn" type="primary" @click="sendMsg">发送</el-button>
     </div>
     <div style="margin-top: 10px">
@@ -59,7 +59,7 @@ export default {
     const userInfo = reactive({ user: userList[0] })
     let socket
     onMounted(() => {
-      socket = io(`${url}/chat`)
+      socket = io(`https://1270001.xyz/chat`)
       socket.on('connect', () => {
         socket.emit('online', user.user.username)
         console.log(socket.id, '监听客户端连接成功-connect')
