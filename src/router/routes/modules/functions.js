@@ -32,5 +32,13 @@ export default {
         title: '文章管理'
       }
     },
+    {
+      path: 'socket-online',
+      name: 'socket-online',
+      component: () => import('@/views/socket-online/socket-online.vue'),
+      meta: {
+        title: 'chat-online'
+      }
+    }
   ]
 }
