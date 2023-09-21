@@ -59,7 +59,7 @@ export default {
     const userInfo = reactive({ user: userList[0] })
     let socket
     onMounted(() => {
-      socket = io(`${url}/chat`)
+      socket = io(`https://1270001.xyz/smq/chat`)
       socket.on('connect', () => {
         socket.emit('online', user.user.username)
         console.log(socket.id, '监听客户端连接成功-connect')
