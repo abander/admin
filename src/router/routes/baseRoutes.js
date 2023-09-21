@@ -6,7 +6,8 @@ const baseRoutes = [
     component: () => import('@/views/main/index.vue'),
     meta: {
       title: '首页',
-      hide: true
+      hide: true,
+      notTab: true
     }
   }
 ]

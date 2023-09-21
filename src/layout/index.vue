@@ -34,9 +34,7 @@
 
         <!-- 主体模块：标签页 + 当前路由内容 -->
         <el-main class="layout-container-main">
-          <div class="tab-wrap">
-            <Tab />
-          </div>
+          <Tab />
           <div class="container">
             <el-card class="c-card">
               <router-view></router-view>

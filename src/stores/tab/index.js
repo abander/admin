@@ -73,10 +73,6 @@ export const useTabStore = defineStore('tab-store', {
      */
     setActiveTab(fullPath) {
       this.activeTab = fullPath
-      // 初始首页tab
-      if (!this.tabs.length) {
-        this.tabs.push(this.homeTab)
-      }
     },
     /**
      * 设置当前路由对应的页签title
@@ -155,6 +151,9 @@ export const useTabStore = defineStore('tab-store', {
           this.tabs = updateTabs
           this.setActiveTab(activePath)
         }
+      } else {
+        this.tabs = []
+        router.push('/home')
       }
       localStg.set('multiTabRoutes', this.tabs)
     },
@@ -269,8 +268,6 @@ export const useTabStore = defineStore('tab-store', {
       this.initMenus()
       this.tabs = tabs
       this.setActiveTab(currentRoute.fullPath)
-      const router = useRouter()
-      this.initHomeTab('root', router)
     }
   }
 })
