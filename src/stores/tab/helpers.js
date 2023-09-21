@@ -66,7 +66,7 @@ export function getTabRoutes() {
     }))
     routes.push(...defaultTabRoutes)
   } else {
-    ls.set('multiTabRoutes', [homeTab])
+    ls.set('multiTabRoutes', [])
   }
   return routes
 }
