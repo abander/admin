@@ -6,7 +6,7 @@ import { requestWhiteList } from '@/config/auth.js'
 const request = axios.create({
   // vite弃用了process.env改用import.meta.env
   baseURL: import.meta.env.VITE_BASE_API, // 基础路径
-  timeout: 10000, // 设置超时时间
+  timeout: 10000 // 设置超时时间
 })
 
 // 配置请求拦截器
@@ -41,6 +41,9 @@ request.interceptors.response.use(
     // const { data, meta } = response.data
     if (response.status === 200) {
       if (response.data.code === 200 || response.data) {
+        if (typeof response.data === 'object' && response.data?.code !== 200) {
+          handleError(response.data)
+        }
         return response.data
       } else {
         handleError(response.data)
@@ -54,7 +57,7 @@ request.interceptors.response.use(
   (error) => {
     error.response && $Message.error(error.response.data)
     return Promise.reject(new Error(error.response.data))
-  },
+  }
 )
 
 // 暴露出去
@@ -68,6 +71,9 @@ const handleError = (data) => {
       toLogin(message || '登陆失效，请重新登陆！')
       break
     //case
+    case 400:
+      toLogin(message || '请求出错，请联系管理员')
+      break
     default:
       $Message.error(message || '未知错误')
   }
