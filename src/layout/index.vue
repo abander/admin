@@ -157,6 +157,9 @@ const editableTabsMenu = (e) => {
   .c-card {
     width: 100%;
     height: 100%;
+    :deep(.el-card__body) {
+      height: 100%;
+    }
   }
 }
 </style>
