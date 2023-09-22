@@ -4,44 +4,21 @@
       <template #header>
         <div class="card-header">用户登录</div>
       </template>
-      <el-form
-        ref="formRef"
-        :model="form"
-        :rules="formRules"
-        class="login-form"
-      >
+      <el-form ref="formRef" :model="form" :rules="formRules" class="login-form">
         <el-form-item prop="username">
           <el-input v-model="form.username" size="large" :prefix-icon="User" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input
-            v-model="form.password"
-            size="large"
-            :prefix-icon="Lock"
-            show-password
-          />
+          <el-input v-model="form.password" size="large" :prefix-icon="Lock" show-password />
         </el-form-item>
-        <el-form-item prop="sid">
-          <div
-            class="sid"
-            style="display: flex; width: 100%; align-items: center"
-          >
+        <el-form-item prop="captcha">
+          <div class="sid" style="display: flex; width: 100%; align-items: center">
             <el-input v-model="form.captcha" size="large" style="width: 90%" />
-            <img
-              :src="src"
-              style="display: inline-block; height: 30px"
-              @click="captcha"
-            />
+            <el-image class="pointer" :src="src" fit="fill" width="10%" @click="captcha" />
+            <!--            <img :src="src" v-loading="captchaLoading" style="display: inline-block; height: 30px" @click="captcha" />-->
           </div>
         </el-form-item>
-        <el-button
-          size="large"
-          type="primary"
-          class="login-button"
-          plain
-          @click="submit"
-          >登录</el-button
-        >
+        <el-button :loading="submitLoading" size="large" type="primary" class="login-button" plain @click="submit">登录</el-button>
       </el-form>
     </el-card>
     <div class="bg absolute-lt z-1 wh-full overflow-hidden">
@@ -59,7 +36,7 @@
 // element
 import { User, Lock } from '@element-plus/icons-vue'
 import useLogin from './useLogin'
-const { form, formRef, formRules, submit, src, captcha } = useLogin()
+const { form, formRef, formRules, submit, src, captcha, captchaLoading,submitLoading } = useLogin()
 import { BgTop, BgBottom } from './components'
 </script>
 
@@ -89,7 +66,7 @@ $cursor: #fff;
     overflow: hidden;
 
     :deep(.el-form-item) {
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      //  border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
@@ -203,5 +180,9 @@ $cursor: #fff;
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+}
+
+:deep(.el-form-item__content) {
+  width: 100%;
 }
 </style>
