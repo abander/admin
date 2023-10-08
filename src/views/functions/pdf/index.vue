@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       pdffile: '',
-      pdfSrc: '',
+      pdfSrc: ''
     }
   },
   methods: {
@@ -46,7 +46,7 @@ export default {
 *!/
       //blob:http://ab.eptrade.cn/74faee59-696c-4729-b345-7dca8cda16d3
     },*/
-  },
+  }
 }
 </script>
 

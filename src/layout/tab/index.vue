@@ -38,7 +38,6 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTabStore } from '@/stores/tab'
 import SvgIcon from '@/components/svg-icon'
-import pdf from '@/views/fn/pdf/index.vue'
 
 const route = useRoute()
 const router = useRouter()

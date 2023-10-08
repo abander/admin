@@ -91,7 +91,7 @@
 
 <script>
 /*vue3写法*/
-import DialogBox from '../../../../../../components/dialog-box/index.vue'
+import DialogBox from '../../../../components/dialog-box/index.vue'
 export default {
   name: 'Index',
   // components:{DialogBox}, /*vue3写法*/

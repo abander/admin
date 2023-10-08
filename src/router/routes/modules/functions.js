@@ -4,40 +4,50 @@ export default {
   meta: {
     title: '功能模块'
   },
-  redirect: '/functions/apiManage',
+  redirect: '/functions/table-checkbox',
   children: [
-    // 码表-》管理api
+    // todo 1.有报错
     {
-      path: 'apiManage',
-      name: 'apiManage',
-      component: () => import('@/views/api-manage/index.vue'),
+      path: 'table-checkbox',
+      name: 'table-checkbox',
+      component: () => import('@/views/functions/table-checkbox/index.vue'),
       meta: {
-        title: 'api管理'
+        title: '表格复选框'
       }
     },
     {
-      path: 'user',
-      name: 'User',
-      component: () => import('@/views/user/index.vue'),
+      path: 'pdf',
+      name: 'pdf',
+      component: () => import('@/views/functions/pdf/index.vue'),
       meta: {
-        title: '用户管理',
-        notMenu: false
+        title: 'pdf'
       }
     },
+    // 地图
     {
-      path: 'articleList',
-      name: 'articleList',
-      component: () => import('@/views/article/index.vue'),
+      path: 'gaoDe',
+      name: 'gaoDe',
+      component: () => import('@/views/functions/map/gaoDe/index.vue'),
       meta: {
-        title: '文章管理'
+        title: '高德地图'
       }
     },
+    // 导入和导出
     {
-      path: 'socket-online',
-      name: 'socket-online',
-      component: () => import('@/views/socket-online/socket-online.vue'),
+      path: 'upload-and-download',
+      name: 'upload-and-download',
+      component: () => import('@/views/functions/upload-and-download/index.vue'),
       meta: {
-        title: 'chat-online'
+        title: '导入和导出'
+      }
+    },
+    // todo 1.有报错
+    {
+      path: 'dynamicForm',
+      name: 'dynamicForm',
+      component: () => import('@/views/functions/parameter-edit/index.vue'),
+      meta: {
+        title: 'dynamicForm'
       }
     }
   ]
