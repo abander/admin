@@ -78,7 +78,7 @@ export default {
       socket.on('refresh', ({ list, caches }) => {
         chatList.value = list
         nextTick(() => {
-          console.log(chatContainer);
+          console.log(chatContainer)
           chatContainer.value?.scrollTo({ top: chatContainer.value?.scrollHeight, behavior: 'smooth' })
         })
       })

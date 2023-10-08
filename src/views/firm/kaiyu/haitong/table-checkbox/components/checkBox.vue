@@ -1,17 +1,9 @@
 <template>
   <div>
     <div>
-      <el-checkbox
-        v-model="checkAll"
-        :indeterminate="isIndeterminate"
-        @change="handleCheckAllChange"
-        >全选</el-checkbox
-      >
+      <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">全选</el-checkbox>
     </div>
-    <el-checkbox-group
-      v-model="checkedCities"
-      @change="handleCheckedCitiesChange"
-    >
+    <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
       <el-checkbox
         v-for="(item, index) in allItemDataChecked"
         :key="index"
@@ -28,12 +20,12 @@ export default {
   props: {
     allItemData: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     changeProps: {
       type: Function,
-      default: () => false,
-    },
+      default: () => false
+    }
   },
   data() {
     return {
@@ -41,7 +33,7 @@ export default {
       checkAll: false,
       checkedCities: [],
       allItemDataChecked: this.allItemData[0].allListDate,
-      checkboxChangeList: [],
+      checkboxChangeList: []
     }
   },
   watch: {
@@ -59,7 +51,7 @@ export default {
           })
         })
       }
-    },
+    }
   },
   mounted() {
     let list = []
@@ -91,8 +83,8 @@ export default {
     checkboxChange() {
       // 发现这个没用
       this.changeProps(this.checkboxChangeList)
-    },
-  },
+    }
+  }
 }
 </script>
 <style></style>

@@ -7,7 +7,7 @@
 <script>
 import UploadBox from '../../../components/upload-box/index.vue'
 export default {
-  name: 'Index',
+  name: 'Index'
   // components:{UploadBox},
 }
 </script>

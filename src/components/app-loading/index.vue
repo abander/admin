@@ -1,9 +1,6 @@
 <template>
   <div class="page">
-    <div
-      class="circle-loader"
-      :class="[position ? 'circle-loader-position' : '']"
-    >
+    <div class="circle-loader" :class="[position ? 'circle-loader-position' : '']">
       <div class="circle-line">
         <div class="circle circle-blue"></div>
         <div class="circle circle-blue"></div>
@@ -32,8 +29,8 @@
 defineProps({
   position: {
     type: Boolean,
-    default: true,
-  },
+    default: true
+  }
 })
 </script>
 

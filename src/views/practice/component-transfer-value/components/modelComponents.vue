@@ -19,9 +19,9 @@ export default {
       set(val) {
         // 调用父组件的input方法，将变量放在第二个参数，即可改变父组件的变量
         this.$emit('input', val)
-      },
-    },
-  },
+      }
+    }
+  }
 }
 </script>
 

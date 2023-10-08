@@ -1,4 +1,4 @@
-import { baseRoutes, LOGIN, NOT_FOUND_ROUTE } from "@/router/routes/baseRoutes";
+import { baseRoutes, LOGIN, NOT_FOUND_ROUTE } from '@/router/routes/baseRoutes'
 
 const modules = import.meta.globEager('./modules/*.js')
 
@@ -18,7 +18,7 @@ const routes = [
     // 嵌套路由
     children: [...baseRoutes, ...asyncRoutes, NOT_FOUND_ROUTE]
     // TODO : 嵌套路由，mete继承？？？
-// NOT_FOUND_ROUTEΩ
+    // NOT_FOUND_ROUTEΩ
   },
   LOGIN
 ]

@@ -40,11 +40,11 @@ export default {
                 {
                   id: '123',
                   label: '三级 1-1-1',
-                  plateType: '0',
-                },
-              ],
-            },
-          ],
+                  plateType: '0'
+                }
+              ]
+            }
+          ]
         },
         {
           id: '2',
@@ -59,9 +59,9 @@ export default {
                 {
                   id: '234',
                   label: '三级 2-1-1',
-                  plateType: '0',
-                },
-              ],
+                  plateType: '0'
+                }
+              ]
             },
             {
               id: '23',
@@ -71,11 +71,11 @@ export default {
                 {
                   id: '2345',
                   label: '三级 2-2-1',
-                  plateType: '0',
-                },
-              ],
-            },
-          ],
+                  plateType: '0'
+                }
+              ]
+            }
+          ]
         },
         {
           id: '3',
@@ -90,9 +90,9 @@ export default {
                 {
                   id: '345',
                   label: '三级 3-1-1',
-                  plateType: '0',
-                },
-              ],
+                  plateType: '0'
+                }
+              ]
             },
             {
               id: '45',
@@ -102,80 +102,80 @@ export default {
                 {
                   id: '456',
                   label: '三级 3-2-1',
-                  plateType: '0',
-                },
-              ],
-            },
-          ],
-        },
+                  plateType: '0'
+                }
+              ]
+            }
+          ]
+        }
       ],
       defaultProps: {
         children: 'children',
-        label: 'label',
+        label: 'label'
       },
       currentNode: null,
       treeLabelParams: {
         src: '../../../assets/images/img2.png',
-        tooltipDisable: 10,
+        tooltipDisable: 10
       },
       liDataThreePlate: [
         {
           value: 'export',
           label: '导出板块',
           divided: false,
-          icon: 'el-icon-download',
+          icon: 'el-icon-download'
         },
         {
           value: 'rename',
           label: '重命名',
           divided: true,
-          icon: 'el-icon-edit-outline',
+          icon: 'el-icon-edit-outline'
         },
         {
           value: 'delete',
           label: '删除',
           divided: true,
-          icon: 'el-icon-delete',
-        },
+          icon: 'el-icon-delete'
+        }
       ],
       liDataSixDirectory: [
         {
           value: 'add',
           label: '添加板块',
           divided: false,
-          icon: 'el-icon-plus',
+          icon: 'el-icon-plus'
         },
         {
           value: 'import',
           label: '导入板块',
           divided: true,
-          icon: 'el-icon-download',
+          icon: 'el-icon-download'
         },
         {
           value: 'addSibling',
           label: '添加同级目录',
           divided: true,
-          icon: 'el-icon-plus',
+          icon: 'el-icon-plus'
         },
         {
           value: 'addChidren',
           label: '添加子级目录',
           divided: true,
-          icon: 'el-icon-plus',
+          icon: 'el-icon-plus'
         },
         {
           value: 'rename',
           label: '重命名',
           divided: true,
-          icon: 'el-icon-edit-outline',
+          icon: 'el-icon-edit-outline'
         },
         {
           value: 'delete',
           label: '删除',
           divided: true,
-          icon: 'el-icon-delete',
-        },
-      ],
+          icon: 'el-icon-delete'
+        }
+      ]
     }
   },
   methods: {
@@ -184,8 +184,8 @@ export default {
     },
     nodeDrag(node, dropNode, position, event) {
       console.log(node, dropNode, position, event)
-    },
-  },
+    }
+  }
 }
 </script>
 

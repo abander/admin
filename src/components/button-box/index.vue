@@ -10,12 +10,12 @@ export default {
   props: {
     autoLoading: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      loadingStatus: false,
+      loadingStatus: false
     }
   },
   methods: {
@@ -26,8 +26,8 @@ export default {
       this.$emit('click', () => {
         this.loadingStatus = false
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -10,7 +10,7 @@
 import BasicContainer from '../../../components/basic-container/index.vue'
 import LayoutBox from '../../../components/layout-box/index.vue'
 export default {
-  name: 'Index',
+  name: 'Index'
 }
 </script>
 

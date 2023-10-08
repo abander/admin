@@ -13,14 +13,14 @@ export default function useTable(options) {
     handleResponseData,
     showErrMsg = true,
     immediately = true,
-    updateDelay = 100,
+    updateDelay = 100
   } = options || {}
 
   // 当前分页信息
   const pageState = reactive({
     page: 1,
     size: 10,
-    total: 0,
+    total: 0
   })
 
   // 表格数据
@@ -45,17 +45,12 @@ export default function useTable(options) {
     try {
       const params = {
         ...pageState,
-        ...extReqData.value,
+        ...extReqData.value
       }
 
       loading.value = true
       // 发送请求
-      const {
-        code,
-        data,
-        message = '请求错误！',
-        total,
-      } = await request(params)
+      const { code, data, message = '请求错误！', total } = await request(params)
       if (code === 200) {
         console.log(total, data, 'to')
         // 额外处理返回数据
@@ -77,7 +72,7 @@ export default function useTable(options) {
     () => [pageState.page, pageState.size],
     async () => {
       await getTableData()
-    },
+    }
   )
 
   // 是否初始化加载
@@ -89,6 +84,6 @@ export default function useTable(options) {
     pageState,
     tableData,
     getTableData,
-    loading,
+    loading
   }
 }

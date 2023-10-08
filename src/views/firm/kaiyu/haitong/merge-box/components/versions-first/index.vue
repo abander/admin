@@ -8,9 +8,7 @@
     <button @click="add({ text: '+', id: 31, type: 'math' })">+</button>
     <button @click="add({ text: '-', id: 32, type: 'math' })">-</button>
     <button @click="add({ text: '*', id: 33, type: 'math' })">*</button>
-    <button @click="add({ text: '(', id: 34, type: 'brackets-start' })">
-      (
-    </button>
+    <button @click="add({ text: '(', id: 34, type: 'brackets-start' })">(</button>
     <button @click="add({ text: ')', id: 35, type: 'brackets-end' })">)</button>
     <button @click="btnSave">保存</button>
   </div>
@@ -21,43 +19,43 @@ import KFormulaEditor from './formula-editor.vue'
 
 export default {
   components: {
-    KFormulaEditor,
+    KFormulaEditor
   },
   data() {
     return {
       data: [
         {
           id: 1,
-          text: '组合1',
+          text: '组合1'
         },
         {
           id: 31,
           text: '+',
-          type: 'math',
+          type: 'math'
         },
         {
           id: 2,
-          text: '组合2',
+          text: '组合2'
         },
         {
           id: 32,
           text: '-',
-          type: 'math',
+          type: 'math'
         },
         {
           id: 3,
-          text: '组合3',
+          text: '组合3'
         },
         {
           id: 33,
           text: '*',
-          type: 'math',
+          type: 'math'
         },
         {
           id: 4,
-          text: '组合4',
-        },
-      ],
+          text: '组合4'
+        }
+      ]
     }
   },
   methods: {
@@ -72,8 +70,8 @@ export default {
       //获取input的id和name
       console.log(this.$refs.formulaEditor.getData(), '222222')
       console.log(22222)
-    },
-  },
+    }
+  }
 }
 </script>
 

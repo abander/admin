@@ -26,11 +26,7 @@
             >
               <span slot-scope="{ node, data }" class="custom-tree-node-merge">
                 <span>
-                  <el-tooltip
-                    placement="bottom"
-                    :content="node.label"
-                    :disabled="node.label.length < 10"
-                  >
+                  <el-tooltip placement="bottom" :content="node.label" :disabled="node.label.length < 10">
                     <span class="target-tree-data-box">{{ node.label }}</span>
                   </el-tooltip>
                 </span>
@@ -48,15 +44,9 @@
                 @error="errorFn"
               />
               <div class="icon">
-                <div class="add" @click="iconClick('+', 'math')">
-                  <span class="add-span" /><i class="add-i" />
-                </div>
-                <div class="subtract" @click="iconClick('-', 'math')">
-                  <span class="add-span" /><i class="add-i" />
-                </div>
-                <div class="ride" @click="iconClick('*', 'math')">
-                  <span class="add-span" /><i class="add-i" />
-                </div>
+                <div class="add" @click="iconClick('+', 'math')"><span class="add-span" /><i class="add-i" /></div>
+                <div class="subtract" @click="iconClick('-', 'math')"><span class="add-span" /><i class="add-i" /></div>
+                <div class="ride" @click="iconClick('*', 'math')"><span class="add-span" /><i class="add-i" /></div>
                 <div class="left" @click="iconClick('(', 'brackets-start')">
                   <span class="add-span" />
                 </div>
@@ -78,7 +68,7 @@ import DialogBox from '../../../../../components/dialog-box/index.vue'
 export default {
   components: {
     FormulaEditor,
-    DialogBox,
+    DialogBox
   },
   data() {
     return {
@@ -93,32 +83,32 @@ export default {
         {
           title: '规则1',
           vcPlateTreeTypeId: 'RM_1549688412901085184',
-          type: null,
+          type: null
         },
         { title: '+', vcPlateTreeTypeId: '+', type: 'math' },
         {
           title: '合并',
           vcPlateTreeTypeId: 'RM_1549689180991393792',
-          type: null,
+          type: null
         },
         { title: '+', vcPlateTreeTypeId: '+', type: 'math' },
         {
           title: '测试规则',
           vcPlateTreeTypeId: 'RM_1550376256539856896',
-          type: null,
+          type: null
         },
         { title: '+', vcPlateTreeTypeId: '+', type: 'math' },
         {
           title: '12',
           vcPlateTreeTypeId: 'RM_1552833510564302848',
-          type: null,
+          type: null
         },
         { title: '-', vcPlateTreeTypeId: '-', type: 'math' },
         {
           title: '1111',
           vcPlateTreeTypeId: 'RM_1552835073995313152',
-          type: null,
-        },
+          type: null
+        }
       ],
       // loading
       mergeLoading: false,
@@ -146,7 +136,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '1',
-                  vcPlateCode: 'RM_1549688412901085184',
+                  vcPlateCode: 'RM_1549688412901085184'
                 },
                 {
                   title: '合并1',
@@ -156,7 +146,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '2',
-                  vcPlateCode: 'RM_1549948877224939520',
+                  vcPlateCode: 'RM_1549948877224939520'
                 },
                 {
                   title: '测试规则',
@@ -166,7 +156,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '1',
-                  vcPlateCode: 'RM_1550376256539856896',
+                  vcPlateCode: 'RM_1550376256539856896'
                 },
                 {
                   title: '12',
@@ -176,7 +166,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '1',
-                  vcPlateCode: 'RM_1552833510564302848',
+                  vcPlateCode: 'RM_1552833510564302848'
                 },
                 {
                   title: '131',
@@ -186,7 +176,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '1',
-                  vcPlateCode: 'RM_1552834092192632832',
+                  vcPlateCode: 'RM_1552834092192632832'
                 },
                 {
                   title: '1111',
@@ -196,7 +186,7 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '1',
-                  vcPlateCode: 'RM_1552835073995313152',
+                  vcPlateCode: 'RM_1552835073995313152'
                 },
                 {
                   title: '静态1',
@@ -206,11 +196,11 @@ export default {
                   type: 2,
                   children: [],
                   plateType: '3',
-                  vcPlateCode: 'RM_1554017972153094144',
-                },
+                  vcPlateCode: 'RM_1554017972153094144'
+                }
               ],
               plateType: '0',
-              vcPlateCode: null,
+              vcPlateCode: null
             },
             {
               title: '哈哈哈哈',
@@ -220,7 +210,7 @@ export default {
               type: 1,
               children: [],
               plateType: '0',
-              vcPlateCode: null,
+              vcPlateCode: null
             },
             {
               title: '静态',
@@ -230,7 +220,7 @@ export default {
               type: 2,
               children: [],
               plateType: '3',
-              vcPlateCode: 'RM_1549686202272190464',
+              vcPlateCode: 'RM_1549686202272190464'
             },
             {
               title: '测试',
@@ -240,7 +230,7 @@ export default {
               type: 2,
               children: [],
               plateType: '1',
-              vcPlateCode: 'RM_1551492841358888960',
+              vcPlateCode: 'RM_1551492841358888960'
             },
             {
               title: '11',
@@ -250,18 +240,18 @@ export default {
               type: 2,
               children: [],
               plateType: '1',
-              vcPlateCode: 'RM_1552832446943334400',
-            },
+              vcPlateCode: 'RM_1552832446943334400'
+            }
           ],
           plateType: '0',
-          vcPlateCode: null,
-        },
+          vcPlateCode: null
+        }
       ],
       defaultProps: {
         children: 'children',
-        label: 'title',
+        label: 'title'
       },
-      currentNodeKey: '1-1',
+      currentNodeKey: '1-1'
     }
   },
   methods: {
@@ -270,7 +260,7 @@ export default {
       const item = {
         title,
         vcPlateTreeTypeId: title,
-        type,
+        type
       }
       this.$refs.formulaEditor.push(item)
     },
@@ -282,7 +272,7 @@ export default {
         this.$refs.formulaEditor.push({
           title: data.title,
           vcPlateTreeTypeId: data.vcPlateCode,
-          data,
+          data
         })
       }
     },
@@ -317,8 +307,8 @@ export default {
           console.log('校验不通过', err)
           this.isShow = true
         })
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

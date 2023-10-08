@@ -1,22 +1,22 @@
 export const iconProps = {
   code: {
     type: String,
-    default: '',
+    default: ''
   },
   color: {
     type: String,
-    default: '',
+    default: ''
   },
   style: {
     type: Object,
-    default: () => ({}),
+    default: () => ({})
   },
   tooltip: {
     type: String,
-    default: '',
+    default: ''
   },
   disabled: {
     type: Boolean,
-    default: false,
-  },
-};
+    default: false
+  }
+}

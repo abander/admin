@@ -2,8 +2,7 @@ import { isEmpty } from './data'
 
 /* 邮箱是否为空 */
 export function isNullEmail(str) {
-  const reg =
-    /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/i
+  const reg = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/i
   return reg.test(str)
 }
 
@@ -78,15 +77,7 @@ export function validatPass(str) {
  * @param length     值长度
  * @returns {*}
  */
-export function checkInput(
-  rule,
-  value,
-  callback,
-  isRequired,
-  reg,
-  regMassge,
-  length,
-) {
+export function checkInput(rule, value, callback, isRequired, reg, regMassge, length) {
   if (isRequired == 'Y') {
     if (value == '' || value == null) {
       return '不能为空'

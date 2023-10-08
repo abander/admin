@@ -11,7 +11,7 @@ function Ha(obj, callback) {
       },
       set(val) {
         obj[key] = callback(val, key)
-      },
+      }
     })
   })
   return newObj
@@ -19,7 +19,7 @@ function Ha(obj, callback) {
 const obj = {
   s: 1,
   m: 2,
-  q: 3,
+  q: 3
 }
 const data = Ha(obj, (val, key) => `smh想要修改对象obj的属性${key}为${val}`)
 data.s = 5

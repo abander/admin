@@ -1,14 +1,7 @@
 <template>
   <div>
-    <Dialog :title="title"  v-model:isShow="params.isShow" @before-close="beforeClose" @confirm="confirm">
-      <el-form
-          ref="formRef"
-          :model="formValue"
-          :inline="true"
-          label-width="120px"
-          size="small"
-          :rules="rules"
-      >
+    <Dialog :title="title" v-model:isShow="params.isShow" @before-close="beforeClose" @confirm="confirm">
+      <el-form ref="formRef" :model="formValue" :inline="true" label-width="120px" size="small" :rules="rules">
         <el-form-item label="名称" prop="name">
           <el-input v-model="formValue.name" />
         </el-form-item>
@@ -45,12 +38,11 @@
 </template>
 
 <script setup>
-import Dialog from "@/components/dialog/index.vue";
-import {computed, reactive, ref, watch} from "vue";
-import {cloneObj, objIsEmpty} from "@/utils/data.js";
-import {useVModel} from "@vueuse/core";
-import {addCommonApi, updateCommonApi} from "@/api/apiManage.js";
-
+import Dialog from '@/components/dialog/index.vue'
+import { computed, reactive, ref, watch } from 'vue'
+import { cloneObj, objIsEmpty } from '@/utils/data.js'
+import { useVModel } from '@vueuse/core'
+import { addCommonApi, updateCommonApi } from '@/api/apiManage.js'
 
 // prop
 const props = defineProps({
@@ -64,9 +56,9 @@ const props = defineProps({
 const emits = defineEmits(['update:editData', 'getTable'])
 
 // modal title
-const title = computed(()=>{
-    const isEdit = !objIsEmpty(props.editData || {})
-    return isEdit ? '编辑' : '新增'
+const title = computed(() => {
+  const isEdit = !objIsEmpty(props.editData || {})
+  return isEdit ? '编辑' : '新增'
 })
 
 /* form */
@@ -86,18 +78,10 @@ const formValue = reactive({
 })
 
 const rules = {
-  name: [
-    { required: true, message: 'Please input name', trigger: 'blur' },
-  ],
-  type: [
-    { required: true, message: 'Please input type', trigger: 'blur' },
-  ],
-  requestUrl: [
-    { required: true, message: 'Please input requestUrl', trigger: 'blur' },
-  ],
-  methods: [
-    { required: true, message: 'Please input methods', trigger: 'blur' },
-  ]
+  name: [{ required: true, message: 'Please input name', trigger: 'blur' }],
+  type: [{ required: true, message: 'Please input type', trigger: 'blur' }],
+  requestUrl: [{ required: true, message: 'Please input requestUrl', trigger: 'blur' }],
+  methods: [{ required: true, message: 'Please input methods', trigger: 'blur' }]
 }
 
 // 定义modal Visible
@@ -110,20 +94,20 @@ const openDialog = () => {
   params.isShow = true
 }
 // ref用法：需要先定义在使用
-defineExpose({openDialog})
+defineExpose({ openDialog })
 
 // 双向绑定 关闭弹窗使用
 // 使用useVModel： 相当于computed
-const editDataTemp = useVModel(props,'editData',emits)
+const editDataTemp = useVModel(props, 'editData', emits)
 
 // 编辑
-const handleEditData = (editData,isEdit) => {
-    for (const [key] of Object.entries(formValue)) {
-      if(key === 'auth' && !isEdit){
-        formValue[key] = 0
-      }else{
-        formValue[key] = isEdit ? editData[key] :  ''
-      }
+const handleEditData = (editData, isEdit) => {
+  for (const [key] of Object.entries(formValue)) {
+    if (key === 'auth' && !isEdit) {
+      formValue[key] = 0
+    } else {
+      formValue[key] = isEdit ? editData[key] : ''
+    }
   }
 }
 
@@ -134,36 +118,38 @@ const beforeClose = () => {
 
 // 编辑
 watch(
-    () => props.editData,
-    (v)=>{
-      // 不为空，表示为编辑
-      const isEdit = !objIsEmpty(v || {})
-      handleEditData(v,isEdit)
-  //flush: 'post' 相当于nextick，在dom更新之后执行 handler
-},{immediate: true,deep: true,flush: 'post'})
+  () => props.editData,
+  (v) => {
+    // 不为空，表示为编辑
+    const isEdit = !objIsEmpty(v || {})
+    handleEditData(v, isEdit)
+    //flush: 'post' 相当于nextick，在dom更新之后执行 handler
+  },
+  { immediate: true, deep: true, flush: 'post' }
+)
 
-const confirm = async(done) => {
-    const addApi = await addCommonApi
-    const editApi = await updateCommonApi
-    if (!formRef.value) return
-    const flag = await formRef.value.validate(valid => valid)
-    if (!flag) return
-    const id = props.editData?._id
-    const params = cloneObj(formValue)
-    let api = addApi
-    if (id) {
-      // 编辑
-      params.id = id
-      api = editApi
-    }
-    const {code, msg} = await api(params)
-    if (code === 200) {
-      $Message({message: msg, type: 'success'})
-      done()
-      emits("getTable")
-    }else{
-      $Message({message: msg, type: 'error'})
-    }
+const confirm = async (done) => {
+  const addApi = await addCommonApi
+  const editApi = await updateCommonApi
+  if (!formRef.value) return
+  const flag = await formRef.value.validate((valid) => valid)
+  if (!flag) return
+  const id = props.editData?._id
+  const params = cloneObj(formValue)
+  let api = addApi
+  if (id) {
+    // 编辑
+    params.id = id
+    api = editApi
+  }
+  const { code, msg } = await api(params)
+  if (code === 200) {
+    $Message({ message: msg, type: 'success' })
+    done()
+    emits('getTable')
+  } else {
+    $Message({ message: msg, type: 'error' })
+  }
 }
 </script>
 
@@ -172,4 +158,3 @@ const confirm = async(done) => {
   font-weight: 700;
 }
 </style>
-

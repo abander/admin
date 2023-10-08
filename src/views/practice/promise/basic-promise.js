@@ -9,5 +9,5 @@ promise.then(
   },
   (reason) => {
     console.log('reject', reason)
-  },
+  }
 )

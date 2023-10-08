@@ -13,8 +13,8 @@ export default {
   data() {
     return {
       user: {
-        name: 'test',
-      },
+        name: 'test'
+      }
     }
   },
   created() {},
@@ -22,8 +22,8 @@ export default {
     addUserAgeField() {
       //this.user.age = 20 //这样是不起作用, 不会被Observer
       this.$set(this.user, 'age', 20) // 应该使用
-    },
-  },
+    }
+  }
 }
 </script>
 

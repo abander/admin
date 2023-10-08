@@ -9,11 +9,11 @@ export const userStore = defineStore('userState', {
   // state: 返回对象的函数
   state: () => ({
     //存储token解析之后的内容 token解析之后是对象
-    user: {},
+    user: {}
   }),
   //通过getters对状态state进行获取
   getters: {
-    getUser: (state) => state.user,
+    getUser: (state) => state.user
   },
   actions: {
     //解析的用户
@@ -23,7 +23,7 @@ export const userStore = defineStore('userState', {
       } else {
         this.user = {}
       }
-    },
+    }
   },
-  persist: true,
+  persist: true
 })

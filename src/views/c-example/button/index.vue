@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Button-box :auto-loading="true" @click="submit">
-      自动loading按钮</Button-box
-    >
+    <Button-box :auto-loading="true" @click="submit"> 自动loading按钮</Button-box>
     <Button-box type="primary" round>圆角按钮</Button-box>
   </div>
 </template>
@@ -18,8 +16,8 @@ export default {
       setTimeout(() => {
         done()
       }, 1000)
-    },
-  },
+    }
+  }
 }
 </script>
 

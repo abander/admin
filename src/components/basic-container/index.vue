@@ -12,9 +12,9 @@ export default {
   props: {
     block: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 }
 </script>
 

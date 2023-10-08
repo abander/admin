@@ -17,15 +17,11 @@
         width="120">
         <template slot-scope="scope">{{ scope.row.date }}</template>
       </el-table-column>-->
-        <el-table-column prop="name" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="地址" show-overflow-tooltip>
-        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
+        <el-table-column prop="address" label="地址" show-overflow-tooltip> </el-table-column>
       </el-table>
       <div style="margin-top: 20px">
-        <el-button @click="toggleSelection([tableData3[1], tableData3[2]])"
-          >切换第二、第三行的选中状态</el-button
-        >
+        <el-button @click="toggleSelection([tableData3[1], tableData3[2]])">切换第二、第三行的选中状态</el-button>
         <el-button @click="toggleSelection()">取消选择</el-button>
         <el-button type="primary" @click="importData">导入</el-button>
         <el-button type="primary" @click="outportData">导出</el-button>
@@ -41,7 +37,7 @@
         <div
           :class="{
             'import-content': importFlag === 1,
-            'hide-dialog': importFlag !== 1,
+            'hide-dialog': importFlag !== 1
           }"
         >
           <el-upload
@@ -58,33 +54,25 @@
             :with-credentials="withCredentials"
           >
             <!-- 是否支持发送cookie信息 -->
-            <el-button size="small" type="primary" :disabled="processing">{{
-              uploadTip
-            }}</el-button>
+            <el-button size="small" type="primary" :disabled="processing">{{ uploadTip }}</el-button>
             <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
           </el-upload>
           <div class="download-template">
-            <a class="btn-download" @click="download">
-              <i class="icon-download"></i>下载模板</a
-            >
+            <a class="btn-download" @click="download"> <i class="icon-download"></i>下载模板</a>
           </div>
         </div>
         <div
           :class="{
             'import-failure': importFlag === 2,
-            'hide-dialog': importFlag !== 2,
+            'hide-dialog': importFlag !== 2
           }"
         >
-          <div class="failure-tips">
-            <i class="el-icon-warning"></i>导入失败
-          </div>
+          <div class="failure-tips"><i class="el-icon-warning"></i>导入失败</div>
           <div class="failure-reason">
             <h4>失败原因</h4>
             <ul>
               <li v-for="(error, index) in errorResults" :key="index">
-                第{{ error.rowIdx + 1 }}行，错误：{{ error.column }},{{
-                  error.value
-                }},{{ error.errorInfo }}
+                第{{ error.rowIdx + 1 }}行，错误：{{ error.column }},{{ error.value }},{{ error.errorInfo }}
               </li>
             </ul>
           </div>
@@ -105,19 +93,19 @@ export default {
         {
           date: '2016-05-03',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
+          address: '上海市普陀区金沙江路 1518 弄'
         },
         {
           date: '2016-05-02',
           name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-        },
+          address: '上海市普陀区金沙江路 1518 弄'
+        }
       ],
       multipleSelection: [],
       importUrl: 'www.baidu.com', //后台接口config.admin_url+'rest/schedule/import/'
       importHeaders: {
         enctype: 'multipart/form-data',
-        cityCode: '',
+        cityCode: ''
       },
       name: 'import',
       fileList: [],
@@ -126,7 +114,7 @@ export default {
       uploadTip: '点击上传',
       importFlag: 1,
       dialogImportVisible: false,
-      errorResults: [],
+      errorResults: []
     }
   },
   methods: {
@@ -163,9 +151,7 @@ export default {
       //上传前配置
       this.importHeaders.cityCode = '上海' //可以配置请求头
       let excelfileExtend = '.xls,.xlsx' //设置文件格式
-      let fileExtend = file.name
-        .substring(file.name.lastIndexOf('.'))
-        .toLowerCase()
+      let fileExtend = file.name.substring(file.name.lastIndexOf('.')).toLowerCase()
       if (excelfileExtend.indexOf(fileExtend) <= -1) {
         this.$message.error('文件格式错误')
         return false
@@ -202,8 +188,8 @@ export default {
     download() {
       //调用后台模板方法,和导出类似
       scheduleApi.downloadTemplate()
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -22,40 +22,27 @@
           label-width="100px"
         >
           <el-row :gutter="20">
-            <el-col
-              v-for="(item, index) in paramDetailsData"
-              :key="index"
-              :span="24"
-            >
+            <el-col v-for="(item, index) in paramDetailsData" :key="index" :span="24">
               <el-form-item
-                v-if="
-                  item.vcIsshowFlag === '1' &&
-                  item.vcControlType !== 'PLATE_SELECT'
-                "
+                v-if="item.vcIsshowFlag === '1' && item.vcControlType !== 'PLATE_SELECT'"
                 class="form-margin"
                 :label="`${item.vcIndexParamName}：`"
                 :prop="item.vcIndexParamCode"
               >
                 <el-input
-                  v-if="
-                    item.vcControlType === 'TEXT' && item.vcIsshowFlag === '1'
-                  "
+                  v-if="item.vcControlType === 'TEXT' && item.vcIsshowFlag === '1'"
                   v-model.trim="parameterForm[item.vcIndexParamCode]"
                   class="parameter-form"
                   placeholder="请输入内容"
                   maxlength="200"
                   @keyup.native="
-                    parameterForm[item.vcIndexParamCode] = parameterForm[
-                      item.vcIndexParamCode
-                    ].replace(/\s+/g, '')
+                    parameterForm[item.vcIndexParamCode] = parameterForm[item.vcIndexParamCode].replace(/\s+/g, '')
                   "
                 />
 
                 <!--                            日期-->
                 <el-date-picker
-                  v-if="
-                    item.vcControlType === 'DATE' && item.vcIsshowFlag === '1'
-                  "
+                  v-if="item.vcControlType === 'DATE' && item.vcIsshowFlag === '1'"
                   v-model="parameterForm[item.vcIndexParamCode]"
                   class="parameter-form"
                   type="date"
@@ -65,9 +52,7 @@
 
                 <!--      单选select        -->
                 <el-select
-                  v-if="
-                    item.vcControlType === 'SELECT' && item.vcIsshowFlag === '1'
-                  "
+                  v-if="item.vcControlType === 'SELECT' && item.vcIsshowFlag === '1'"
                   v-model="parameterForm[item.vcIndexParamCode]"
                   class="parameter-form"
                   placeholder="请选择"
@@ -82,10 +67,7 @@
 
                 <!--多选-->
                 <el-select
-                  v-if="
-                    item.vcControlType === 'SELECT-MULT' &&
-                    item.vcIsshowFlag === '1'
-                  "
+                  v-if="item.vcControlType === 'SELECT-MULT' && item.vcIsshowFlag === '1'"
                   v-model="parameterForm[item.vcIndexParamCode]"
                   class="parameter-form"
                   multiple
@@ -117,13 +99,13 @@ export default {
     // 显隐
     parameterEditShow: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 参数form表单数据
     parameterDatas: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
@@ -140,7 +122,7 @@ export default {
       // 参数form表单数据
       paramDetailsData: [],
       // 下拉框调接口需要用的
-      vcCode: '',
+      vcCode: ''
     }
   },
   computed: {
@@ -151,8 +133,8 @@ export default {
       },
       set(v) {
         this.$emit('update:parameterEditShow', v)
-      },
-    },
+      }
+    }
   },
   watch: {
     // 回显的数据
@@ -163,8 +145,8 @@ export default {
           this.setParameterFormEcho(this.paramDetailsData)
         }
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     // 参数form表单回显
@@ -181,42 +163,22 @@ export default {
               Array.isArray(item.vcAnalysisParamDefault) &&
               item.vcAnalysisParamDefault.length
             ) {
-              const vcAnalysisParamDefaultString =
-                item.vcAnalysisParamDefault.join(',')
-              const vcAnalysisParamDefaultMult =
-                vcAnalysisParamDefaultString.split(',')
-              this.$set(
-                this.parameterForm,
-                item.vcIndexParamCode,
-                vcAnalysisParamDefaultMult,
-              )
+              const vcAnalysisParamDefaultString = item.vcAnalysisParamDefault.join(',')
+              const vcAnalysisParamDefaultMult = vcAnalysisParamDefaultString.split(',')
+              this.$set(this.parameterForm, item.vcIndexParamCode, vcAnalysisParamDefaultMult)
               this.selectChange()
             } else {
               // 多选是字符串的时候 新添加的就是字符串
-              const vcAnalysisParamDefaultMult =
-                item.vcAnalysisParamDefault &&
-                item.vcAnalysisParamDefault.split(',')
-              this.$set(
-                this.parameterForm,
-                item.vcIndexParamCode,
-                vcAnalysisParamDefaultMult,
-              )
+              const vcAnalysisParamDefaultMult = item.vcAnalysisParamDefault && item.vcAnalysisParamDefault.split(',')
+              this.$set(this.parameterForm, item.vcIndexParamCode, vcAnalysisParamDefaultMult)
               this.selectChange()
             }
           } else if (item.vcControlType === 'SELECT') {
-            this.$set(
-              this.parameterForm,
-              item.vcIndexParamCode,
-              item.vcAnalysisParamDefault,
-            )
+            this.$set(this.parameterForm, item.vcIndexParamCode, item.vcAnalysisParamDefault)
             this.selectChange()
           } else {
             if (item.vcIsshowFlag === '1') {
-              this.$set(
-                this.parameterForm,
-                item.vcIndexParamCode,
-                item.vcAnalysisParamDefault,
-              )
+              this.$set(this.parameterForm, item.vcIndexParamCode, item.vcAnalysisParamDefault)
             } else {
               // 为0的时候value设置为null，保存的时候key直接删掉
               this.$set(this.parameterForm, item.vcIndexParamCode, null)
@@ -226,11 +188,9 @@ export default {
           const { trigger, message, required } = this.getFormItemRule(
             item.vcControlType,
             item.vcIndexParamName,
-            item.vcIsrequired,
+            item.vcIsrequired
           )
-          this.parameterFormRules[item.vcIndexParamCode] = [
-            { required, trigger, message },
-          ]
+          this.parameterFormRules[item.vcIndexParamCode] = [{ required, trigger, message }]
         })
       }
     },
@@ -314,7 +274,7 @@ export default {
               { subItemCode: '100009006', subItemName: '定向资管产品' },
               {
                 subItemCode: '100009007',
-                subItemName: '基础建设及不动产投资计划',
+                subItemName: '基础建设及不动产投资计划'
               },
               { subItemCode: '100009008', subItemName: '基金子公司产品' },
               { subItemCode: '100009009', subItemName: '互联网金融产品' },
@@ -360,16 +320,14 @@ export default {
               { subItemCode: '703002000', subItemName: '指数类' },
               { subItemCode: '703003000', subItemName: '利率类' },
               { subItemCode: '703007001', subItemName: '跨品种套利' },
-              { subItemCode: '703007002', subItemName: '跨期套利' },
+              { subItemCode: '703007002', subItemName: '跨期套利' }
             ]
-          } else if (
-            this.paramDetailsData[i].vcIndexParamCode === 'tradeDate2'
-          ) {
+          } else if (this.paramDetailsData[i].vcIndexParamCode === 'tradeDate2') {
             tableData = [
               { subItemCode: 'A', subItemName: 'A股' },
               { subItemCode: 'B', subItemName: 'B股' },
               { subItemCode: 'HK', subItemName: '港股' },
-              { subItemCode: 'US', subItemName: '美股' },
+              { subItemCode: 'US', subItemName: '美股' }
             ]
           } else if (this.paramDetailsData[i].vcIndexParamCode === 'codes3') {
             tableData = [
@@ -380,7 +338,7 @@ export default {
               { subItemCode: '5', subItemName: 'QDII' },
               { subItemCode: '6', subItemName: '社保基金' },
               { subItemCode: '7', subItemName: 'ETF基金' },
-              { subItemCode: '8', subItemName: 'ETF联接基金' },
+              { subItemCode: '8', subItemName: 'ETF联接基金' }
             ]
           }
           const optionsData = tableData.map((item) => {
@@ -388,8 +346,8 @@ export default {
               {},
               {
                 label: item.subItemName,
-                value: item.subItemCode,
-              },
+                value: item.subItemCode
+              }
             )
           })
           // 对默认值value转换对应的label显示在下拉框中
@@ -400,18 +358,13 @@ export default {
       }
     },
     // 对默认值value转换对应的label显示在下拉框中
-    convertSelect(
-      { vcControlType, vcAnalysisParamDefault, vcIndexParamCode },
-      optionsData,
-    ) {
+    convertSelect({ vcControlType, vcAnalysisParamDefault, vcIndexParamCode }, optionsData) {
       // 分别对下拉框单选、多选做处理
       if (vcControlType === 'SELECT') {
         // 找到对应的label
         // 新增的时候默认值是value，点击设置默认值是label
         const value = optionsData.find((v) =>
-          v.value === vcAnalysisParamDefault
-            ? v.value === vcAnalysisParamDefault
-            : v.label === vcAnalysisParamDefault,
+          v.value === vcAnalysisParamDefault ? v.value === vcAnalysisParamDefault : v.label === vcAnalysisParamDefault
         )?.label
         // 给form里面的key进行重写赋值(label)   只有新增的时候会赋值label
         if (value) {
@@ -420,20 +373,14 @@ export default {
       } else {
         // 多选的时候 新增的时候默认值是value字符串需要转数组 点击设置的时候是label是数组
         let vcAnalysisParamDefaultSplit = null
-        if (
-          vcAnalysisParamDefault &&
-          Array.isArray(vcAnalysisParamDefault) &&
-          vcAnalysisParamDefault.length
-        ) {
+        if (vcAnalysisParamDefault && Array.isArray(vcAnalysisParamDefault) && vcAnalysisParamDefault.length) {
           vcAnalysisParamDefaultSplit = vcAnalysisParamDefault
         } else {
           vcAnalysisParamDefaultSplit = vcAnalysisParamDefault.split(',')
         }
         let value = []
         value = vcAnalysisParamDefaultSplit.map((item) => {
-          return optionsData.find((v) =>
-            v.value === item ? v.value === item : v.label === item,
-          )?.label
+          return optionsData.find((v) => (v.value === item ? v.value === item : v.label === item))?.label
         })
         if (value) {
           this.$set(this.parameterForm, vcIndexParamCode, value)
@@ -523,8 +470,8 @@ export default {
         result = target
       }
       return result
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -18,7 +18,9 @@
             <!--            <img :src="src" v-loading="captchaLoading" style="display: inline-block; height: 30px" @click="captcha" />-->
           </div>
         </el-form-item>
-        <el-button :loading="submitLoading" size="large" type="primary" class="login-button" plain @click="submit">登录</el-button>
+        <el-button :loading="submitLoading" size="large" type="primary" class="login-button" plain @click="submit"
+          >登录</el-button
+        >
       </el-form>
     </el-card>
     <div class="bg absolute-lt z-1 wh-full overflow-hidden">
@@ -36,7 +38,7 @@
 // element
 import { User, Lock } from '@element-plus/icons-vue'
 import useLogin from './useLogin'
-const { form, formRef, formRules, submit, src, captcha, captchaLoading,submitLoading } = useLogin()
+const { form, formRef, formRules, submit, src, captcha, captchaLoading, submitLoading } = useLogin()
 import { BgTop, BgBottom } from './components'
 </script>
 

@@ -34,7 +34,7 @@ export default {
     return {
       isShow: false,
       loading: false,
-      isCheck: true,
+      isCheck: true
     }
   },
   methods: {
@@ -53,8 +53,8 @@ export default {
     },
     change(e) {
       this.isShow = e
-    },
-  },
+    }
+  }
 }
 </script>
 

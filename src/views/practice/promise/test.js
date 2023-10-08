@@ -51,7 +51,7 @@ function getPageDetailByIdw(pageId, i) {
             labelAlign: result.labelAlign,
             labelWidth: result.labelWidth,
             isDefault: '0',
-            type: this.currentBlockModule,
+            type: this.currentBlockModule
           }
           // 因自定义组件和组件库返回数据格式不同，需对list特殊处理
           let dealList = []

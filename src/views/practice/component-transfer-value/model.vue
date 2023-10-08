@@ -18,7 +18,7 @@ export default {
   components: { modelComponents },
   data() {
     return {
-      toAbout: 'default',
+      toAbout: 'default'
     }
   },
   methods: {
@@ -26,12 +26,12 @@ export default {
       this.$router.push({
         //path: window.location.hash,
         query: {
-          title: 'add',
-        },
+          title: 'add'
+        }
       })
       console.log(this.$router, ' this.$router22222222222')
-    },
-  },
+    }
+  }
 }
 </script>
 

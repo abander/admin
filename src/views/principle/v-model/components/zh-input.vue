@@ -11,13 +11,13 @@ export default {
   name: 'ZhInput',
   props: {
     value: String,
-    b: String,
+    b: String
   },
   methods: {
     handelInput(e) {
       this.$emit('changeB', 'iiiii')
-    },
-  },
+    }
+  }
 }
 </script>
 

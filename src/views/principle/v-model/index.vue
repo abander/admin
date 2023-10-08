@@ -12,9 +12,9 @@ export default {
   components: { BaseInput },
   data() {
     return {
-      username: '',
+      username: ''
     }
-  },
+  }
 }
 </script>
 

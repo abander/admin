@@ -9,13 +9,13 @@ export default {
   props: {
     value: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   methods: {
     handleInput(e) {
       this.$emit('input', e.target.value)
-    },
-  },
+    }
+  }
 }
 </script>

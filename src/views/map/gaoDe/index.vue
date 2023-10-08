@@ -15,7 +15,7 @@ export default {
       var map = new AMap.Map('container', {
         zoom: 20, //级别
         center: [121.60642, 31.20095], //中心点坐标
-        viewMode: '3D', //使用3D视图
+        viewMode: '3D' //使用3D视图
       })
 
       // 创建一个 Marker 实例：
@@ -24,7 +24,7 @@ export default {
         // title: "上海电子口岸", // 鼠标移上去时显示的内容
         offset: new AMap.Pixel(-27, -20), // 偏移量
         // 可以指定图标图片地址
-        icon: '//vdata.amap.com/icons/b18/1/2.png', // 添加 Icon 图标 URL
+        icon: '//vdata.amap.com/icons/b18/1/2.png' // 添加 Icon 图标 URL
       })
       /* // 插件的添加,第一个参数为插件名,第二个为回调函数
       AMap.plugin("AMap.ToolBar", function () {
@@ -36,8 +36,7 @@ export default {
       map.add(marker)
     }
     // key是申请的值
-    var url =
-      'https://webapi.amap.com/maps?v=1.4.15&key=6c52ee3ede0e95c6651eca5d65341f41&callback=onLoad'
+    var url = 'https://webapi.amap.com/maps?v=1.4.15&key=6c52ee3ede0e95c6651eca5d65341f41&callback=onLoad'
     //创建一个 script dom元素 doc需要补全document
     var jsapi = document.createElement('script')
     //设定script标签属性
@@ -45,7 +44,7 @@ export default {
     jsapi.src = url
     //将API文件引入页面中,加载完毕以后会调用函数
     document.head.appendChild(jsapi)
-  },
+  }
 }
 </script>
 

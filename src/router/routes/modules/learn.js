@@ -58,6 +58,6 @@ export default {
       meta: {
         title: 'slot'
       }
-    },
+    }
   ]
 }

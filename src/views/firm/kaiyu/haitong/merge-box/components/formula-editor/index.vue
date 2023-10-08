@@ -1,20 +1,10 @@
 <template>
   <!-- <div ref="formula" contenteditable="true" @click="click" v-html="html"></div> -->
   <div class="k--formula-editor">
-    <div
-      ref="formula"
-      :key="n"
-      contenteditable="true"
-      class="k--formula-editor-input"
-      @click="click"
-    >
+    <div ref="formula" :key="n" contenteditable="true" class="k--formula-editor-input" @click="click">
       <template v-for="(item, index) in itemList2">
         <span
-          v-if="
-            item.type === 'math' ||
-            item.type === 'brackets-start' ||
-            item.type === 'brackets-end'
-          "
+          v-if="item.type === 'math' || item.type === 'brackets-start' || item.type === 'brackets-end'"
           :key="item[nodeKey] + '-' + index"
           class="k--formula-editor-item"
           :class="'k--formula-editor-item-' + item.type"
@@ -35,10 +25,7 @@
           class="k--formula-editor-item"
           contenteditable="false"
           :node-key="item[nodeKey]"
-          >{{ item[textName]
-          }}<i
-            class="k--formula-editor-item-del"
-            @click.stop="del(item, index)"
+          >{{ item[textName] }}<i class="k--formula-editor-item-del" @click.stop="del(item, index)"
         /></span>
       </template>
     </div>
@@ -54,47 +41,47 @@ export default {
     // placeholder 显示
     placeholder: {
       type: String,
-      default: '请选择板块',
+      default: '请选择板块'
     },
     // 文本名
     textName: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     // 数据id(唯一值)
     nodeKey: {
       type: String,
-      default: 'id',
+      default: 'id'
     },
     // 数据
     data: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 拦截器集合
     interceptorObj: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 拦截器名
     interceptor: {
       type: String,
-      default: 'default',
+      default: 'default'
     },
     // 校验集合
     validatorObj: {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     // 校验名
     validator: {
       type: String,
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
   data() {
     return {
@@ -150,10 +137,7 @@ export default {
           if (oldItem && !data.type && !type) {
             return { msg: '请先选择运算符' }
             // 插入运算符
-          } else if (
-            data.type === 'math' &&
-            (type === 'math' || type === 'brackets-start')
-          ) {
+          } else if (data.type === 'math' && (type === 'math' || type === 'brackets-start')) {
             // console.log('请先选择规则')
             return { type: 'math', msg: '请先选择规则' }
             // 插入开始括号符号
@@ -166,16 +150,12 @@ export default {
             // console.log('请先选择符号111888888888888', type, itemList)
             return { type: 'brackets-start', msg: '请先选择运算符号' }
             // 插入飘带括号符号
-          } else if (
-            data.type === 'brackets-end' &&
-            type &&
-            type !== 'brackets-end'
-          ) {
+          } else if (data.type === 'brackets-end' && type && type !== 'brackets-end') {
             // console.log('请先选择规则222', type)
             return { type: 'brackets-end', msg: '请先选择规则' }
           }
         },
-        ...this.interceptorObj,
+        ...this.interceptorObj
       },
       validatorObj2: {
         default(data) {
@@ -198,7 +178,7 @@ export default {
             const err = {
               msg: '缺少右括号',
               type: 'brackets-end',
-              error: new Error('缺少右括号'),
+              error: new Error('缺少右括号')
             }
             return Promise.reject(err)
           }
@@ -217,8 +197,8 @@ export default {
               return Promise.reject(err)
             })
         },
-        ...this.validatorObj,
-      },
+        ...this.validatorObj
+      }
     }
   },
   computed: {
@@ -241,7 +221,7 @@ export default {
     // },
     itemList2() {
       return [...this.itemList, { type: 'empty' }]
-    },
+    }
   },
   watch: {
     data() {
@@ -249,7 +229,7 @@ export default {
     },
     emptyText() {
       console.log('文本变化', this.emptyText)
-    },
+    }
   },
   created() {
     this.interceptorObj2.default = this.interceptorObj2.default.bind(this)
@@ -283,10 +263,9 @@ export default {
     },
     // 禁用右键
     rightClickDisable() {
-      this.$refs.formula.onselectstart = this.$refs.formula.oncontextmenu =
-        function () {
-          return false // 取消浏览器默认操作
-        }
+      this.$refs.formula.onselectstart = this.$refs.formula.oncontextmenu = function () {
+        return false // 取消浏览器默认操作
+      }
     },
     // 设置key
     setKeys() {
@@ -343,13 +322,8 @@ export default {
     },
     // 不能输入中文、数字、英文
     emptyImport() {
-      const node =
-        this.$refs.formula.childNodes[this.$refs.formula.childNodes.length - 1]
-      if (
-        node &&
-        !node.getAttribute('node-key') &&
-        node.innerHTML !== '&nbsp;'
-      ) {
+      const node = this.$refs.formula.childNodes[this.$refs.formula.childNodes.length - 1]
+      if (node && !node.getAttribute('node-key') && node.innerHTML !== '&nbsp;') {
         node.innerHTML = '&nbsp;'
       }
     },
@@ -442,8 +416,8 @@ export default {
 
       this.itemList = data
       this.update()
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss">

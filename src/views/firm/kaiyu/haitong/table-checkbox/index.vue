@@ -28,7 +28,7 @@ import axios from 'axios'
 const newCheckbox = () => ({
   component: import('./components/checkBox.vue'),
   delay: 2000,
-  timeout: 2000,
+  timeout: 2000
 })
 export default {
   name: 'Index',
@@ -45,15 +45,15 @@ export default {
             { label: '性别', width: '120', prop: 'sex' },
             { prop: 'age', label: '年龄', width: '120' },
             { prop: 'styChild', label: '身份', width: '120' },
-            { prop: 'gradeClass', label: '学历', width: '200' },
+            { prop: 'gradeClass', label: '学历', width: '200' }
           ],
           selectedList: [
             { label: '姓名', width: '120', prop: 'name' },
             { label: '性别', width: '120', prop: 'sex' },
-            { prop: 'age', label: '年龄', width: '120' },
-          ],
-        },
-      ],
+            { prop: 'age', label: '年龄', width: '120' }
+          ]
+        }
+      ]
     }
   },
   mounted() {
@@ -70,8 +70,8 @@ export default {
       axios.get('http://localhost:3000/elementVauleHieen').then((res) => {
         this.tableData = res.data
       })
-    },
-  },
+    }
+  }
 }
 </script>
 <style></style>
