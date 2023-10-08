@@ -47,7 +47,7 @@ export default {
         styleNode.innerHTML = str //在ff中， innerHTML是可读写的，但在ie中，它是只读的.
       }
       document.getElementsByTagName('head')[0].appendChild(styleNode)
-    },
-  },
+    }
+  }
 }
 </script>

@@ -56,9 +56,9 @@
 </template>
 
 <script setup>
-import { delCommon, getCommon } from '@/api/apiManage.js'
-import useTable from '@/views/api-manage/useTable.js'
-import View from '@/views/api-manage/modal/view/index.vue'
+import { delCommon, getCommon } from '@/api/system/apiManage.js'
+import useTable from './useTable.js'
+import View from './modal/view/index.vue'
 import { ref } from 'vue'
 
 // form value

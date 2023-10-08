@@ -42,7 +42,7 @@ import Dialog from '@/components/dialog/index.vue'
 import { computed, reactive, ref, watch } from 'vue'
 import { cloneObj, objIsEmpty } from '@/utils/data.js'
 import { useVModel } from '@vueuse/core'
-import { addCommonApi, updateCommonApi } from '@/api/apiManage.js'
+import { addCommonApi, updateCommonApi } from '@/api/system/apiManage.js'
 
 // prop
 const props = defineProps({
