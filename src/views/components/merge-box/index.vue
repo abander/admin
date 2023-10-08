@@ -64,7 +64,7 @@
 
 <script>
 import FormulaEditor from './components/formula-editor/index.vue'
-import DialogBox from '../../../../../components/dialog-box/index.vue'
+import DialogBox from '@/components/dialog-box/index.vue'
 export default {
   components: {
     FormulaEditor,
@@ -376,13 +376,13 @@ export default {
             display: inline-block;
             width: 22px;
             height: 14px;
-            background: url('../../assets/images/plate-connect.png') no-repeat;
+            background: url('./images/plate-connect.png') no-repeat;
           }
           .add-i {
             display: inline-block;
             width: 16px;
             height: 16px;
-            background: url('../../assets/images/plate-add.png') no-repeat;
+            background: url('./images/plate-add.png') no-repeat;
           }
         }
         .subtract {
@@ -397,13 +397,13 @@ export default {
             display: inline-block;
             width: 22px;
             height: 14px;
-            background: url('../../assets/images/minus.svg') no-repeat;
+            background: url('./images/minus.svg') no-repeat;
           }
           .add-i {
             display: inline-block;
             width: 16px;
             height: 16px;
-            background: url('../../assets/images/plate-subtract.png') no-repeat;
+            background: url('./images/plate-subtract.png') no-repeat;
           }
         }
         .ride {
@@ -418,13 +418,13 @@ export default {
             display: inline-block;
             width: 22px;
             height: 14px;
-            background: url('../../assets/images/times-sign.png') no-repeat;
+            background: url('./images/times-sign.png') no-repeat;
           }
           .add-i {
             display: inline-block;
             width: 16px;
             height: 16px;
-            background: url('../../assets/images/plate-ride.png') no-repeat;
+            background: url('./images/plate-ride.png') no-repeat;
           }
         }
         .left {
@@ -439,7 +439,7 @@ export default {
             display: inline-block;
             width: 22px;
             height: 14px;
-            background: url('../../assets/images/plate-left.png') no-repeat;
+            background: url('./images/plate-left.png') no-repeat;
           }
         }
         .right {
@@ -453,7 +453,7 @@ export default {
             display: inline-block;
             width: 22px;
             height: 14px;
-            background: url('../../assets/images/plate-right.png') no-repeat;
+            background: url('./images/plate-right.png') no-repeat;
           }
         }
       }
