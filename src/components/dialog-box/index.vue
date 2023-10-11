@@ -13,9 +13,7 @@
           <div v-else>
             <!--          <el-button  @click="$emit('update:visible',false)">{{cancel_name}}</el-button>-->
             <el-button @click="cancelBtn">{{ cancel_name }}</el-button>
-            <el-button type="primary" @click="confirmBtn">{{
-              confirm_name
-            }}</el-button>
+            <el-button type="primary" @click="confirmBtn">{{ confirm_name }}</el-button>
           </div>
         </div>
       </div>
@@ -29,28 +27,28 @@ export default {
     cancel_name: {
       //取消按钮名称
       type: String,
-      default: '取 消',
+      default: '取 消'
     },
     confirm_name: {
       //确定按钮名称
       type: String,
-      default: '确 定',
+      default: '确 定'
     },
     isShowFooter: {
       //是否自定底部
       type: Boolean,
-      default: true,
+      default: true
     },
     loading: {
       //loading
       type: Boolean,
-      default: false,
+      default: false
     },
     isCheck: {
       //是否需要校验
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   methods: {
     confirmBtn() {
@@ -68,8 +66,8 @@ export default {
       } else {
         this.$emit('update:visible', false)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 <style scoped lang="scss">

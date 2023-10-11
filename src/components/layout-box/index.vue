@@ -9,13 +9,7 @@
       </div>
     </div>
 
-    <div
-      :class="[
-        'l-item__content',
-        contentNoPadding && 'no-padding',
-        showHeader && 'no-radius',
-      ]"
-    >
+    <div :class="['l-item__content', contentNoPadding && 'no-padding', showHeader && 'no-radius']">
       <slot />
     </div>
   </div>
@@ -30,46 +24,46 @@ export default {
      **/
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     align: {
       type: String,
-      default: 'left',
+      default: 'left'
     },
     justify: {
       type: String,
-      default: 'left',
+      default: 'left'
     },
     extraNoMargin: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showHeader: {
       type: Boolean,
-      default: false,
+      default: false
     },
     contentNoPadding: {
       type: Boolean,
-      default: false,
+      default: false
     },
     border: {
       type: Boolean,
-      default: true,
+      default: true
     },
     headerHeight: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
   computed: {
     titleStyle() {
       return {
         justifyContent: this.justify,
         alignItems: this.align,
-        height: this.headerHeight,
+        height: this.headerHeight
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

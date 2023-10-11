@@ -14,23 +14,10 @@
       <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
       <title>首页</title>
       <desc>Created with Sketch.</desc>
-      <g
-        id="页面-1"
-        stroke="none"
-        stroke-width="1"
-        fill="none"
-        fill-rule="evenodd"
-      >
+      <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="iPhone-8-Plus" transform="translate(-37.000000, -54.000000)">
           <g id="首页" transform="translate(31.000000, 48.000000)">
-            <ellipse
-              id="椭圆形"
-              fill="#53BDEF"
-              cx="29.5"
-              cy="33"
-              rx="12.5"
-              ry="8"
-            ></ellipse>
+            <ellipse id="椭圆形" fill="#53BDEF" cx="29.5" cy="33" rx="12.5" ry="8"></ellipse>
             <image
               x="0"
               y="0"
@@ -43,18 +30,10 @@
       </g>
     </svg>
     <!--prev-icon-->
-    <i
-      v-show="translateX < 0"
-      class="iconfont icon-quanbugongnengshouqi prev-icon"
-      @click="handleScroll(200)"
-    ></i>
+    <i v-show="translateX < 0" class="iconfont icon-quanbugongnengshouqi prev-icon" @click="handleScroll(200)"></i>
     <!--tab-->
     <div ref="tabsOutRef" class="tab-box">
-      <div
-        ref="tabsRef"
-        class="tab-panel"
-        :style="{ transform: `translateX(${translateX}px)` }"
-      >
+      <div ref="tabsRef" class="tab-panel" :style="{ transform: `translateX(${translateX}px)` }">
         <el-tooltip
           v-for="(tab, index) in tabList"
           :key="`eps-tab-nav-${index}`"
@@ -91,12 +70,8 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item @click="closeAllTab('all')"
-          >关闭所有</el-dropdown-item
-          >
-          <el-dropdown-item @click="closeAllTab('other')"
-          >关闭其它</el-dropdown-item
-          >
+          <el-dropdown-item @click="closeAllTab('all')">关闭所有</el-dropdown-item>
+          <el-dropdown-item @click="closeAllTab('other')">关闭其它</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -104,229 +79,213 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import { CircleCloseFilled } from "@element-plus/icons-vue";
-import { useSecondNavStore } from "@/store/modules/secondNav";
-import { checkOverFlow, deepCopy } from "@/utils/tool";
-import { useCacheStore } from "@/store/modules/cache";
+import { ref, onMounted, nextTick, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { CircleCloseFilled } from '@element-plus/icons-vue'
+import { useSecondNavStore } from '@/store/modules/secondNav'
+import { checkOverFlow, deepCopy } from '@/utils/tool'
+import { useCacheStore } from '@/store/modules/cache'
 
-const cacheStore = useCacheStore();
-const secondNavStore = useSecondNavStore();
+const cacheStore = useCacheStore()
+const secondNavStore = useSecondNavStore()
 
-const [route, router] = [useRoute(), useRouter()];
+const [route, router] = [useRoute(), useRouter()]
 
 // 设置最大tab-width
-const maxTabTitleWidth = 121;
-const maxTitleWidthCss = maxTabTitleWidth + "px";
-const tabList = ref([]);
-const tabsOutRef = ref(null); // 外侧容器对象
-const tabsRef = ref(null); // 实际容器大小
-const translateX = ref(0);
-const translateXLeftMaxVal = ref(0);
+const maxTabTitleWidth = 121
+const maxTitleWidthCss = maxTabTitleWidth + 'px'
+const tabList = ref([])
+const tabsOutRef = ref(null) // 外侧容器对象
+const tabsRef = ref(null) // 实际容器大小
+const translateX = ref(0)
+const translateXLeftMaxVal = ref(0)
 
 // navItem - 滑动到对应位置
 const moveToView = (index) => {
-  const itemDom = tabsRef.value?.children[index];
+  const itemDom = tabsRef.value?.children[index]
   if (!itemDom) {
-    return;
+    return
   }
-  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0;
-  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0;
-  const itemOffsetLeft = itemDom.offsetLeft;
-  const itemClientWidth = itemDom.clientWidth + 1;
+  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0
+  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0
+  const itemOffsetLeft = itemDom.offsetLeft
+  const itemClientWidth = itemDom.clientWidth + 1
 
-  translateXLeftMaxVal.value = boxWidth - contentWidth; // 设置向左最大滚动距离
+  translateXLeftMaxVal.value = boxWidth - contentWidth // 设置向左最大滚动距离
 
   if (contentWidth < boxWidth || itemOffsetLeft === 0) {
     // 所有item的集合长度小于box宽度或者当前是第一个item
-    translateX.value = 0;
+    translateX.value = 0
   } else if (itemOffsetLeft < -translateX.value) {
     // 标签在可视区域左侧
-    translateX.value = -itemOffsetLeft;
-  } else if (
-    itemOffsetLeft > -translateX.value &&
-    itemOffsetLeft + itemClientWidth < -translateX.value + boxWidth
-  ) {
+    translateX.value = -itemOffsetLeft
+  } else if (itemOffsetLeft > -translateX.value && itemOffsetLeft + itemClientWidth < -translateX.value + boxWidth) {
     // 标签在可视区域
-    translateX.value = Math.min(0, boxWidth - itemClientWidth - itemOffsetLeft);
+    translateX.value = Math.min(0, boxWidth - itemClientWidth - itemOffsetLeft)
   } else {
     // 标签在可视区域右侧
-    translateX.value = -(itemOffsetLeft - (boxWidth - itemClientWidth)) - 5;
+    translateX.value = -(itemOffsetLeft - (boxWidth - itemClientWidth)) - 5
   }
-};
+}
 
 const handleScroll = (offset) => {
-  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0;
-  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0;
+  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0
+  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0
   if (offset > 0) {
-    translateX.value = Math.min(0, translateX.value + offset);
+    translateX.value = Math.min(0, translateX.value + offset)
   } else {
     if (boxWidth < contentWidth) {
       if (translateX.value >= -(contentWidth - boxWidth)) {
-        translateX.value = Math.max(
-          translateX.value + offset,
-          boxWidth - contentWidth
-        );
+        translateX.value = Math.max(translateX.value + offset, boxWidth - contentWidth)
       }
     } else {
-      translateX.value = 0;
+      translateX.value = 0
     }
   }
-};
+}
 
 /** ********************初始化********************** */
 // 监听pina内容变化 从而初始化菜单
 watch(
   () => secondNavStore.tabList,
   () => {
-    initTabList();
+    initTabList()
   },
   {
-    deep: true,
+    deep: true
   }
-);
+)
 
 watch(
   () => route.fullPath,
   () => {
-    const { fullPath, name, meta, query, path } = route;
+    const { fullPath, name, meta, query, path } = route
     const menu = {
       path,
       fullPath,
       name,
       meta: {
-        ...(meta || {}),
+        ...(meta || {})
       },
       query: {
-        ...(query || {}),
-      },
-    };
+        ...(query || {})
+      }
+    }
 
     /* 设置tab-title */
-    let title = menu.meta.title;
-    if (menu.query.key || menu.query.key === "0") {
-      title = menu.meta?.title + "-" + menu.query.key;
+    let title = menu.meta.title
+    if (menu.query.key || menu.query.key === '0') {
+      title = menu.meta?.title + '-' + menu.query.key
     }
     /* 设置tab-title-tooltip 暂定所有显示详细title的query字段为code*/
     if (menu.meta.showTabToolTip) {
-      title = menu.meta?.title + "-" + (menu.query.code || menu.query.key);
-      menu.showToolTip = checkOverFlow(title, maxTabTitleWidth);
+      title = menu.meta?.title + '-' + (menu.query.code || menu.query.key)
+      menu.showToolTip = checkOverFlow(title, maxTabTitleWidth)
     }
-    menu.meta.title = title;
+    menu.meta.title = title
     /* 设置无权限tabname */
-    if (menu?.query["no-access-name"]) {
-      menu.meta.title = menu?.query["no-access-name"];
+    if (menu?.query['no-access-name']) {
+      menu.meta.title = menu?.query['no-access-name']
     }
     /* 添加tabs */
     if (!menu.meta.notTab) {
-      secondNavStore.addTab(menu);
+      secondNavStore.addTab(menu)
       /* 滚动tab到最新 */
       nextTick(() => {
-        const findIndex = secondNavStore.tabList.findIndex(
-          (s) => s.fullPath === fullPath
-        );
-        const index = findIndex === -1 ? 0 : findIndex;
-        moveToView(index || 0);
-      });
+        const findIndex = secondNavStore.tabList.findIndex((s) => s.fullPath === fullPath)
+        const index = findIndex === -1 ? 0 : findIndex
+        moveToView(index || 0)
+      })
     }
-    menu.meta.alive && cacheStore.addCache(route.fullPath);
+    menu.meta.alive && cacheStore.addCache(route.fullPath)
   },
   { immediate: true }
-);
+)
 
 const initTabList = () => {
   // 从缓存内读取菜单， 初始化菜单， 深拷贝下
-  tabList.value = deepCopy(secondNavStore.tabList);
-};
-initTabList();
+  tabList.value = deepCopy(secondNavStore.tabList)
+}
+initTabList()
 
 const resetNavStatus = () => {
-  translateX.value = 0;
-  translateXLeftMaxVal.value = 0;
-};
+  translateX.value = 0
+  translateXLeftMaxVal.value = 0
+}
 
 /** ******************** tab事件 ********************** */
 const delTab = (index) => {
-  cacheStore.removeCache(tabList.value[index].fullPath);
+  cacheStore.removeCache(tabList.value[index].fullPath)
   // 如果删除的是当前选中的项，跳转到前一个， 若前一个没有 跳转到后一个，
   if (tabList.value[index].fullPath === route.fullPath) {
     // 记录地址
-    const [prevIndex, nextIndex] = [index - 1, index + 1];
-    let redirectPath = "/";
+    const [prevIndex, nextIndex] = [index - 1, index + 1]
+    let redirectPath = '/'
     // 如果前面有，跳转到前一个
     if (prevIndex !== -1) {
-      redirectPath =
-        tabList.value[prevIndex].fullPath || tabList.value[prevIndex].path;
+      redirectPath = tabList.value[prevIndex].fullPath || tabList.value[prevIndex].path
     }
     // 如果前面没有 并且后面有
-    else if (
-      prevIndex === -1 &&
-      nextIndex <= tabList.value.length &&
-      tabList.value.length !== 1
-    ) {
-      redirectPath =
-        tabList.value[nextIndex].fullPath || tabList.value[nextIndex].path;
+    else if (prevIndex === -1 && nextIndex <= tabList.value.length && tabList.value.length !== 1) {
+      redirectPath = tabList.value[nextIndex].fullPath || tabList.value[nextIndex].path
     }
-    tabList.value.splice(index, 1);
-    router.push(redirectPath);
+    tabList.value.splice(index, 1)
+    router.push(redirectPath)
   } else {
     // 直接删除
-    tabList.value.splice(index, 1);
+    tabList.value.splice(index, 1)
   }
   // judgeIsCanMove()
-  secondNavStore.setTabList(tabList.value);
-};
+  secondNavStore.setTabList(tabList.value)
+}
 
 const closeAllTab = (type) => {
-  if (type === "all") {
-    cacheStore.updateCache([]);
-    tabList.value = [];
-    router.push("/");
+  if (type === 'all') {
+    cacheStore.updateCache([])
+    tabList.value = []
+    router.push('/')
     nextTick(() => {
-      resetNavStatus();
-    });
+      resetNavStatus()
+    })
     //
-  } else if (type === "other") {
+  } else if (type === 'other') {
     // 关闭当前路由之外
-    const curPageTab = tabList.value.filter(
-      (tab) => tab.fullPath === route.fullPath
-    );
+    const curPageTab = tabList.value.filter((tab) => tab.fullPath === route.fullPath)
     if (curPageTab) {
-      tabList.value = curPageTab;
-      cacheStore.updateCache([curPageTab.fullPath]);
+      tabList.value = curPageTab
+      cacheStore.updateCache([curPageTab.fullPath])
       nextTick(() => {
-        moveToView(1);
-      });
+        moveToView(1)
+      })
     } else {
-      tabList.value = [];
-      cacheStore.updateCache([]);
+      tabList.value = []
+      cacheStore.updateCache([])
     }
   }
-  secondNavStore.setTabList(tabList.value);
-};
+  secondNavStore.setTabList(tabList.value)
+}
 
 const tabItemClick = (tab) => {
-  if (route.fullPath === tab.fullPath) return;
-  router.push(tab.fullPath || tab.path);
-};
+  if (route.fullPath === tab.fullPath) return
+  router.push(tab.fullPath || tab.path)
+}
 
 const toHome = () => {
-  if (route.path !== "/choose-prj") {
-    router.push("/");
+  if (route.path !== '/choose-prj') {
+    router.push('/')
   }
-};
+}
 
 onMounted(() => {
-  $bus.busOn("cloneTabTo", (to) => {
-    const current = route.fullPath;
-    const index = tabList.value.findIndex((tab) => current === tab.fullPath);
+  $bus.busOn('cloneTabTo', (to) => {
+    const current = route.fullPath
+    const index = tabList.value.findIndex((tab) => current === tab.fullPath)
     if (index !== -1) {
-      delTab(index);
-      to && router.replace(to);
+      delTab(index)
+      to && router.replace(to)
     }
-  });
-});
+  })
+})
 </script>
 
 <style scoped lang="scss">

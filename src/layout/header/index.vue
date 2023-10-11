@@ -6,9 +6,7 @@
     text-color="#a6a6a6"
     active-text-color="#ffd04b"
   >
-    <el-menu-item index="1" class="fr">{{
-      store.getUser.username
-    }}</el-menu-item>
+    <el-menu-item index="1" class="fr">{{ store.getUser.username }}</el-menu-item>
     <el-sub-menu index="2" class="fr">
       <template #title class="fr">我的工作台</template>
       <el-menu-item index="2-1">我的消息</el-menu-item>

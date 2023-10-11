@@ -6,19 +6,21 @@
       </template>
       <el-form ref="formRef" :model="form" :rules="formRules" class="login-form">
         <el-form-item prop="username">
-          <el-input v-model="form.username" size="large" :prefix-icon="User" />
+          <el-input @keydown.enter="submit" v-model="form.username" size="large" :prefix-icon="User" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="form.password" size="large" :prefix-icon="Lock" show-password />
+          <el-input @keydown.enter="submit" v-model="form.password" size="large" :prefix-icon="Lock" show-password />
         </el-form-item>
         <el-form-item prop="captcha">
           <div class="sid" style="display: flex; width: 100%; align-items: center">
-            <el-input v-model="form.captcha" size="large" style="width: 90%" />
+            <el-input @keydown.enter="submit" v-model="form.captcha" size="large" style="width: 90%" />
             <el-image class="pointer" :src="src" fit="fill" width="10%" @click="captcha" />
             <!--            <img :src="src" v-loading="captchaLoading" style="display: inline-block; height: 30px" @click="captcha" />-->
           </div>
         </el-form-item>
-        <el-button :loading="submitLoading" size="large" type="primary" class="login-button" plain @click="submit">登录</el-button>
+        <el-button :loading="submitLoading" size="large" type="primary" class="login-button" plain @click="submit"
+          >登录</el-button
+        >
       </el-form>
     </el-card>
     <div class="bg absolute-lt z-1 wh-full overflow-hidden">
@@ -36,7 +38,7 @@
 // element
 import { User, Lock } from '@element-plus/icons-vue'
 import useLogin from './useLogin'
-const { form, formRef, formRules, submit, src, captcha, captchaLoading,submitLoading } = useLogin()
+const { form, formRef, formRules, submit, src, captcha, captchaLoading, submitLoading } = useLogin()
 import { BgTop, BgBottom } from './components'
 </script>
 

@@ -1,6 +1,5 @@
 <template>
   <div ref="tabRef" class="flex h-full pr-18px" :class="[isChromeMode ? 'items-end' : 'items-center']">
-
     <!--    <div ref="tabsRef" class="tab-panel">-->
     <!--      <div-->
     <!--        v-for="item in tab.tabs"-->
@@ -54,6 +53,4 @@ watch(
 )
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

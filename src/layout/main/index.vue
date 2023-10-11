@@ -26,25 +26,19 @@ import useTab from '@/layout/main/useTab.js'
 const props = defineProps({
   activeTabNameProp: {
     type: String,
-    default: 'home',
+    default: 'home'
   },
   editableTabsProp: {
     type: Array,
-    default: () => [],
-  },
+    default: () => []
+  }
 })
 
 const emits = defineEmits(['activeTabNameEdit', 'editableTabsEdit'])
 
 const {} = useTab()
 
-const {
-  activeTabName,
-  editableTabs,
-  handleisClose,
-  handleRemove,
-  handleSwitchRoute,
-} = useMain(props, emits)
+const { activeTabName, editableTabs, handleisClose, handleRemove, handleSwitchRoute } = useMain(props, emits)
 </script>
 <style lang="scss" scoped>
 .main-tabs {

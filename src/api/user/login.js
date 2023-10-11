@@ -7,7 +7,7 @@ export const login = (data) => {
   return request({
     url: '/users/login',
     method: 'POST',
-    data,
+    data
   })
 }
 
@@ -15,7 +15,7 @@ export const login = (data) => {
 export const getUserInfo = () => {
   return request({
     url: '/users/info',
-    method: 'get',
+    method: 'get'
   })
 }
 // 获取验证码
@@ -24,7 +24,7 @@ export const getCaptcha = (sid) => {
     url: '/mail/captcha',
     method: 'get',
     params: {
-      sid,
-    },
+      sid
+    }
   })
 }

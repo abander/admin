@@ -53,24 +53,24 @@ export default {
   props: {
     mode: {
       type: String,
-      default: 'default',
+      default: 'default'
     },
     url: {
       type: String,
-      default: '',
+      default: ''
     },
     width: {
       type: Number,
-      default: 320,
+      default: 320
     },
     height: {
       type: Number,
-      default: 180,
+      default: 180
     },
     quality: {
       type: Number,
-      default: 0.75,
-    },
+      default: 0.75
+    }
     // callBack: {
     //   type: Function,
     //   default: () => {}
@@ -82,7 +82,7 @@ export default {
       headers: {},
       uploading: false,
       styles: '',
-      thumb: '',
+      thumb: ''
     }
   },
   computed: {
@@ -91,7 +91,7 @@ export default {
   watch: {
     url() {
       this.thumb = this.url
-    },
+    }
   },
   mounted() {
     this.styles = `width:${this.width}px;height:${this.height}px;`
@@ -127,11 +127,11 @@ export default {
         error(err) {
           that.$message({
             message: '图片上传失败',
-            type: 'error',
+            type: 'error'
           })
           that.uploading = false
           console.log(err.message)
-        },
+        }
       }
       // eslint-disable-next-line no-new
       new Compressor(file, config)
@@ -141,9 +141,7 @@ export default {
      */
     handleUploadFile(val) {
       const formData = new window.FormData()
-      const activityInside = ['/creation', '/activity/blank'].includes(
-        this.$route.name,
-      )
+      const activityInside = ['/creation', '/activity/blank'].includes(this.$route.name)
       formData.append('file', val, val.name)
       if (activityInside && this.$route.params.id) {
         formData.append('activity_id', this.$route.params.id)
@@ -157,8 +155,8 @@ export default {
         method: 'post',
         headers: {
           Authorization: 'Bearer ' + (this.token || getToken()),
-          'Content-Type': 'multipart/form-data',
-        },
+          'Content-Type': 'multipart/form-data'
+        }
       }
       axios(options)
         .then((res) => {
@@ -181,7 +179,7 @@ export default {
       } else {
         this.$message({
           message: `图片上传失败`,
-          type: 'error',
+          type: 'error'
         })
       }
     },
@@ -192,11 +190,11 @@ export default {
       this.uploading = false
       this.$message({
         message: '图片上传失败',
-        type: 'error',
+        type: 'error'
       })
       console.log(err)
-    },
-  },
+    }
+  }
 }
 </script>
 

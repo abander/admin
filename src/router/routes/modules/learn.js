@@ -11,7 +11,7 @@ export default {
     {
       path: 'set',
       name: 'set',
-      component: () => import('@/views/principle/set/index.vue'),
+      component: () => import('@/views/learn/set/index.vue'),
       meta: {
         title: 'set'
       }
@@ -20,7 +20,7 @@ export default {
     {
       path: 'v-model',
       name: 'v-model',
-      component: () => import('@/views/principle/v-model/index.vue'),
+      component: () => import('@/views/learn/v-model/index.vue'),
       meta: {
         title: 'v-model'
       }
@@ -28,16 +28,16 @@ export default {
     {
       path: 'mixins',
       name: 'mixins',
-      component: () => import('@/views/practice/mixins/index.vue'),
+      component: () => import('@/views/learn/mixins/index.vue'),
       meta: {
-        title: '练习'
+        title: 'mixins'
       }
     },
     // 父子传值
     {
       path: 'props',
       name: 'props',
-      component: () => import('@/views/practice/component-transfer-value/props.vue'),
+      component: () => import('@/views/learn/component-transfer-value/props.vue'),
       meta: {
         title: 'props'
       }
@@ -46,7 +46,7 @@ export default {
     {
       path: 'model',
       name: 'model',
-      component: () => import('@/views/practice/component-transfer-value/model.vue'),
+      component: () => import('@/views/learn/component-transfer-value/model.vue'),
       meta: {
         title: 'model'
       }
@@ -54,10 +54,10 @@ export default {
     {
       path: 'slot',
       name: 'slot',
-      component: () => import('@/views/practice/slot/index.vue'),
+      component: () => import('@/views/learn/slot/index.vue'),
       meta: {
         title: 'slot'
       }
-    },
+    }
   ]
 }

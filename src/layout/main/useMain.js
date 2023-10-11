@@ -10,9 +10,7 @@ export default function useArchive(props, emits) {
 
   const handleRemove = (tabPaneName) => {
     let tempArr = editableTabs.value
-    let eleIndex = editableTabs.value.findIndex(
-      (item) => item.index == tabPaneName,
-    )
+    let eleIndex = editableTabs.value.findIndex((item) => item.index == tabPaneName)
     //上一个路由的index
     let routeIndex
     for (let p in tempArr) {
@@ -52,13 +50,13 @@ export default function useArchive(props, emits) {
     (v) => {
       v && (activeTabName.value = v)
     },
-    { immediate: true },
+    { immediate: true }
   )
   return {
     activeTabName,
     editableTabs,
     handleRemove,
     handleSwitchRoute,
-    handleisClose,
+    handleisClose
   }
 }

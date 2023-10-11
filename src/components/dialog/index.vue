@@ -1,11 +1,6 @@
 <template>
-<!--@close:所有关闭都可执行  @:before-close:只有点击x号的时候才执行  -->
-  <el-dialog
-      v-model="dialogVisible"
-      :title="title"
-      width="50%"
-      @close="handleClose"
-  >
+  <!--@close:所有关闭都可执行  @:before-close:只有点击x号的时候才执行  -->
+  <el-dialog v-model="dialogVisible" :title="title" width="50%" @close="handleClose">
     <slot></slot>
     <template #footer>
       <span class="dialog-footer">
@@ -17,7 +12,7 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
+import { computed } from 'vue'
 
 // 接受props
 const props = defineProps({
@@ -29,7 +24,7 @@ const props = defineProps({
 })
 
 // 定义emit
-const emits = defineEmits(['update:isShow','beforeClose', 'confirm'])
+const emits = defineEmits(['update:isShow', 'beforeClose', 'confirm'])
 
 // dialog visible
 const dialogVisible = computed({
@@ -38,7 +33,7 @@ const dialogVisible = computed({
   },
   set(v) {
     // 使用emits
-    emits("update:isShow", v)
+    emits('update:isShow', v)
   }
 })
 
@@ -46,7 +41,7 @@ const dialogVisible = computed({
 const handleClose = (done) => {
   // 使用emits
   emits('beforeClose')
-/*  $MessageBox.confirm('Are you sure to close this dialog?')
+  /*  $MessageBox.confirm('Are you sure to close this dialog?')
       .then(() => {
         done()
       })
@@ -56,10 +51,9 @@ const handleClose = (done) => {
 }
 
 const handleConfirm = () => {
-  const done = ()=>dialogVisible.value = false
-  emits('confirm',done)
+  const done = () => (dialogVisible.value = false)
+  emits('confirm', done)
 }
-
 </script>
 
 <style scoped>

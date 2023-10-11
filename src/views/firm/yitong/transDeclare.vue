@@ -5,21 +5,10 @@
         <!--按钮-->
         <ep-col v-if="buttonFlag" :col="24" style="margin-left: 10px">
           <div v-if="configurationIf">
-            <ep-button
-              class="btnRound"
-              type="success"
-              size="small"
-              icon="android-add-circle"
-              @click="add"
+            <ep-button class="btnRound" type="success" size="small" icon="android-add-circle" @click="add"
               >新增</ep-button
             >
-            <ep-button
-              class="btnRound"
-              type="success"
-              size="small"
-              icon="pause"
-              :disabled="btnFlag"
-              @click="hold"
+            <ep-button class="btnRound" type="success" size="small" icon="pause" :disabled="btnFlag" @click="hold"
               >暂存</ep-button
             >
             <ep-button
@@ -49,21 +38,8 @@
               @click="send"
               >发送</ep-button
             >
-            <ep-button
-              class="btnRound"
-              type="primary"
-              size="small"
-              icon="ios-copy"
-              @click="copy"
-              >复制</ep-button
-            >
-            <ep-button
-              class="btnRound"
-              type="info"
-              size="small"
-              icon="close-round"
-              :disabled="btnFlag"
-              @click="close"
+            <ep-button class="btnRound" type="primary" size="small" icon="ios-copy" @click="copy">复制</ep-button>
+            <ep-button class="btnRound" type="info" size="small" icon="close-round" :disabled="btnFlag" @click="close"
               >清空</ep-button
             >
             <ep-button
@@ -75,12 +51,7 @@
               @click="print"
               >打印</ep-button
             >
-            <ep-button
-              class="btnRound"
-              type="success"
-              size="small"
-              icon="ios-copy-outline"
-              @click="queryAssignment"
+            <ep-button class="btnRound" type="success" size="small" icon="ios-copy-outline" @click="queryAssignment"
               >初始值模板</ep-button
             >
           </div>
@@ -135,38 +106,20 @@
                     <ep-row :gutter="7">
                       <ep-col v-if="!iEFlagIf" :col="12" :lg="12">
                         <ep-form-item attr="templateNo" label="模板编号">
-                          <ep-input
-                            v-model="appForm.templateNo"
-                            size="small"
-                            name="templateNo"
-                            disabled
-                          ></ep-input>
+                          <ep-input v-model="appForm.templateNo" size="small" name="templateNo" disabled></ep-input>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col v-if="!iEFlagIf" :col="12" :lg="12">
-                        <ep-form-item
-                          attr="templateName"
-                          label="模板名称"
-                          required
-                        >
-                          <ep-input
-                            v-model="appForm.templateName"
-                            size="small"
-                            name="templateName"
-                          ></ep-input>
+                        <ep-form-item attr="templateName" label="模板名称" required>
+                          <ep-input v-model="appForm.templateName" size="small" name="templateName"></ep-input>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="status" label="状态">
                           <!--                      <ep-input size='small' v-model="appForm.status" name="status" disabled></ep-input>-->
-                          <ep-select
-                            v-model="appForm.status"
-                            size="small"
-                            name="status"
-                            disabled
-                          >
+                          <ep-select v-model="appForm.status" size="small" name="status" disabled>
                             <ep-select-item
                               v-for="(item, index) in statusValue"
                               :key="index"
@@ -180,33 +133,18 @@
 
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="copSeqNo" label="企业内部编号">
-                          <ep-input
-                            v-model="appForm.copSeqNo"
-                            size="small"
-                            name="copSeqNo"
-                            disabled
-                          ></ep-input>
+                          <ep-input v-model="appForm.copSeqNo" size="small" name="copSeqNo" disabled></ep-input>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="transPreId" label="统一编号">
-                          <ep-input
-                            v-model="appForm.transPreId"
-                            size="small"
-                            name="transPreId"
-                            disabled
-                          ></ep-input>
+                          <ep-input v-model="appForm.transPreId" size="small" name="transPreId" disabled></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="preNo" label="预录入编号">
-                          <ep-input
-                            v-model="appForm.preNo"
-                            size="small"
-                            name="preNo"
-                            disabled
-                          ></ep-input>
+                          <ep-input v-model="appForm.preNo" size="small" name="preNo" disabled></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
@@ -219,12 +157,7 @@
                             :mounted-remote-call="false"
                             remote
                             :remote-call="
-                              (value, old, callback) =>
-                                trafModeRemoteCall(
-                                  value,
-                                  callback,
-                                  'TRAF_MODE_STD',
-                                )
+                              (value, old, callback) => trafModeRemoteCall(value, callback, 'TRAF_MODE_STD')
                             "
                             @active-change="trafWayChange"
                           >
@@ -290,34 +223,19 @@
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
-                        <ep-form-item
-                          attr="nativeVoyageNo"
-                          label="境内运输工具航次"
-                        >
-                          <ep-input
-                            v-model="appForm.nativeVoyageNo"
-                            size="small"
-                            name="nativeVoyageNo"
-                          ></ep-input>
+                        <ep-form-item attr="nativeVoyageNo" label="境内运输工具航次">
+                          <ep-input v-model="appForm.nativeVoyageNo" size="small" name="nativeVoyageNo"></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
-                        <ep-form-item
-                          attr="validTime"
-                          label="预计运抵指运地时间"
-                        >
+                        <ep-form-item attr="validTime" label="预计运抵指运地时间">
                           <!--                      <ep-input size='small' v-model="appForm.validTime" name="validTime"></ep-input>    formatter="YYYYMMdd"-->
                           <ep-date v-model="appForm.validTime"></ep-date>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
-                        <ep-form-item
-                          v-if="iEFlagIf"
-                          attr="iEFlag"
-                          label="进出口标志"
-                          required
-                        >
+                        <ep-form-item v-if="iEFlagIf" attr="iEFlag" label="进出口标志" required>
                           <ep-select
                             v-model="appForm.iEFlag"
                             size="small"
@@ -378,11 +296,7 @@
                       </ep-col>
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="goodsNote" label="商品备注">
-                          <ep-input
-                            v-model="appForm.goodsNote"
-                            size="small"
-                            name="goodsNote"
-                          ></ep-input>
+                          <ep-input v-model="appForm.goodsNote" size="small" name="goodsNote"></ep-input>
                         </ep-form-item>
                       </ep-col>
 
@@ -393,42 +307,23 @@
                                         </ep-col>-->
 
                       <ep-col :col="12" :lg="12">
-                        <ep-form-item
-                          attr="contractorCode"
-                          label="承运单位代码"
-                        >
-                          <ep-input
-                            v-model="appForm.contractorCode"
-                            size="small"
-                            name="contractorCode"
-                          ></ep-input>
+                        <ep-form-item attr="contractorCode" label="承运单位代码">
+                          <ep-input v-model="appForm.contractorCode" size="small" name="contractorCode"></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="contractor" label="名称">
-                          <ep-input
-                            v-model="appForm.contractor"
-                            size="small"
-                            name="contractor"
-                          ></ep-input>
+                          <ep-input v-model="appForm.contractor" size="small" name="contractor"></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="applCode" label="申报单位代码">
-                          <ep-input
-                            v-model="appForm.applCode"
-                            size="small"
-                            name="applCode"
-                          ></ep-input>
+                          <ep-input v-model="appForm.applCode" size="small" name="applCode"></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="applName" label="名称">
-                          <ep-input
-                            v-model="appForm.applName"
-                            size="small"
-                            name="applName"
-                          ></ep-input>
+                          <ep-input v-model="appForm.applName" size="small" name="applName"></ep-input>
                         </ep-form-item>
                       </ep-col>
 
@@ -515,12 +410,7 @@
                       </ep-col>
                       <ep-col :col="8" :lg="8">
                         <ep-form-item attr="contaCount" label="集装箱总数">
-                          <ep-input
-                            v-model="appForm.contaCount"
-                            size="small"
-                            name="contaCount"
-                            disabled
-                          ></ep-input>
+                          <ep-input v-model="appForm.contaCount" size="small" name="contaCount" disabled></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="8" :lg="8">
@@ -535,11 +425,7 @@
                       </ep-col>
                       <ep-col :col="8" :lg="8">
                         <ep-form-item attr="contaEmptyCount" label="空箱数">
-                          <ep-input
-                            v-model="appForm.contaEmptyCount"
-                            size="small"
-                            name="contaEmptyCount"
-                          ></ep-input>
+                          <ep-input v-model="appForm.contaEmptyCount" size="small" name="contaEmptyCount"></ep-input>
                         </ep-form-item>
                       </ep-col>
                       <ep-col :col="8" :lg="8">
@@ -589,33 +475,19 @@
                                         </ep-col>-->
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="recvPort" label="进出口岸">
-                          <ep-input
-                            v-model="appForm.recvPort"
-                            size="small"
-                            name="recvPort"
-                            :maxlength="4"
-                          ></ep-input>
+                          <ep-input v-model="appForm.recvPort" size="small" name="recvPort" :maxlength="4"></ep-input>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="sendPort" label="申报口岸">
-                          <ep-input
-                            v-model="appForm.sendPort"
-                            size="small"
-                            name="sendPort"
-                            :maxlength="4"
-                          ></ep-input>
+                          <ep-input v-model="appForm.sendPort" size="small" name="sendPort" :maxlength="4"></ep-input>
                         </ep-form-item>
                       </ep-col>
 
                       <ep-col :col="12" :lg="12">
                         <ep-form-item attr="note" label="备注">
-                          <ep-input
-                            v-model="appForm.note"
-                            size="small"
-                            name="note"
-                          ></ep-input>
+                          <ep-input v-model="appForm.note" size="small" name="note"></ep-input>
                         </ep-form-item>
                       </ep-col>
                     </ep-row>
@@ -629,28 +501,12 @@
               <ep-col :col="24">
                 <fieldset class="formFieldsetTwo">
                   <legend>提单信息</legend>
-                  <ep-form
-                    ref="appForm"
-                    :form="appFormTwo"
-                    name-width="90px"
-                    size="small"
-                    :rules="page_rules"
-                  >
+                  <ep-form ref="appForm" :form="appFormTwo" name-width="90px" size="small" :rules="page_rules">
                     <ep-row :gutter="7">
                       <ep-col :col="24" :lg="24">
                         <div class="btnFormLeft">
-                          <ep-button
-                            type="primary"
-                            size="small"
-                            icon="plus"
-                            @click="addClickFormTwo"
-                          ></ep-button>
-                          <ep-button
-                            type="danger"
-                            size="small"
-                            icon="minus-round"
-                            @click="delClickFormTwo"
-                          ></ep-button>
+                          <ep-button type="primary" size="small" icon="plus" @click="addClickFormTwo"></ep-button>
+                          <ep-button type="danger" size="small" icon="minus-round" @click="delClickFormTwo"></ep-button>
                         </div>
                         <ep-table
                           ref="tableFormTwo"
@@ -659,72 +515,30 @@
                           :height="120"
                           size="small"
                           :settings="{
-                            firstDeleteThenInsertPK: 'recordNumber',
+                            firstDeleteThenInsertPK: 'recordNumber'
                           }"
                           :highlight-row="true"
                           :trigger-highlight-row="true"
                           @row-click="rowClickFormTwo"
                           @cell-dblclick="cellDblclickTwo"
                         >
-                          <ep-table-item
-                            type="num"
-                            column="recordNumber"
-                            title="序号"
-                          ></ep-table-item>
+                          <ep-table-item type="num" column="recordNumber" title="序号"></ep-table-item>
                           <ep-table-item column="trafMode" title="运输方式">
                             <template #default="{ row }">
-                              {{
-                                transferFormData(
-                                  row.trafMode,
-                                  'TRAF_MODE_STDValue',
-                                )
-                              }}
+                              {{ transferFormData(row.trafMode, 'TRAF_MODE_STDValue') }}
                             </template>
                           </ep-table-item>
-                          <ep-table-item
-                            column="shipId"
-                            title="运输工具编号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="shipNameEn"
-                            title="船舶名称"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="voyageNo"
-                            title="航次"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="billNo"
-                            title="提运单"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="iEDate"
-                            title="日期"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="packNo"
-                            title="件数"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="grossWt"
-                            title="重量"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="contaC"
-                            title="集装箱数"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="ownerName"
-                            title="收货人"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="entryNo"
-                            title="报关单号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="note"
-                            title="备注"
-                          ></ep-table-item>
+                          <ep-table-item column="shipId" title="运输工具编号"></ep-table-item>
+                          <ep-table-item column="shipNameEn" title="船舶名称"></ep-table-item>
+                          <ep-table-item column="voyageNo" title="航次"></ep-table-item>
+                          <ep-table-item column="billNo" title="提运单"></ep-table-item>
+                          <ep-table-item column="iEDate" title="日期"></ep-table-item>
+                          <ep-table-item column="packNo" title="件数"></ep-table-item>
+                          <ep-table-item column="grossWt" title="重量"></ep-table-item>
+                          <ep-table-item column="contaC" title="集装箱数"></ep-table-item>
+                          <ep-table-item column="ownerName" title="收货人"></ep-table-item>
+                          <ep-table-item column="entryNo" title="报关单号"></ep-table-item>
+                          <ep-table-item column="note" title="备注"></ep-table-item>
                         </ep-table>
                       </ep-col>
                     </ep-row>
@@ -742,22 +556,11 @@
               <ep-col :col="24">
                 <fieldset class="formFieldsetThree">
                   <legend>集装箱信息</legend>
-                  <ep-form
-                    ref="appForm"
-                    :form="appFormThree"
-                    name-width="110px"
-                    size="small"
-                    :rules="page_rules"
-                  >
+                  <ep-form ref="appForm" :form="appFormThree" name-width="110px" size="small" :rules="page_rules">
                     <ep-row :gutter="7">
                       <ep-col :col="24" :lg="24">
                         <div class="btnFormRight">
-                          <ep-button
-                            type="primary"
-                            size="small"
-                            icon="plus"
-                            @click="addClickFormThree"
-                          ></ep-button>
+                          <ep-button type="primary" size="small" icon="plus" @click="addClickFormThree"></ep-button>
                           <ep-button
                             type="danger"
                             size="small"
@@ -777,46 +580,19 @@
                           @row-click="rowClickFormThree"
                           @cell-dblclick="cellDblclickThree"
                         >
-                          <ep-table-item
-                            column="recordNumber"
-                            title="提单序号"
-                          ></ep-table-item>
-                          <ep-table-item column="contaSeqno" title="集装箱序号">
-                          </ep-table-item>
-                          <ep-table-item
-                            column="contaNo"
-                            title="集装箱号"
-                          ></ep-table-item>
+                          <ep-table-item column="recordNumber" title="提单序号"></ep-table-item>
+                          <ep-table-item column="contaSeqno" title="集装箱序号"> </ep-table-item>
+                          <ep-table-item column="contaNo" title="集装箱号"></ep-table-item>
                           <ep-table-item column="contaModel" title="规格">
                             <template #default="{ row }">
-                              {{
-                                transferFormData(
-                                  row.contaModel,
-                                  'CONTA_MODELValue',
-                                )
-                              }}
+                              {{ transferFormData(row.contaModel, 'CONTA_MODELValue') }}
                             </template>
                           </ep-table-item>
-                          <ep-table-item
-                            column="eSealId"
-                            title="封志号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="sealNum"
-                            title=" 封志个数"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="sealNo"
-                            title="电子关锁号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="transName"
-                            title="境内运输工具名称"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="transWeight"
-                            title="运输工具实际重量"
-                          ></ep-table-item>
+                          <ep-table-item column="eSealId" title="封志号"></ep-table-item>
+                          <ep-table-item column="sealNum" title=" 封志个数"></ep-table-item>
+                          <ep-table-item column="sealNo" title="电子关锁号"></ep-table-item>
+                          <ep-table-item column="transName" title="境内运输工具名称"></ep-table-item>
+                          <ep-table-item column="transWeight" title="运输工具实际重量"></ep-table-item>
                         </ep-table>
                       </ep-col>
                     </ep-row>
@@ -829,22 +605,11 @@
               <ep-col :col="24">
                 <fieldset class="formFieldsetTour">
                   <legend>货物信息</legend>
-                  <ep-form
-                    ref="appForm"
-                    :form="appFormTour"
-                    name-width="80px"
-                    size="small"
-                    :rules="page_rules"
-                  >
+                  <ep-form ref="appForm" :form="appFormTour" name-width="80px" size="small" :rules="page_rules">
                     <ep-row :gutter="7">
                       <ep-col :col="24" :lg="24">
                         <div class="btnFormRight">
-                          <ep-button
-                            type="primary"
-                            size="small"
-                            icon="plus"
-                            @click="addClickFormTour"
-                          ></ep-button>
+                          <ep-button type="primary" size="small" icon="plus" @click="addClickFormTour"></ep-button>
                           <ep-button
                             type="danger"
                             size="small"
@@ -864,14 +629,8 @@
                           @row-click="rowClickFormTour"
                           @cell-dblclick="cellDblclickTour"
                         >
-                          <ep-table-item
-                            column="recordNumber"
-                            title="提单序号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="gNo"
-                            title="商品序号"
-                          ></ep-table-item>
+                          <ep-table-item column="recordNumber" title="提单序号"></ep-table-item>
+                          <ep-table-item column="gNo" title="商品序号"></ep-table-item>
                           <ep-table-item column="codeTs" title="商品编号">
                             <!--                        <template slot-scope="{row}">
                                                       &lt;!&ndash;                        {{transferFormData(row.codeTs,'COMPLEXValue')}}&ndash;&gt;
@@ -879,45 +638,24 @@
                                                     </template>-->
                           </ep-table-item>
                           <!--                    <ep-table-item column="codeT" title="附加编号"></ep-table-item>-->
-                          <ep-table-item
-                            column="gName"
-                            title="品名及规格"
-                          ></ep-table-item>
+                          <ep-table-item column="gName" title="品名及规格"></ep-table-item>
                           <ep-table-item column="packType" title="包装">
                             <template #default="{ row }">
-                              {{
-                                transferFormData(row.packType, 'WRAP_TYPEValue')
-                              }}
+                              {{ transferFormData(row.packType, 'WRAP_TYPEValue') }}
                             </template>
                           </ep-table-item>
-                          <ep-table-item
-                            column="goodsPiece"
-                            title="件数"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="goodsAmount"
-                            title="数量"
-                          ></ep-table-item>
+                          <ep-table-item column="goodsPiece" title="件数"></ep-table-item>
+                          <ep-table-item column="goodsAmount" title="数量"></ep-table-item>
                           <ep-table-item column="goodsUnit" title="单位">
                             <template #default="{ row }">
-                              {{
-                                transferFormData(row.goodsUnit, 'UNIT_STDValue')
-                              }}
+                              {{ transferFormData(row.goodsUnit, 'UNIT_STDValue') }}
                             </template>
                           </ep-table-item>
-                          <ep-table-item
-                            column="goodsWeight"
-                            title="重量"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="goodsPrice"
-                            title="成交价格"
-                          ></ep-table-item>
+                          <ep-table-item column="goodsWeight" title="重量"></ep-table-item>
+                          <ep-table-item column="goodsPrice" title="成交价格"></ep-table-item>
                           <ep-table-item column="goodsCurr" title="币制">
                             <template #default="{ row }">
-                              {{
-                                transferFormData(row.goodsCurr, 'CURR_STDValue')
-                              }}
+                              {{ transferFormData(row.goodsCurr, 'CURR_STDValue') }}
                             </template>
                           </ep-table-item>
                         </ep-table>
@@ -932,22 +670,11 @@
               <ep-col :col="24">
                 <fieldset class="formFieldsetFive">
                   <legend>集装箱-货物 关系</legend>
-                  <ep-form
-                    ref="appForm"
-                    :form="appFormFive"
-                    name-width="90px"
-                    size="small"
-                    :rules="page_rules"
-                  >
+                  <ep-form ref="appForm" :form="appFormFive" name-width="90px" size="small" :rules="page_rules">
                     <ep-row :gutter="7">
                       <ep-col :col="24" :lg="24">
                         <div class="btnFormRight">
-                          <ep-button
-                            type="primary"
-                            size="small"
-                            icon="plus"
-                            @click="addClickFormFive"
-                          ></ep-button>
+                          <ep-button type="primary" size="small" icon="plus" @click="addClickFormFive"></ep-button>
                           <ep-button
                             type="danger"
                             size="small"
@@ -967,32 +694,13 @@
                           @row-click="rowClickFormFive"
                           @cell-dblclick="cellDblclickFive"
                         >
-                          <ep-table-item
-                            column="recordNumber"
-                            title="提单序号"
-                          ></ep-table-item>
+                          <ep-table-item column="recordNumber" title="提单序号"></ep-table-item>
                           <!--                    <ep-table-item type="num" title="序号"></ep-table-item>-->
-                          <ep-table-item
-                            column="contaSeqno"
-                            title="集装箱序号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="gNo"
-                            title="商品序号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="contaNo"
-                            title="集装箱号"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="contaGoodsCount"
-                            title="件数"
-                          ></ep-table-item>
-                          <ep-table-item
-                            column="contaGoodsWeight"
-                            title="重量"
-                            width="110px"
-                          ></ep-table-item>
+                          <ep-table-item column="contaSeqno" title="集装箱序号"></ep-table-item>
+                          <ep-table-item column="gNo" title="商品序号"></ep-table-item>
+                          <ep-table-item column="contaNo" title="集装箱号"></ep-table-item>
+                          <ep-table-item column="contaGoodsCount" title="件数"></ep-table-item>
+                          <ep-table-item column="contaGoodsWeight" title="重量" width="110px"></ep-table-item>
                         </ep-table>
                       </ep-col>
                     </ep-row>
@@ -1005,13 +713,7 @@
       </ep-row>
     </div>
 
-    <ep-modal
-      v-model="billOfLadingModal"
-      :title="billOfLadingTitleName"
-      width="700px"
-      :wrap-close="false"
-      middle
-    >
+    <ep-modal v-model="billOfLadingModal" :title="billOfLadingTitleName" width="700px" :wrap-close="false" middle>
       <ep-form
         ref="appFormTwo"
         v-enterToNext
@@ -1030,10 +732,7 @@
               placeholder="请输入"
               :mounted-remote-call="false"
               remote
-              :remote-call="
-                (value, old, callback) =>
-                  trafModeRemoteCall(value, callback, 'TRAF_MODE_STD')
-              "
+              :remote-call="(value, old, callback) => trafModeRemoteCall(value, callback, 'TRAF_MODE_STD')"
               @open="trafModeOpen"
               @change="activeChange"
             >
@@ -1049,108 +748,63 @@
         </ep-col>
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="shipId" label="运输工具编号">
-            <ep-input
-              v-model="appFormTwo.shipId"
-              size="small"
-              name="shipId"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.shipId" size="small" name="shipId"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="shipNameEn" label="船舶名称">
-            <ep-input
-              v-model="appFormTwo.shipNameEn"
-              size="small"
-              name="shipNameEn"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.shipNameEn" size="small" name="shipNameEn"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="voyageNo" label="航次">
-            <ep-input
-              v-model="appFormTwo.voyageNo"
-              size="small"
-              name="voyageNo"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.voyageNo" size="small" name="voyageNo"></ep-input>
           </ep-form-item>
         </ep-col>
         <!-- 下面原本col为8 现在改为12       -->
         <ep-col v-if="iEFlagIf" :col="11" :lg="11">
           <ep-form-item attr="billNo" label="提单号" required>
-            <ep-input
-              v-model="appFormTwo.billNo"
-              size="small"
-              name="billNo"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.billNo" size="small" name="billNo"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col v-if="!iEFlagIf" :col="11" :lg="11">
           <ep-form-item attr="billNo" label="提单号">
-            <ep-input
-              v-model="appFormTwo.billNo"
-              size="small"
-              name="billNo"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.billNo" size="small" name="billNo"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="1" :lg="1">
-          <ep-button
-            type="primary"
-            size="small"
-            icon="search"
-            @click="queryBillNO"
-          ></ep-button>
+          <ep-button type="primary" size="small" icon="search" @click="queryBillNO"></ep-button>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="contaC" label="集装箱数">
-            <ep-input
-              v-model="appFormTwo.contaC"
-              size="small"
-              name="contaC"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.contaC" size="small" name="contaC"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="packNo" label="件数">
-            <ep-input
-              v-model="appFormTwo.packNo"
-              size="small"
-              name="packNo"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.packNo" size="small" name="packNo"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="grossWt" label="重量">
-            <ep-input
-              v-model="appFormTwo.grossWt"
-              size="small"
-              name="grossWt"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.grossWt" size="small" name="grossWt"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="entryNo" label="报关单号">
-            <ep-input
-              v-model="appFormTwo.entryNo"
-              size="small"
-              name="entryNo"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.entryNo" size="small" name="entryNo"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="ownerName" label="收货人">
-            <ep-input
-              v-model="appFormTwo.ownerName"
-              size="small"
-              name="ownerName"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.ownerName" size="small" name="ownerName"></ep-input>
           </ep-form-item>
         </ep-col>
 
@@ -1167,11 +821,7 @@
                                 :autosize="{ minRows: 1, maxRows: 4}" ></ep-input>
                     </ep-form-item>-->
           <ep-form-item attr="note" label="备注">
-            <ep-input
-              v-model="appFormTwo.note"
-              size="small"
-              name="note"
-            ></ep-input>
+            <ep-input v-model="appFormTwo.note" size="small" name="note"></ep-input>
           </ep-form-item>
         </ep-col>
       </ep-form>
@@ -1184,21 +834,10 @@
           @click="billOfLadingComfirmModel"
           >确定</ep-button
         >
-        <ep-button
-          class="modelClose"
-          type="text"
-          @click="billOfLadingCloseModel"
-          >取消</ep-button
-        >
+        <ep-button class="modelClose" type="text" @click="billOfLadingCloseModel">取消</ep-button>
       </div>
     </ep-modal>
-    <ep-modal
-      v-model="containerModal"
-      :title="containerTitleName"
-      width="700px"
-      :wrap-close="false"
-      middle
-    >
+    <ep-modal v-model="containerModal" :title="containerTitleName" width="700px" :wrap-close="false" middle>
       <ep-form
         ref="appFormThree"
         v-enterToNext
@@ -1252,10 +891,7 @@
               placeholder="请输入"
               :mounted-remote-call="false"
               remote
-              :remote-call="
-                (value, old, callback) =>
-                  trafModeRemoteCall(value, callback, 'CONTA_MODEL')
-              "
+              :remote-call="(value, old, callback) => trafModeRemoteCall(value, callback, 'CONTA_MODEL')"
               @open="contaModelOpen"
               @change="contaModelChange"
             >
@@ -1272,68 +908,39 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="contaNo" label="集装箱号">
-            <ep-input
-              v-model="appFormThree.contaNo"
-              size="small"
-              name="contaNo"
-              @blur="contaNoBlur"
-            ></ep-input>
+            <ep-input v-model="appFormThree.contaNo" size="small" name="contaNo" @blur="contaNoBlur"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="transName" label="境内运输工具名称">
-            <ep-input
-              v-model="appFormThree.transName"
-              size="small"
-              name="transName"
-            ></ep-input>
+            <ep-input v-model="appFormThree.transName" size="small" name="transName"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="transWeight" label="运输工具实际重量">
-            <ep-input
-              v-model="appFormThree.transWeight"
-              size="small"
-              name="transWeight"
-            ></ep-input>
+            <ep-input v-model="appFormThree.transWeight" size="small" name="transWeight"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="eSealId" label="封志（关锁）号">
-            <ep-input
-              v-model="appFormThree.eSealId"
-              size="small"
-              name="eSealId"
-            ></ep-input>
+            <ep-input v-model="appFormThree.eSealId" size="small" name="eSealId"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="sealNum" label="封志个数">
-            <ep-input
-              v-model="appFormThree.sealNum"
-              size="small"
-              name="sealNum"
-            ></ep-input>
+            <ep-input v-model="appFormThree.sealNum" size="small" name="sealNum"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="sealNo" label="电子关锁号">
-            <ep-input
-              v-model="appFormThree.sealNo"
-              size="small"
-              name="sealNo"
-            ></ep-input>
+            <ep-input v-model="appFormThree.sealNo" size="small" name="sealNo"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="conta1" label="备注">
-            <ep-input
-              v-model="appFormThree.conta1"
-              size="small"
-              name="conta1"
-            ></ep-input>
+            <ep-input v-model="appFormThree.conta1" size="small" name="conta1"></ep-input>
           </ep-form-item>
         </ep-col>
       </ep-form>
@@ -1346,22 +953,10 @@
           @click="containerModalComfirmModel"
           >确定</ep-button
         >
-        <ep-button
-          class="modelClose btnClose"
-          type="text"
-          @click="containerModalCloseModel"
-          >取消</ep-button
-        >
+        <ep-button class="modelClose btnClose" type="text" @click="containerModalCloseModel">取消</ep-button>
       </div>
     </ep-modal>
-    <ep-modal
-      v-model="goodsModal"
-      :title="goodsTitleName"
-      width="700px"
-      :wrap-close="false"
-      middle
-      class="classGoods"
-    >
+    <ep-modal v-model="goodsModal" :title="goodsTitleName" width="700px" :wrap-close="false" middle class="classGoods">
       <ep-form
         ref="appFormTour"
         v-enterToNext
@@ -1394,12 +989,7 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="gNo" label="商品序号">
-            <ep-input
-              v-model="appFormTour.gNo"
-              size="small"
-              name="gNo"
-              :disabled="goodGNoDisabled"
-            ></ep-input>
+            <ep-input v-model="appFormTour.gNo" size="small" name="gNo" :disabled="goodGNoDisabled"></ep-input>
           </ep-form-item>
         </ep-col>
 
@@ -1412,10 +1002,7 @@
               placeholder="请输入"
               :mounted-remote-call="false"
               remote
-              :remote-call="
-                (value, old, callback) =>
-                  trafModeRemoteCall(value, callback, 'CURR_STD')
-              "
+              :remote-call="(value, old, callback) => trafModeRemoteCall(value, callback, 'CURR_STD')"
               @open="goodsCurrOpen"
               @change="goodsCurrChange"
             >
@@ -1463,40 +1050,24 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="gName" label="品名及规格">
-            <ep-input
-              v-model="appFormTour.gName"
-              size="small"
-              name="gName"
-            ></ep-input>
+            <ep-input v-model="appFormTour.gName" size="small" name="gName"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="goodsPrice" label="成交价格">
-            <ep-input
-              v-model="appFormTour.goodsPrice"
-              size="small"
-              name="goodsPrice"
-            ></ep-input>
+            <ep-input v-model="appFormTour.goodsPrice" size="small" name="goodsPrice"></ep-input>
           </ep-form-item>
         </ep-col>
 
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="goodsPiece" label="件数">
-            <ep-input
-              v-model="appFormTour.goodsPiece"
-              size="small"
-              name="goodsPiece"
-            ></ep-input>
+            <ep-input v-model="appFormTour.goodsPiece" size="small" name="goodsPiece"></ep-input>
           </ep-form-item>
         </ep-col>
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="goodsAmount" label="数量">
-            <ep-input
-              v-model="appFormTour.goodsAmount"
-              size="small"
-              name="goodsAmount"
-            ></ep-input>
+            <ep-input v-model="appFormTour.goodsAmount" size="small" name="goodsAmount"></ep-input>
           </ep-form-item>
         </ep-col>
 
@@ -1509,10 +1080,7 @@
               placeholder="请输入"
               :mounted-remote-call="false"
               remote
-              :remote-call="
-                (value, old, callback) =>
-                  trafModeRemoteCall(value, callback, 'UNIT_STD')
-              "
+              :remote-call="(value, old, callback) => trafModeRemoteCall(value, callback, 'UNIT_STD')"
               @open="goodsUnitOpen"
               @change="goodsUnitChange"
             >
@@ -1537,10 +1105,7 @@
               placeholder="请输入"
               :mounted-remote-call="false"
               remote
-              :remote-call="
-                (value, old, callback) =>
-                  trafModeRemoteCall(value, callback, 'WRAP_TYPE')
-              "
+              :remote-call="(value, old, callback) => trafModeRemoteCall(value, callback, 'WRAP_TYPE')"
               @open="packTypeOpen"
               @change="packTypeChange"
             >
@@ -1548,9 +1113,7 @@
                 v-for="(item, index) in WRAP_TYPEValue"
                 :key="index"
                 :index="item.WRAP_CODE"
-                :label="
-                  item.WRAP_CODE ? `${item.WRAP_CODE}-${item.WRAP_NAME}` : ''
-                "
+                :label="item.WRAP_CODE ? `${item.WRAP_CODE}-${item.WRAP_NAME}` : ''"
               >
               </ep-select-item>
               <!--   :label="`${item.WRAP_CODE}-${item.WRAP_NAME}`"           -->
@@ -1560,11 +1123,7 @@
 
         <ep-col :col="8" :lg="8">
           <ep-form-item attr="goodsWeight" label="重量（KG）">
-            <ep-input
-              v-model="appFormTour.goodsWeight"
-              size="small"
-              name="goodsWeight"
-            ></ep-input>
+            <ep-input v-model="appFormTour.goodsWeight" size="small" name="goodsWeight"></ep-input>
           </ep-form-item>
         </ep-col>
       </ep-form>
@@ -1577,21 +1136,10 @@
           @click="goodsModalComfirmModel"
           >确定</ep-button
         >
-        <ep-button
-          class="modelClose btnClose"
-          type="text"
-          @click="goodsModalCloseModel"
-          >取消</ep-button
-        >
+        <ep-button class="modelClose btnClose" type="text" @click="goodsModalCloseModel">取消</ep-button>
       </div>
     </ep-modal>
-    <ep-modal
-      v-model="containerGoodsModal"
-      :title="containerGoodsTitleName"
-      width="700px"
-      :wrap-close="false"
-      middle
-    >
+    <ep-modal v-model="containerGoodsModal" :title="containerGoodsTitleName" width="700px" :wrap-close="false" middle>
       <ep-form
         ref="appFormFive"
         v-enterToNext
@@ -1626,11 +1174,7 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="contaGoodsCount" label="件数">
-            <ep-input
-              v-model="appFormFive.contaGoodsCount"
-              size="small"
-              name="contaGoodsCount"
-            ></ep-input>
+            <ep-input v-model="appFormFive.contaGoodsCount" size="small" name="contaGoodsCount"></ep-input>
           </ep-form-item>
         </ep-col>
 
@@ -1658,12 +1202,7 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="contaNo" label="集装箱号">
-            <ep-input
-              v-model="appFormFive.contaNo"
-              size="small"
-              name="contaNo"
-              disabled
-            ></ep-input>
+            <ep-input v-model="appFormFive.contaNo" size="small" name="contaNo" disabled></ep-input>
           </ep-form-item>
         </ep-col>
 
@@ -1692,11 +1231,7 @@
 
         <ep-col :col="12" :lg="12">
           <ep-form-item attr="contaGoodsWeight" label="重量">
-            <ep-input
-              v-model="appFormFive.contaGoodsWeight"
-              size="small"
-              name="contaGoodsWeight"
-            ></ep-input>
+            <ep-input v-model="appFormFive.contaGoodsWeight" size="small" name="contaGoodsWeight"></ep-input>
           </ep-form-item>
         </ep-col>
       </ep-form>
@@ -1709,12 +1244,7 @@
           @click="containerGoodsComfirmModel"
           >确定</ep-button
         >
-        <ep-button
-          class="modelClose btnClose"
-          type="text"
-          @click="containerGoodsCloseModel"
-          >取消</ep-button
-        >
+        <ep-button class="modelClose btnClose" type="text" @click="containerGoodsCloseModel">取消</ep-button>
       </div>
     </ep-modal>
     <ep-modal
@@ -1737,9 +1267,7 @@
         >
           <ep-table-item type="num" title="序号"></ep-table-item>
           <ep-table-item column="note" title="字段名">
-            <template #default="scope">{{
-              scope.row.verifyItem[0].note
-            }}</template>
+            <template #default="scope">{{ scope.row.verifyItem[0].note }}</template>
           </ep-table-item>
           <ep-table-item column="versionName" title="检验类型"></ep-table-item>
           <ep-table-item column="message" title="错误信息"></ep-table-item>
@@ -1771,12 +1299,8 @@
         <ep-table-item column="createTime" title="创建时间"></ep-table-item>
       </ep-table>
       <div slot="footer">
-        <ep-button type="primary" class="modelComfirm" @click="canfirmInitTemp"
-          >确定</ep-button
-        >
-        <ep-button type="text" class="modelClose" @click="cancelInitTemp"
-          >取消</ep-button
-        >
+        <ep-button type="primary" class="modelComfirm" @click="canfirmInitTemp">确定</ep-button>
+        <ep-button type="text" class="modelClose" @click="cancelInitTemp">取消</ep-button>
       </div>
     </ep-modal>
   </div>
@@ -1784,20 +1308,8 @@
 
 <script>
 import misList from 'src/base/mixins/mislist'
-import {
-  post,
-  cloneObj,
-  transResultChannel,
-  dateFormatter,
-  isNull,
-  isEmpty,
-} from 'utils'
-import {
-  calaulatorSign as _calaulatorSign,
-  getToken,
-  request,
-  restGet,
-} from 'utils/index'
+import { post, cloneObj, transResultChannel, dateFormatter, isNull, isEmpty } from 'utils'
+import { calaulatorSign as _calaulatorSign, getToken, request, restGet } from 'utils/index'
 import CryptoAes from 'utils/bill/cryptoAes.js'
 import store from 'src/store'
 import md5 from 'blueimp-md5'
@@ -1832,9 +1344,7 @@ export default {
             drop[i].children[0].style.cssText = 'display:none;'
           }
         }
-        let dropPackType = document.querySelectorAll(
-          '.packType .ep-select-list',
-        ) //获取select的option dom节点
+        let dropPackType = document.querySelectorAll('.packType .ep-select-list') //获取select的option dom节点
         for (let i = 0; i < dropPackType.length; i++) {
           if (dropPackType[i].children[0] !== undefined) {
             dropPackType[i].children[0].style.cssText = 'display:none;'
@@ -1888,8 +1398,8 @@ export default {
             }
           })
         }
-      },
-    },
+      }
+    }
   },
   extends: misList,
   mixins: [changeLevelPrint],
@@ -1908,7 +1418,7 @@ export default {
         { value: '1T', label: '提前/暂时进出口' },
         { value: '1E', label: '提前/中欧班列' },
         { value: '1P', label: '提前/市场采购出口' },
-        { value: '1K', label: '提前/出口空运联程' },
+        { value: '1K', label: '提前/出口空运联程' }
       ],
       buttonFlag: true,
       containersGoodSDisabled: false,
@@ -1920,17 +1430,9 @@ export default {
       goodRecordNumberDisabled: false,
 
       settings: {
-        pk: 'id',
+        pk: 'id'
       },
-      tableNameList: [
-        'COMPLEX',
-        'UNIT_STD',
-        'WRAP_TYPE',
-        'CURR_STD',
-        'CUSTOMS',
-        'TRAF_MODE_STD',
-        'CONTA_MODEL',
-      ],
+      tableNameList: ['COMPLEX', 'UNIT_STD', 'WRAP_TYPE', 'CURR_STD', 'CUSTOMS', 'TRAF_MODE_STD', 'CONTA_MODEL'],
       billOfLadingModal: false,
       billOfLadingRules: {},
       containerModal: false,
@@ -1971,7 +1473,7 @@ export default {
         goodsNote: '',
         copSeqNo: '',
         operType: '',
-        templateName: '',
+        templateName: ''
         //templateNo:''
       },
       appFormTwo: {
@@ -1989,7 +1491,7 @@ export default {
         note: '',
 
         // headID:'',
-        recordNumber: '',
+        recordNumber: ''
       },
       appFormThree: {
         contaNo: '',
@@ -2003,7 +1505,7 @@ export default {
         // headID:'',
         recordNumber: '',
         contaSeqno: '',
-        conta1: '',
+        conta1: ''
       },
       appFormTour: {
         codeTs: '',
@@ -2018,7 +1520,7 @@ export default {
         goodsCurr: '',
 
         recordNumber: '',
-        gNo: '',
+        gNo: ''
       },
       appFormFive: {
         contaNo: '',
@@ -2028,7 +1530,7 @@ export default {
         //headID:'',
         recordNumber: '',
         gNo: '',
-        contaSeqno: '',
+        contaSeqno: ''
       },
       page_rules: {},
       dataFormTwo: [],
@@ -2049,7 +1551,7 @@ export default {
       showData: '',
       refreshModal: false,
       refreshModalForm: {
-        id: '',
+        id: ''
       },
       refreshModalRules: {},
       title: '',
@@ -2059,12 +1561,12 @@ export default {
       //转关方式
       trnTypeValue: [
         { value: '0', label: '普通有纸申报' },
-        { value: '1', label: '无纸申报' },
+        { value: '1', label: '无纸申报' }
       ],
       //进出口标志
       iEFlagValue: [
         { value: 'I', label: '进口' },
-        { value: 'E', label: '出口' },
+        { value: 'E', label: '出口' }
       ],
       //转关类型
       trnModeValue: [
@@ -2076,7 +1578,7 @@ export default {
         { value: '88', label: '过境' },
         { value: '99', label: '沿海内支' },
         { value: 'YY', label: '免税转展品' },
-        { value: 'ZZ', label: '其他' },
+        { value: 'ZZ', label: '其他' }
       ],
       //状态
       statusValue: [
@@ -2097,7 +1599,7 @@ export default {
         { value: 'L', label: '海关接受通知' },
         { value: 'M', label: '修改提单成功' },
         { value: 'R', label: '自动审核通过放行' },
-        { value: 'eee', label: '海关退单' },
+        { value: 'eee', label: '海关退单' }
       ],
       //自动审核不通过 海关审批未通过 eee海关退单 暂存
       //
@@ -2105,7 +1607,7 @@ export default {
       //操作类型
       operTypeValue: [
         { value: 'B', label: '暂存' },
-        { value: 'C', label: '申报' },
+        { value: 'C', label: '申报' }
       ],
       billOfLadingTitleName: '',
       dataFormTwoCellDIndex: null,
@@ -2148,7 +1650,7 @@ export default {
       billContainer: {}, //提单号查询返回的数据
       eSealFlagValue: [
         { value: 'Y', label: '启用电子关锁' },
-        { value: 'N', label: '不启用电子关锁' },
+        { value: 'N', label: '不启用电子关锁' }
       ],
       eSealFlagQuery: '',
       TRAFData: [], //打印按钮的数据
@@ -2165,7 +1667,7 @@ export default {
       customsNoList: [],
       trafWayOneValue: '', //境内运输方式中选中的值
 
-      codeTsData: [],
+      codeTsData: []
     }
   },
   computed: {
@@ -2174,7 +1676,7 @@ export default {
     },
     userExt() {
       return this.$store.getters.getUserExt
-    },
+    }
   },
   watch: {
     bills: {
@@ -2255,9 +1757,9 @@ export default {
               dataFormTwo: this.dataFormTwo,
               dataFormThree: this.dataFormThree,
               dataFormTour: this.dataFormTour,
-              dataFormFive: this.dataFormFive,
+              dataFormFive: this.dataFormFive
             }),
-            global.CUSTOMSURL,
+            global.CUSTOMSURL
           )
 
           //商品/货物
@@ -2286,9 +1788,7 @@ export default {
                 //item.contaSeqno=item.containerNo  //集装箱序号
                 item.contaNo = item.containerId //集装箱号
                 var regex1 = /[A-Z][a-z]?\d*/g
-                item.contaModel = item.containerMdStdCn
-                  ? item.containerMdStdCn.match(regex1)[0]
-                  : '' //规格
+                item.contaModel = item.containerMdStdCn ? item.containerMdStdCn.match(regex1)[0] : '' //规格
                 CONTAINER.push(item)
                 //console.log(CONTAINER, 'CONTAINER')
               })
@@ -2300,9 +1800,9 @@ export default {
                 dataFormTwo: this.dataFormTwo,
                 dataFormThree: this.dataFormThree,
                 dataFormTour: this.dataFormTour,
-                dataFormFive: this.dataFormFive,
+                dataFormFive: this.dataFormFive
               }),
-              global.CUSTOMSURL,
+              global.CUSTOMSURL
             )
           }
 
@@ -2328,13 +1828,13 @@ export default {
                 dataFormTwo: this.dataFormTwo,
                 dataFormThree: this.dataFormThree,
                 dataFormTour: this.dataFormTour,
-                dataFormFive: this.dataFormFive,
+                dataFormFive: this.dataFormFive
               }),
-              global.CUSTOMSURL,
+              global.CUSTOMSURL
             )
           }
         }
-      },
+      }
     },
     customsBillNo: {
       handler(e) {
@@ -2351,7 +1851,7 @@ export default {
           this.dataFormTwo = []
           this.dataFormTwo.push(obj)
         }
-      },
+      }
     },
     customsTrafName: {
       handler(e) {
@@ -2367,7 +1867,7 @@ export default {
           this.dataFormTwo = []
           this.dataFormTwo.push(obj)
         }
-      },
+      }
     },
     customsVoyageNo: {
       handler(e) {
@@ -2383,7 +1883,7 @@ export default {
           this.dataFormTwo = []
           this.dataFormTwo.push(obj)
         }
-      },
+      }
     },
     dataFormTwo: {
       handler(now, old) {
@@ -2398,9 +1898,9 @@ export default {
             dataFormTour: this.dataFormTour,
             dataFormFive: this.dataFormFive,
             userExt: getUserExt(this.userExt),
-            token: getToken(),
+            token: getToken()
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
         //件数
         let i = 0
@@ -2441,7 +1941,7 @@ export default {
         }
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     /*dataFormThree(nowCon,old){
       //总数
@@ -2482,9 +1982,9 @@ export default {
             dataFormTour: this.dataFormTour,
             dataFormFive: this.dataFormFive,
             userExt: getUserExt(this.userExt),
-            token: getToken(),
+            token: getToken()
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
         //集装箱总数
         /* const contaCount=[]
@@ -2531,7 +2031,7 @@ export default {
         this.deduplication(nowCon)
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     /*'$route'(n){
       let flag=n.query.flag
@@ -2563,7 +2063,7 @@ export default {
         }
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     appForm: {
       handler(n) {
@@ -2576,13 +2076,13 @@ export default {
             dataFormTour: this.dataFormTour,
             dataFormFive: this.dataFormFive,
             userExt: getUserExt(this.userExt),
-            token: getToken(),
+            token: getToken()
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     dataFormTour: {
       handler(n) {
@@ -2595,13 +2095,13 @@ export default {
             dataFormTour: n,
             dataFormFive: this.dataFormFive,
             userExt: getUserExt(this.userExt),
-            token: getToken(),
+            token: getToken()
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     dataFormFive: {
       handler(n) {
@@ -2614,14 +2114,14 @@ export default {
             dataFormTour: this.dataFormTour,
             dataFormFive: n,
             userExt: getUserExt(this.userExt),
-            token: getToken(),
+            token: getToken()
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
       },
       deep: true,
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   beforeUnmount() {
     window.removeEventListener('message', this.handle)
@@ -2639,9 +2139,9 @@ export default {
       JSON.stringify({
         bills: [],
         userExt: [],
-        token: getToken(),
+        token: getToken()
       }),
-      global.CUSTOMSURL,
+      global.CUSTOMSURL
     )
 
     /*   window.addEventListener('message',({data:{type,cusTrnFlag,bill}})=>{
@@ -2762,14 +2262,7 @@ export default {
       let that = this
       const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data
       if (!data) return
-      let {
-        type,
-        cusTrnFlag,
-        bill,
-        customsBillNo,
-        customsTrafName,
-        customsVoyageNo,
-      } = data
+      let { type, cusTrnFlag, bill, customsBillNo, customsTrafName, customsVoyageNo } = data
       if (type == 'hold') {
         that[type](cusTrnFlag)
       } else if (type == 'billsFn') {
@@ -2901,7 +2394,7 @@ export default {
     codeTsRemoteCall(val, callback) {
       const params = {
         tableName: 'COMPLEX',
-        filterData: val,
+        filterData: val
       }
       this.getResponseData(params)
         .then((json) => {
@@ -2910,7 +2403,7 @@ export default {
           json.data.forEach((item, index) => {
             arr.push({
               value: item.CODE_TS,
-              label: item.G_NAME,
+              label: item.G_NAME
             })
           })
           this.codeTsData = json.data
@@ -2955,7 +2448,7 @@ export default {
             json.data.data.forEach((item, index) => {
               arr.push({
                 value: index,
-                label: item.customsNo + '[' + item.transName + ']',
+                label: item.customsNo + '[' + item.transName + ']'
               })
             })
           }
@@ -3090,7 +2583,7 @@ export default {
         } else {
           this.$pop({
             type: 'success',
-            message: json.message,
+            message: json.message
           })
         }
       })
@@ -3101,7 +2594,7 @@ export default {
       if (!this.appForm.templateName) {
         this.$pop({
           type: 'warning',
-          message: '模板名称不能为空',
+          message: '模板名称不能为空'
         })
         return
       }
@@ -3119,18 +2612,14 @@ export default {
       const TRANS_PRE_CONTA_GOODS = this.dataFormFive
       this.$set(this.appForm, 'status', '0')
       if (this.appForm.validTime) {
-        this.$set(
-          this.appForm,
-          'validTime',
-          this.appForm.validTime.replace(/-/g, ''),
-        )
+        this.$set(this.appForm, 'validTime', this.appForm.validTime.replace(/-/g, ''))
       }
 
       //模板名称
       if (!this.appForm.templateName) {
         this.$pop({
           type: 'warning',
-          message: '模板名称不能为空！',
+          message: '模板名称不能为空！'
         })
         return
       }
@@ -3139,7 +2628,7 @@ export default {
         TRANS_PRE_BILL,
         TRANS_PRE_CONTAINER,
         TRANS_PRE_GOODS,
-        TRANS_PRE_CONTA_GOODS,
+        TRANS_PRE_CONTA_GOODS
       }).then((json) => {
         if (Object.keys(json.data).length) {
           let data = json.data
@@ -3151,12 +2640,12 @@ export default {
           this.dataFormFive = data.TRANS_PRE_CONTA_GOODS
           this.$pop({
             type: 'success',
-            message: '保存成功',
+            message: '保存成功'
           })
         } else {
           this.$pop({
             type: 'danger',
-            message: json.message,
+            message: json.message
           })
         }
       })
@@ -3164,20 +2653,14 @@ export default {
     //集装箱序号回填集装箱号
     contaSeqnoChange(v) {
       if (!v) return
-      let contaNoData = this.contaNoSelect.filter(
-        (item) => item.contaSeqno === v,
-      )
+      let contaNoData = this.contaNoSelect.filter((item) => item.contaSeqno === v)
       this.$set(this.appFormFive, 'contaNo', contaNoData[0].contaNo)
     },
     //根据提单号集装箱/货物变化
     recordNumberActiveChange(v, selectVm, oldSelectVm) {
       //当选择下拉框1时，下拉框2、3自动筛选
-      this.contaNoSelect = this.dataFormThree.filter(
-        (item) => item.recordNumber === v,
-      )
-      this.gNoSelect = this.dataFormTour.filter(
-        (item) => item.recordNumber == v,
-      )
+      this.contaNoSelect = this.dataFormThree.filter((item) => item.recordNumber === v)
+      this.gNoSelect = this.dataFormTour.filter((item) => item.recordNumber == v)
       //提单序号进行切换时其余两个表单置为空(直接置为空会出现第一次添加下拉框不显示到input上，动态更新)
       if (selectVm) {
         if (oldSelectVm !== null) {
@@ -3195,20 +2678,18 @@ export default {
     //提单信息查询
     queryBillNO() {
       //提单号唯一的，加校验
-      let billNo = this.dataFormTwo.filter(
-        (e) => e.billNo === this.appFormTwo.billNo,
-      )
+      let billNo = this.dataFormTwo.filter((e) => e.billNo === this.appFormTwo.billNo)
       if (billNo && billNo.length) {
         this.$pop({
           type: 'warning',
-          message: '提单号不可重复！',
+          message: '提单号不可重复！'
         })
         return
       }
       if (this.appFormTwo.billNo == undefined) {
         this.$pop({
           type: 'warning',
-          message: '提单号不可为空！',
+          message: '提单号不可为空！'
         })
         return
       }
@@ -3222,7 +2703,7 @@ export default {
         voyage: voyageNo,
         vslName: shipNameEn,
         masterBlNo: billNo,
-        houseBlNo: '',
+        houseBlNo: ''
       })
         // "houseBlNo":'this.appFormThree.contaNo'
         .then((json) => {
@@ -3260,7 +2741,7 @@ export default {
         voyage: voyageNo,
         vslName: shipNameEn,
         masterBlNo: masterBlNoBillNo,
-        houseBlNo: '',
+        houseBlNo: ''
       }).then((json) => {
         if (!Object.keys(json.data).length) return
         if (json.data) {
@@ -3283,10 +2764,7 @@ export default {
     contaNoBlur(e) {
       this.container.forEach((item, index) => {
         this.dataFormTwo.forEach((itemBillNO) => {
-          if (
-            item.BILL_NO === itemBillNO.billNo &&
-            item.CONTA_NO === e.target.value
-          ) {
+          if (item.BILL_NO === itemBillNO.billNo && item.CONTA_NO === e.target.value) {
             this.$set(this.appFormThree, 'eSealId', item.E_SEAL_ID)
             //this.appFormThree.eSealId=item.E_SEAL_ID //eSealId 封志（关锁）号
             this.appFormThree.sealNo = item.SEAL_NO //sealNo 电子关锁号
@@ -3306,18 +2784,13 @@ export default {
     },
 
     //下拉框的请求方法
-    reqThirdPartySelect({
-      tableName,
-      filterData = false,
-      limit = 30,
-      type = 'code',
-    }) {
+    reqThirdPartySelect({ tableName, filterData = false, limit = 30, type = 'code' }) {
       const data = {
         tableName, //appForm appFormTwo境内运输方式
         filter: {
           offset: 1,
-          limit,
-        },
+          limit
+        }
       }
       var chinese = new RegExp('[\u4E00-\u9FA5]+')
       var english = new RegExp('[A-Za-z]+')
@@ -3383,10 +2856,7 @@ export default {
             data.filter.like_codestd = filterData*/
             if (chinese.test(`${filterData}`)) {
               data.filter.like_namestd = filterData
-            } else if (
-              number.test(`${filterData}`) ||
-              english.test(`${filterData}`)
-            ) {
+            } else if (number.test(`${filterData}`) || english.test(`${filterData}`)) {
               data.filter.like_codestd = filterData
             }
           }
@@ -3397,9 +2867,7 @@ export default {
       let privateKey = ''
       this.userExt.forEach((e) => {
         if (e.applyExtKey == global.APPCODE) {
-          password = JSON.parse(
-            e.applyExtValue,
-          ).SWGD_IMAP_SIGN_PASSWORD.substring(0, 16)
+          password = JSON.parse(e.applyExtValue).SWGD_IMAP_SIGN_PASSWORD.substring(0, 16)
           privateKey = JSON.parse(e.applyExtValue).SWGD_IMAP_PRIVATE_KEY
           publicKey = JSON.parse(e.applyExtValue).SWGD_IMAP_PUBLIC_KEY
         }
@@ -3420,11 +2888,11 @@ export default {
           'X-SWGD-Sign': signStr,
           'X-SWGD-PublicKey': publicKey,
           'X-SWGD-Zipflag': 0,
-          epToken: getToken(),
+          epToken: getToken()
         },
         data: {
-          data: encryptionStr,
-        },
+          data: encryptionStr
+        }
       })
     },
     async getResponseData(requestData) {
@@ -3438,9 +2906,7 @@ export default {
       let password = ''
       this.userExt.forEach((e) => {
         if (e.applyExtKey == global.APPCODE) {
-          password = JSON.parse(
-            e.applyExtValue,
-          ).SWGD_IMAP_SIGN_PASSWORD.substring(0, 16)
+          password = JSON.parse(e.applyExtValue).SWGD_IMAP_SIGN_PASSWORD.substring(0, 16)
         }
       })
       return JSON.parse(CryptoAes.decrypt(data, password))
@@ -3460,7 +2926,7 @@ export default {
         this.tableNameList.forEach((item, index) => {
           const params = {
             tableName: item,
-            limit: 30,
+            limit: 30
           }
           this.getResponseData(params).then((json) => {
             json.data.forEach((item, index) => {})
@@ -3498,7 +2964,7 @@ export default {
       const params = {
         tableName,
         filterData,
-        type: 'name',
+        type: 'name'
       }
       this.getResponseData(params).then((json) => {
         if (!json) return
@@ -3530,39 +2996,33 @@ export default {
         })
         if (flagArr.length === 2) {
           const { trafWay, recvPort, sendPort } = this.appForm
-          let target = this.TRAF_MODE_STDValue.find(
-            (item) => item.CODESTD === this.appForm.trafWay,
-          )
+          let target = this.TRAF_MODE_STDValue.find((item) => item.CODESTD === this.appForm.trafWay)
           //数据没在30条里面且表单回显的有值执行
           if (!target && trafWay) {
             const params = {
               tableName: 'TRAF_MODE_STD',
-              filterData: this.appForm.trafWay,
+              filterData: this.appForm.trafWay
             }
             this.getResponseData(params).then(({ data }) => {
               this.TRAF_MODE_STDValue.push(data[0])
             })
           }
-          let targetRecvPort = this.CUSTOMSValue.find(
-            (item) => item.CUSTOMS_CO === this.appForm.recvPort,
-          )
+          let targetRecvPort = this.CUSTOMSValue.find((item) => item.CUSTOMS_CO === this.appForm.recvPort)
           if (!targetRecvPort && recvPort) {
             const params = {
               tableName: 'CUSTOMS',
-              filterData: this.appForm.recvPort,
+              filterData: this.appForm.recvPort
             }
             this.getResponseData(params).then(({ data }) => {
               this.CUSTOMSValue.push(data[0])
             })
           }
 
-          let targetSendPort = this.CUSTOMSValue.find(
-            (item) => item.CUSTOMS_CO === this.appForm.sendPort,
-          )
+          let targetSendPort = this.CUSTOMSValue.find((item) => item.CUSTOMS_CO === this.appForm.sendPort)
           if (!targetSendPort && sendPort) {
             const params = {
               tableName: 'CUSTOMS',
-              filterData: this.appForm.sendPort,
+              filterData: this.appForm.sendPort
             }
             this.getResponseData(params).then(({ data }) => {
               this.CUSTOMSValue.push(data[0])
@@ -3576,10 +3036,7 @@ export default {
     },
     //转义
     transferFormData(v, type) {
-      if (
-        this.$route.query === '/trans' ||
-        this.$route.query === '/cusTransitDeclare'
-      ) {
+      if (this.$route.query === '/trans' || this.$route.query === '/cusTransitDeclare') {
         const obj = JSON.parse(localStorage.getItem('selectObj'))
         //this.selectList=JSON.parse(obj)
         // console.log(obj,'arrr--------------')
@@ -3595,7 +3052,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3608,15 +3065,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = obj['COMPLEXValue'].find(
-                    (item) => item.CODE_TS === itemData.CODE_TS,
-                  )
+                  const flag = obj['COMPLEXValue'].find((item) => item.CODE_TS === itemData.CODE_TS)
                   if (!flag) {
                     obj['COMPLEXValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3633,7 +3085,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3647,15 +3099,10 @@ export default {
                 }
 
                 data.forEach((itemData) => {
-                  const flag = obj['CURR_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = obj['CURR_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     obj['CURR_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3671,7 +3118,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3684,15 +3131,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = obj['WRAP_TYPEValue'].find(
-                    (item) => item.WRAP_CODE === itemData.WRAP_CODE,
-                  )
+                  const flag = obj['WRAP_TYPEValue'].find((item) => item.WRAP_CODE === itemData.WRAP_CODE)
                   if (!flag) {
                     obj['WRAP_TYPEValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3707,7 +3149,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3720,15 +3162,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = obj['UNIT_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = obj['UNIT_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     obj['UNIT_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3743,7 +3180,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3757,15 +3194,10 @@ export default {
                 }
                 data.forEach((itemData) => {
                   //data是下拉框的数据中找不到的，需要发请求找，itemData是已经找到的
-                  const flag = obj['CONTA_MODELValue'].find(
-                    (item) => item.CONTA_MODEL_CO === itemData.CONTA_MODEL_CO,
-                  ) //判断请求回来的数据在不在localStorage（总数据）
+                  const flag = obj['CONTA_MODELValue'].find((item) => item.CONTA_MODEL_CO === itemData.CONTA_MODEL_CO) //判断请求回来的数据在不在localStorage（总数据）
                   if (!flag) {
                     obj['CONTA_MODELValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3781,7 +3213,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3794,15 +3226,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = obj['TRAF_MODE_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = obj['TRAF_MODE_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     obj['TRAF_MODE_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(obj),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(obj))
                   }
                 })
               }
@@ -3824,7 +3251,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3837,15 +3264,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = this.selectList['COMPLEXValue'].find(
-                    (item) => item.CODE_TS === itemData.CODE_TS,
-                  )
+                  const flag = this.selectList['COMPLEXValue'].find((item) => item.CODE_TS === itemData.CODE_TS)
                   if (!flag) {
                     this.selectList['COMPLEXValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -3862,7 +3284,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3876,15 +3298,10 @@ export default {
                 }
 
                 data.forEach((itemData) => {
-                  const flag = this.selectList['CURR_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = this.selectList['CURR_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     this.selectList['CURR_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -3900,7 +3317,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3913,15 +3330,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = this.selectList['WRAP_TYPEValue'].find(
-                    (item) => item.WRAP_CODE === itemData.WRAP_CODE,
-                  )
+                  const flag = this.selectList['WRAP_TYPEValue'].find((item) => item.WRAP_CODE === itemData.WRAP_CODE)
                   if (!flag) {
                     this.selectList['WRAP_TYPEValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -3936,7 +3348,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3949,15 +3361,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = this.selectList['UNIT_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = this.selectList['UNIT_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     this.selectList['UNIT_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -3968,13 +3375,11 @@ export default {
         } else if (type === 'CONTA_MODELValue') {
           //规格
           // target= this[type].find(item=>item.CONTA_MODEL_CO===v)
-          target = this.selectList[type].find(
-            (item) => item.CONTA_MODEL_CO === v,
-          )
+          target = this.selectList[type].find((item) => item.CONTA_MODEL_CO === v)
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -3989,14 +3394,11 @@ export default {
                 data.forEach((itemData) => {
                   //data是下拉框的数据中找不到的，需要发请求找，itemData是已经找到的
                   const flag = this.selectList['CONTA_MODELValue'].find(
-                    (item) => item.CONTA_MODEL_CO === itemData.CONTA_MODEL_CO,
+                    (item) => item.CONTA_MODEL_CO === itemData.CONTA_MODEL_CO
                   ) //判断请求回来的数据在不在localStorage（总数据）
                   if (!flag) {
                     this.selectList['CONTA_MODELValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -4012,7 +3414,7 @@ export default {
           if (!target) {
             const params = {
               tableName: type.replace('Value', ''),
-              filterData: v,
+              filterData: v
             }
             //发请求
             this.getResponseData(params).then((json) => {
@@ -4025,15 +3427,10 @@ export default {
                   that[type].push(data[0])
                 }
                 data.forEach((itemData) => {
-                  const flag = this.selectList['TRAF_MODE_STDValue'].find(
-                    (item) => item.CODESTD === itemData.CODESTD,
-                  )
+                  const flag = this.selectList['TRAF_MODE_STDValue'].find((item) => item.CODESTD === itemData.CODESTD)
                   if (!flag) {
                     this.selectList['TRAF_MODE_STDValue'].push(itemData)
-                    window.localStorage.setItem(
-                      'selectObj',
-                      JSON.stringify(this.selectList),
-                    )
+                    window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
                   }
                 })
               }
@@ -4048,19 +3445,12 @@ export default {
     //change事件
     activeChange(value) {
       if (this.TRAF_MODE_STDValue.length) {
-        const target = this.TRAF_MODE_STDValue.find(
-          (item) => item.CODESTD === value,
-        )
+        const target = this.TRAF_MODE_STDValue.find((item) => item.CODESTD === value)
         if (target) {
-          const flag = this.selectList['TRAF_MODE_STDValue'].find(
-            (item) => item.CODESTD === value,
-          )
+          const flag = this.selectList['TRAF_MODE_STDValue'].find((item) => item.CODESTD === value)
           if (!flag) {
             this.selectList['TRAF_MODE_STDValue'].push(target)
-            window.localStorage.setItem(
-              'selectObj',
-              JSON.stringify(this.selectList),
-            )
+            window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
           }
         }
       }
@@ -4068,7 +3458,7 @@ export default {
     //再次打开30条
     trafModeOpen(e) {
       this.getResponseData({
-        tableName: 'TRAF_MODE_STD',
+        tableName: 'TRAF_MODE_STD'
       }).then((e) => {
         // e.data.unshift({CODESTD: '', NAMESTD: ''})
         this.TRAF_MODE_STDValue = e.data
@@ -4078,21 +3468,16 @@ export default {
     goodsCurrChange(value) {
       const target = this.CURR_STDValue.find((item) => item.CODESTD === value)
       if (target) {
-        const flag = this.selectList['CURR_STDValue'].find(
-          (item) => item.CODESTD === value,
-        )
+        const flag = this.selectList['CURR_STDValue'].find((item) => item.CODESTD === value)
         if (!flag) {
           this.selectList['CURR_STDValue'].push(target)
-          window.localStorage.setItem(
-            'selectObj',
-            JSON.stringify(this.selectList),
-          )
+          window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
         }
       }
     },
     goodsCurrOpen(e) {
       this.getResponseData({
-        tableName: 'CURR_STD',
+        tableName: 'CURR_STD'
       }).then((e) => {
         //e.data.unshift({CODESTD: '', NAMESTD: ''})
         this.CURR_STDValue = e.data
@@ -4103,21 +3488,16 @@ export default {
     goodsUnitChange(value) {
       const target = this.UNIT_STDValue.find((item) => item.CODESTD === value)
       if (target) {
-        const flag = this.selectList['UNIT_STDValue'].find(
-          (item) => item.CODESTD === value,
-        )
+        const flag = this.selectList['UNIT_STDValue'].find((item) => item.CODESTD === value)
         if (!flag) {
           this.selectList['UNIT_STDValue'].push(target)
-          window.localStorage.setItem(
-            'selectObj',
-            JSON.stringify(this.selectList),
-          )
+          window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
         }
       }
     },
     goodsUnitOpen(e) {
       this.getResponseData({
-        tableName: 'UNIT_STD',
+        tableName: 'UNIT_STD'
       }).then((e) => {
         e.data.unshift({ CODESTD: '', NAMESTD: '' })
         this.UNIT_STDValue = e.data
@@ -4147,25 +3527,18 @@ export default {
      },*/
 
     packTypeChange(value) {
-      const target = this.WRAP_TYPEValue.find(
-        (item) => item.WRAP_CODE === value,
-      )
+      const target = this.WRAP_TYPEValue.find((item) => item.WRAP_CODE === value)
       if (target) {
-        const flag = this.selectList['WRAP_TYPEValue'].find(
-          (item) => item.WRAP_CODE === value,
-        )
+        const flag = this.selectList['WRAP_TYPEValue'].find((item) => item.WRAP_CODE === value)
         if (!flag) {
           this.selectList['WRAP_TYPEValue'].push(target)
-          window.localStorage.setItem(
-            'selectObj',
-            JSON.stringify(this.selectList),
-          )
+          window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
         }
       }
     },
     packTypeOpen(e) {
       this.getResponseData({
-        tableName: 'WRAP_TYPE',
+        tableName: 'WRAP_TYPE'
       }).then((e) => {
         e.data.unshift({ WRAP_CODE: '', WRAP_NAME: '' })
         this.WRAP_TYPEValue = e.data
@@ -4176,31 +3549,22 @@ export default {
     codeTsChangeFn(value) {
       const target = this.COMPLEXValue.find((item) => item.CODE_TS === value)
       if (target) {
-        const flag = this.selectList['COMPLEXValue'].find(
-          (item) => item.CODE_TS === value,
-        )
+        const flag = this.selectList['COMPLEXValue'].find((item) => item.CODE_TS === value)
         if (!flag) {
           this.selectList['COMPLEXValue'].push(target)
-          window.localStorage.setItem(
-            'selectObj',
-            JSON.stringify(this.selectList),
-          )
+          window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
         }
       }
     },
     codeTsOpen(e) {
       this.getResponseData({
-        tableName: 'COMPLEX',
+        tableName: 'COMPLEX'
       }).then((e) => {
         //this.COMPLEXValue=e.data
         //this.COMPLEXValue=[...this.COMPLEXValue,...e.data]
         //select中的数据在不在请求回来的数据中，不在就push进去
         e.data.forEach((item) => {
-          if (
-            !this.COMPLEXValue.find(
-              (findItem) => findItem.CODE_TS === item.CODE_TS,
-            )
-          ) {
+          if (!this.COMPLEXValue.find((findItem) => findItem.CODE_TS === item.CODE_TS)) {
             this.COMPLEXValue.push(item)
           }
         })
@@ -4209,25 +3573,18 @@ export default {
     //规格
     contaModelChange(value) {
       //  console.log(this.CONTA_MODELValue,'this.CONTA_MODELValue')
-      const target = this.CONTA_MODELValue.find(
-        (item) => item.CONTA_MODEL_CO === value,
-      )
+      const target = this.CONTA_MODELValue.find((item) => item.CONTA_MODEL_CO === value)
       if (target) {
-        const flag = this.selectList['CONTA_MODELValue'].find(
-          (item) => item.CONTA_MODEL_CO === value,
-        )
+        const flag = this.selectList['CONTA_MODELValue'].find((item) => item.CONTA_MODEL_CO === value)
         if (!flag) {
           this.selectList['CONTA_MODELValue'].push(target)
-          window.localStorage.setItem(
-            'selectObj',
-            JSON.stringify(this.selectList),
-          )
+          window.localStorage.setItem('selectObj', JSON.stringify(this.selectList))
         }
       }
     },
     contaModelOpen(e) {
       this.getResponseData({
-        tableName: 'CONTA_MODEL',
+        tableName: 'CONTA_MODEL'
       }).then((e) => {
         // e.data.unshift({CODESTD: '', NAMESTD: ''})
         this.CONTA_MODELValue = e.data
@@ -4239,7 +3596,7 @@ export default {
       if (!this.TRAFData.length) {
         const data = await this.getResponseData({
           tableName: 'TRAF_MODE_STD',
-          limit: 100,
+          limit: 100
         })
         this.TRAFData = data.data
       }
@@ -4251,9 +3608,7 @@ export default {
     //回显码表数据
     getBillPosition(data) {
       data.forEach((item) => {
-        const trafWayData = this.TRAFData.find(
-          (itemName) => itemName.CODESTD === item.trafWay,
-        )
+        const trafWayData = this.TRAFData.find((itemName) => itemName.CODESTD === item.trafWay)
         if (trafWayData) {
           //回显码表数据
           item.name = trafWayData.NAMESTD
@@ -4267,7 +3622,7 @@ export default {
       if (!this.appForm.iEFlag) {
         this.$pop({
           type: 'warning',
-          message: '进出口标志不能为空',
+          message: '进出口标志不能为空'
         })
         return
       }
@@ -4307,11 +3662,7 @@ export default {
       const TRANS_PRE_CONTA_GOODS = this.dataFormFive
       this.$set(this.appForm, 'status', '0')
       if (this.appForm.validTime) {
-        this.$set(
-          this.appForm,
-          'validTime',
-          this.appForm.validTime.replace(/-/g, ''),
-        )
+        this.$set(this.appForm, 'validTime', this.appForm.validTime.replace(/-/g, ''))
       }
 
       //报关整合在表头加上cusTrnFlag字段
@@ -4327,7 +3678,7 @@ export default {
         if (!this.dataFormTwo.length) {
           this.$pop({
             type: 'warning',
-            message: '提单信息缺失',
+            message: '提单信息缺失'
           })
           return
         }
@@ -4337,7 +3688,7 @@ export default {
         TRANS_PRE_BILL,
         TRANS_PRE_CONTAINER,
         TRANS_PRE_GOODS,
-        TRANS_PRE_CONTA_GOODS,
+        TRANS_PRE_CONTA_GOODS
       }).then((json) => {
         this.id = json.data.TRANS_PRE_HEAD.id
         this.appForm = json.data.TRANS_PRE_HEAD
@@ -4346,21 +3697,18 @@ export default {
         this.dataFormTour = json.data.TRANS_PRE_GOODS
         this.dataFormFive = json.data.TRANS_PRE_CONTA_GOODS
 
-        localStorage.setItem(
-          'transHead',
-          JSON.stringify(json.data.TRANS_PRE_HEAD),
-        )
+        localStorage.setItem('transHead', JSON.stringify(json.data.TRANS_PRE_HEAD))
         //this.$bus.$emit('transFlag')
         window.parent.postMessage(
           JSON.stringify({
-            type: 'transFlag',
+            type: 'transFlag'
           }),
-          global.CUSTOMSURL,
+          global.CUSTOMSURL
         )
 
         this.$pop({
           type: 'success',
-          message: '暂存成功',
+          message: '暂存成功'
         })
         //this.btnFlagPrint = true; //打印
         //this.btnFlagSend = false;   //发送
@@ -4384,7 +3732,7 @@ export default {
           this.$app.trigger('locate-tab', 'transPreptIndex', {
             title: '编辑' + this.addId,
             appId: this.addId,
-            flag: 'edit',
+            flag: 'edit'
           })
         } else {
           //新增
@@ -4401,7 +3749,7 @@ export default {
           this.$app.trigger('locate-tab', 'transPreptIndex', {
             title: '编辑' + this.addId,
             appId: this.addId,
-            flag: 'edit',
+            flag: 'edit'
           })
         }
       })
@@ -4411,7 +3759,7 @@ export default {
       this.$app.trigger('locate-tab', 'transPreptIndex', {
         title: `新增`,
         flag: 'add',
-        eSealFlag: this.eSealFlagValue[1].value,
+        eSealFlag: this.eSealFlagValue[1].value
       })
     },
     //复制
@@ -4438,12 +3786,12 @@ export default {
         TRANS_PRE_BILL: TRANS_PRE_BILL,
         TRANS_PRE_CONTAINER: TRANS_PRE_CONTAINER,
         TRANS_PRE_GOODS: TRANS_PRE_GOODS,
-        TRANS_PRE_CONTA_GOODS: TRANS_PRE_CONTA_GOODS,
+        TRANS_PRE_CONTA_GOODS: TRANS_PRE_CONTA_GOODS
       }
       this.$app.trigger('locate-tab', 'transPreptIndex', {
         title: `复制`,
         flag: 'copy',
-        data: copy,
+        data: copy
         //eSealFlag:this.eSealFlagValue[1].value
       })
     },
@@ -4463,11 +3811,7 @@ export default {
         })
         const TRANS_PRE_HEAD = this.appForm
         if (this.appForm.validTime) {
-          this.$set(
-            this.appForm,
-            'validTime',
-            this.appForm.validTime.replace(/-/g, ''),
-          )
+          this.$set(this.appForm, 'validTime', this.appForm.validTime.replace(/-/g, ''))
         }
 
         let body = {
@@ -4475,14 +3819,14 @@ export default {
           TRANS_PRE_BILL,
           TRANS_PRE_CONTAINER: this.dataFormThree,
           TRANS_PRE_GOODS: this.dataFormTour,
-          TRANS_PRE_CONTA_GOODS: this.dataFormFive,
+          TRANS_PRE_CONTA_GOODS: this.dataFormFive
         }
         this.$post('customsTransit', body).then((json) => {
           if (json.data && !json.data.length) {
             this.checkModal = false
             this.$pop({
               type: 'success',
-              message: '校验成功',
+              message: '校验成功'
             })
             resolve([])
           } else {
@@ -4603,11 +3947,7 @@ export default {
       const TRANS_PRE_HEAD = this.appForm
       this.$set(this.appForm, 'status', '1')
       if (this.appForm.validTime) {
-        this.$set(
-          this.appForm,
-          'validTime',
-          this.appForm.validTime.replace(/-/g, ''),
-        )
+        this.$set(this.appForm, 'validTime', this.appForm.validTime.replace(/-/g, ''))
       }
       const _this = this
       return new Promise((resolve, reject) => {
@@ -4618,7 +3958,7 @@ export default {
               TRANS_PRE_BILL,
               TRANS_PRE_CONTAINER,
               TRANS_PRE_GOODS,
-              TRANS_PRE_CONTA_GOODS,
+              TRANS_PRE_CONTA_GOODS
             })
             .then((json) => {
               this.id = json.data.TRANS_PRE_HEAD.id
@@ -4635,12 +3975,12 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.appId,
                 appId: this.appId,
-                flag: 'edit',
+                flag: 'edit'
               })
 
               this.$pop({
                 type: 'success',
-                message: '保存成功',
+                message: '保存成功'
               })
 
               //复制
@@ -4650,7 +3990,7 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.copyId,
                 appId: this.copyId,
-                flag: 'edit',
+                flag: 'edit'
               })
 
               //新增
@@ -4660,7 +4000,7 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.addId,
                 appId: this.addId,
-                flag: 'edit',
+                flag: 'edit'
               })
             })
             .catch((err) => reject(err.msg))
@@ -4671,7 +4011,7 @@ export default {
               TRANS_PRE_BILL,
               TRANS_PRE_CONTAINER,
               TRANS_PRE_GOODS,
-              TRANS_PRE_CONTA_GOODS,
+              TRANS_PRE_CONTA_GOODS
             })
             .then((json) => {
               this.id = json.data.TRANS_PRE_HEAD.id
@@ -4688,12 +4028,12 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.appId,
                 appId: this.appId,
-                flag: 'edit',
+                flag: 'edit'
               })
 
               this.$pop({
                 type: 'success',
-                message: '保存成功',
+                message: '保存成功'
               })
 
               //复制
@@ -4703,7 +4043,7 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.copyId,
                 appId: this.copyId,
-                flag: 'edit',
+                flag: 'edit'
               })
               //新增
               this.addId = json.data.TRANS_PRE_HEAD.id
@@ -4712,7 +4052,7 @@ export default {
               this.$app.trigger('locate-tab', 'transPreptIndex', {
                 title: '编辑' + this.addId,
                 appId: this.addId,
-                flag: 'edit',
+                flag: 'edit'
               })
             })
             .catch((err) => reject(err.msg))
@@ -4726,7 +4066,7 @@ export default {
         this.getTransInterface()
         this.$pop({
           type: 'success',
-          message: '报文发送成功',
+          message: '报文发送成功'
         })
         /*  this.appForm={};
           this.appFormTwo={};
@@ -4805,12 +4145,7 @@ export default {
      },*/
 
     deepClone(o) {
-      if (
-        typeof o === 'string' ||
-        typeof o === 'number' ||
-        typeof o === 'boolean' ||
-        typeof o === 'undefined'
-      ) {
+      if (typeof o === 'string' || typeof o === 'number' || typeof o === 'boolean' || typeof o === 'undefined') {
         return o
       } else if (Array.isArray(o)) {
         const _arr = []
@@ -4855,7 +4190,7 @@ export default {
             this.billOfLadingModal = true
             this.$pop({
               type: 'warning',
-              message: '提单号不可重复！',
+              message: '提单号不可重复！'
             })
             return
           }
@@ -4875,12 +4210,10 @@ export default {
             item.eSealId = item.E_SEAL_ID
             item.sealNum = item.SEAL_NUM
             //添加提单序号
-            let TRANS_PRE_BILL = this.dataFormTwo.map(
-              (itemRecordNumber, index) => {
-                itemRecordNumber.recordNumber = index + 1
-                return itemRecordNumber
-              },
-            )
+            let TRANS_PRE_BILL = this.dataFormTwo.map((itemRecordNumber, index) => {
+              itemRecordNumber.recordNumber = index + 1
+              return itemRecordNumber
+            })
             TRANS_PRE_BILL.forEach((itemRecordNumberNum) => {
               item.recordNumber = itemRecordNumberNum.recordNumber
             })
@@ -4898,18 +4231,13 @@ export default {
           })
         } else {
           //编辑
-          Object.assign(
-            this.dataFormTwo[this.dataFormTwoCellDIndex],
-            this.appFormTwo,
-          )
+          Object.assign(this.dataFormTwo[this.dataFormTwoCellDIndex], this.appFormTwo)
 
           //提单号查询返回的集装箱信息 直接放到集装箱表格里面，对于集装箱里面的提单序号以及集装箱序号要进行手动添加
           let billContainer = this.billContainer.container
           if (!billContainer || !billContainer.length) return
           //修改之后把原来的删除，在添加新的
-          this.dataFormThree = this.dataFormThree.filter(
-            (v) => v.recordNumber !== this.dataFormTwoCellDIndex + 1,
-          )
+          this.dataFormThree = this.dataFormThree.filter((v) => v.recordNumber !== this.dataFormTwoCellDIndex + 1)
           billContainer.forEach((item, index) => {
             const obj = {}
             obj.billNo = item.BILL_NO
@@ -4935,21 +4263,19 @@ export default {
         if (!this.appFormTwo.billNo) {
           this.$pop({
             type: 'warning',
-            message: '提单号不能为空',
+            message: '提单号不能为空'
           })
           this.billOfLadingModal = true
         } else {
           this.billOfLadingModal = false
           if (this.dataFormTwoCellDIndex == null) {
             //新增
-            let billNo = this.dataFormTwo.filter(
-              (e) => e.billNo === this.appFormTwo.billNo,
-            )
+            let billNo = this.dataFormTwo.filter((e) => e.billNo === this.appFormTwo.billNo)
             if (billNo && billNo.length) {
               this.billOfLadingModal = true
               this.$pop({
                 type: 'warning',
-                message: '提单号不可重复！',
+                message: '提单号不可重复！'
               })
               return
             }
@@ -4970,12 +4296,10 @@ export default {
               item.eSealId = item.E_SEAL_ID
               item.sealNum = item.SEAL_NUM
               //添加提单序号
-              let TRANS_PRE_BILL = this.dataFormTwo.map(
-                (itemRecordNumber, index) => {
-                  itemRecordNumber.recordNumber = index + 1
-                  return itemRecordNumber
-                },
-              )
+              let TRANS_PRE_BILL = this.dataFormTwo.map((itemRecordNumber, index) => {
+                itemRecordNumber.recordNumber = index + 1
+                return itemRecordNumber
+              })
               TRANS_PRE_BILL.forEach((itemRecordNumberNum) => {
                 item.recordNumber = itemRecordNumberNum.recordNumber
               })
@@ -4993,10 +4317,7 @@ export default {
             })
           } else {
             //编辑
-            Object.assign(
-              this.dataFormTwo[this.dataFormTwoCellDIndex],
-              this.appFormTwo,
-            )
+            Object.assign(this.dataFormTwo[this.dataFormTwoCellDIndex], this.appFormTwo)
             //提单号查询返回的集装箱信息 直接放到集装箱表格里面，对于集装箱里面的提单序号以及集装箱序号要进行手动添加
             let billContainer = this.billContainer.container
             if (!billContainer || !billContainer.length) {
@@ -5005,9 +4326,7 @@ export default {
               return
             } else {
               //修改之后把原来的删除，在添加新的
-              this.dataFormThree = this.dataFormThree.filter(
-                (v) => v.recordNumber !== this.dataFormTwoCellDIndex + 1,
-              )
+              this.dataFormThree = this.dataFormThree.filter((v) => v.recordNumber !== this.dataFormTwoCellDIndex + 1)
               billContainer.forEach((item, index) => {
                 const obj = {}
                 obj.billNo = item.BILL_NO
@@ -5072,19 +4391,13 @@ export default {
 
       //从三个表格中找到与提单信息recordNumber相等的那条，删掉
       this.dataFormThree = this.dataFormThree.filter(
-        (v) =>
-          v.recordNumber !==
-          this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber,
+        (v) => v.recordNumber !== this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber
       )
       this.dataFormTour = this.dataFormTour.filter(
-        (v) =>
-          v.recordNumber !==
-          this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber,
+        (v) => v.recordNumber !== this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber
       )
       this.dataFormFive = this.dataFormFive.filter(
-        (v) =>
-          v.recordNumber !==
-          this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber,
+        (v) => v.recordNumber !== this.dataFormTwo[this.rowClickFormTwoIndex].recordNumber
       )
       //删掉提单信息的那条数据
       this.dataFormTwo.splice(this.rowClickFormTwoIndex, 1)
@@ -5142,7 +4455,7 @@ export default {
     //提单信息的单元格点击事件
     rowClickFormTwo(event, row, index) {
       this.appFormTwo = {
-        ...row,
+        ...row
       }
       this.rowClickFormTwoIndex = index
       this.indexTwo = index
@@ -5189,16 +4502,12 @@ export default {
       } else {
         //编辑
 
-        Object.assign(
-          this.dataFormThree[this.dataFormThreeCellDIndex],
-          this.appFormThree,
-        )
+        Object.assign(this.dataFormThree[this.dataFormThreeCellDIndex], this.appFormThree)
 
         //集装箱信息表格集装箱号修改同步集装箱-货物 关系表格的集装箱号
         const contaNoRow = this.dataFormFive.filter((item) => {
           return (
-            item.contaSeqno === this.appFormThree.contaSeqno &&
-            item.recordNumber === this.appFormThree.recordNumber
+            item.contaSeqno === this.appFormThree.contaSeqno && item.recordNumber === this.appFormThree.recordNumber
           )
         })
         contaNoRow.forEach((item) => {
@@ -5258,16 +4567,11 @@ export default {
          this.dataFormFive.splice(index, 1);
        }*/
       this.dataFormFive = this.dataFormFive.filter(
-        (item) =>
-          !(
-            item.recordNumber === delRow.recordNumber &&
-            item.contaSeqno === delRow.contaSeqno
-          ),
+        (item) => !(item.recordNumber === delRow.recordNumber && item.contaSeqno === delRow.contaSeqno)
       )
 
       //找到当前要删除的提单号
-      const recordNumber =
-        this.dataFormThree[this.rowClickFormThreeIndex].recordNumber
+      const recordNumber = this.dataFormThree[this.rowClickFormThreeIndex].recordNumber
       let i = 1
 
       this.dataFormThree.splice(this.rowClickFormThreeIndex, 1)
@@ -5323,10 +4627,7 @@ export default {
         obj.gNo = arr.length + 1
         this.dataFormTour.push(obj)
       } else {
-        Object.assign(
-          this.dataFormTour[this.dataFormTourCellDIndex],
-          this.appFormTour,
-        )
+        Object.assign(this.dataFormTour[this.dataFormTourCellDIndex], this.appFormTour)
 
         //双击修改集装箱序号排列
         let recordNumberOld = this.recordNumberGNo // old
@@ -5378,15 +4679,10 @@ export default {
         //货物信息:点击删除，关系表对应的删除
         let delRow = this.dataFormTour[this.rowClickFormTourIndex]
         this.dataFormFive = this.dataFormFive.filter(
-          (item) =>
-            !(
-              item.recordNumber === delRow.recordNumber &&
-              item.gNo === delRow.gNo
-            ),
+          (item) => !(item.recordNumber === delRow.recordNumber && item.gNo === delRow.gNo)
         )
 
-        const recordNumber =
-          this.dataFormTour[this.rowClickFormTourIndex].recordNumber
+        const recordNumber = this.dataFormTour[this.rowClickFormTourIndex].recordNumber
         let i = 1
 
         this.dataFormTour.splice(this.rowClickFormTourIndex, 1)
@@ -5405,7 +4701,7 @@ export default {
     },
     rowClickFormTour(event, row, index) {
       this.appFormTour = {
-        ...row,
+        ...row
       }
       setTimeout(() => {
         const flag = this.$refs.tableFormTour.getHighlightRow()
@@ -5442,11 +4738,7 @@ export default {
     containerGoodsComfirmModel() {
       //校验3个下拉框哪个没填提示
       let errorMessage = ''
-      if (
-        !this.appFormFive.recordNumber ||
-        !this.appFormFive.gNo ||
-        !this.appFormFive.contaSeqno
-      ) {
+      if (!this.appFormFive.recordNumber || !this.appFormFive.gNo || !this.appFormFive.contaSeqno) {
         if (!this.appFormFive.recordNumber) {
           errorMessage = '提单序号不能为空! '
         }
@@ -5459,7 +4751,7 @@ export default {
         if (errorMessage) {
           this.$pop({
             type: 'danger',
-            message: errorMessage,
+            message: errorMessage
           })
         }
         return
@@ -5479,7 +4771,7 @@ export default {
         if (arr.find((item) => item === checkData)) {
           this.$pop({
             type: 'danger',
-            message: `提单序号为：${obj.recordNumber}, 集装箱序号为：${obj.contaSeqno}, 商品序号为：${obj.gNo} 的记录已存在！`,
+            message: `提单序号为：${obj.recordNumber}, 集装箱序号为：${obj.contaSeqno}, 商品序号为：${obj.gNo} 的记录已存在！`
           })
           return false
         }
@@ -5496,10 +4788,7 @@ export default {
          })
          return false
        }*/
-        Object.assign(
-          this.dataFormFive[this.dataFormFiveCellDIndex],
-          this.appFormFive,
-        )
+        Object.assign(this.dataFormFive[this.dataFormFiveCellDIndex], this.appFormFive)
         this.dataFormFive.splice(0, 0)
         this.dataFormFiveCellDIndex = null
         this.appFormFive = {}
@@ -5526,7 +4815,7 @@ export default {
     },
     rowClickFormFive(event, row, index) {
       this.appFormFive = {
-        ...row,
+        ...row
       }
       setTimeout(() => {
         const flag = this.$refs.tableFormFive.getHighlightRow()
@@ -5547,7 +4836,7 @@ export default {
 
       this.dataFormFiveCellDIndex = index
       this.appFormFive = { ...row }
-    },
-  },
+    }
+  }
 }
 </script>
