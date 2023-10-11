@@ -43,8 +43,7 @@
 </template>
 
 <script>
-import { onMounted, ref, reactive, nextTick } from 'vue'
-import io from 'socket.io-client'
+import { onMounted, ref, reactive, nextTick, inject } from "vue";
 import { userStore } from '@/stores/user'
 import { ElNotification } from 'element-plus'
 const avatar = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
@@ -52,9 +51,9 @@ const url = import.meta.env.VITE_SOCKET_BASE
 export default {
   name: 'HomePage',
   setup() {
+    const socket = inject('socketInstance')
     const chatContainer = ref()
     const user = userStore()
-    console.log(user)
     const chatList = ref([])
     const chatMsg = ref('')
     const userList = [
@@ -68,17 +67,13 @@ export default {
       }
     ]
     const userInfo = reactive({ user: userList[0] })
-    let socket
     onMounted(() => {
-      socket = io(`${url}/chat?username=${user.user.username}&receiver=${userInfo.user.name}`)
       socket.on('connect', () => {
         socket.emit('online', user.user.username)
-        console.log(socket.id, '监听客户端连接成功-connect')
       })
       socket.on('refresh', ({ list, caches }) => {
         chatList.value = list
         nextTick(() => {
-          console.log(chatContainer)
           chatContainer.value?.scrollTo({ top: chatContainer.value?.scrollHeight, behavior: 'smooth' })
         })
       })

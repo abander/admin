@@ -48,6 +48,14 @@ export default {
       meta: {
         title: 'chat-online'
       }
+    },
+    {
+      path: 'msg-manage',
+      name: 'msg-manage',
+      component: () => import('@/views/system/msg-manage/index.vue'),
+      meta: {
+        title: '消息管理'
+      }
     }
   ]
 }

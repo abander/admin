@@ -1,11 +1,10 @@
-import { nextTick, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import io from 'socket.io-client'
-import { ElNotification } from 'element-plus'
 
 const url = import.meta.env.VITE_SOCKET_BASE
 
 export default function useSocket() {
-  const socket = io(`${url}/chat}`)
+  const socket = io(`${url}/chat`)
 
   onMounted(() => {
     socket.on('connect', () => {

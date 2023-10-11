@@ -71,7 +71,7 @@ const handleError = (data) => {
       toLogin(message || '登陆失效，请重新登陆！')
       break
     //case
-    case 400:
+    case 404:
       toLogin(message || '请求出错，请联系管理员')
       break
     default:
