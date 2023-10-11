@@ -6,14 +6,14 @@
       </template>
       <el-form ref="formRef" :model="form" :rules="formRules" class="login-form">
         <el-form-item prop="username">
-          <el-input v-model="form.username" size="large" :prefix-icon="User" />
+          <el-input @keydown.enter="submit" v-model="form.username" size="large" :prefix-icon="User" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="form.password" size="large" :prefix-icon="Lock" show-password />
+          <el-input @keydown.enter="submit" v-model="form.password" size="large" :prefix-icon="Lock" show-password />
         </el-form-item>
         <el-form-item prop="captcha">
           <div class="sid" style="display: flex; width: 100%; align-items: center">
-            <el-input v-model="form.captcha" size="large" style="width: 90%" />
+            <el-input @keydown.enter="submit" v-model="form.captcha" size="large" style="width: 90%" />
             <el-image class="pointer" :src="src" fit="fill" width="10%" @click="captcha" />
             <!--            <img :src="src" v-loading="captchaLoading" style="display: inline-block; height: 30px" @click="captcha" />-->
           </div>
