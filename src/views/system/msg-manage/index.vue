@@ -14,6 +14,13 @@
     </el-card>
     <el-card class="card-content">
       <el-table class="table" :data="tableData" v-loading="loading" size="small">
+        <el-table-column type="expand">
+          <template #default="{ row }">
+            <div class="display-options">
+              <CodeMirror :value="row.options" :readonly="true" />
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column
           show-overflow-tooltip
           v-for="item in columns"
@@ -24,13 +31,15 @@
         />
         <el-table-column fixed="right" label="操作" width="120">
           <template #default="{ row }">
-            <el-popconfirm title="Are you sure to delete this?" @confirm="handleDel(row)">
-              <template #reference>
-                <el-button link type="primary" size="small">删除</el-button>
-              </template>
-            </el-popconfirm>
-            <el-button link type="primary" size="small" @click="handelEdit(row)">编辑</el-button>
-            <el-button link type="primary" size="small" @click="handelSendMsg(row)">触发</el-button>
+            <div class="action-warp">
+              <el-popconfirm class="remove-m-l" title="Are you sure to delete this?" @confirm="handleDel(row)">
+                <template #reference>
+                  <el-button link type="primary" size="small">删除</el-button>
+                </template>
+              </el-popconfirm>
+              <el-button class="remove-m-l" link type="primary" size="small" @click="handelEdit(row)">编辑</el-button>
+              <el-button class="remove-m-l" link type="primary" size="small" @click="handelSendMsg(row)">触发</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -53,6 +62,7 @@ import { getMsg, updateMsg, addMsg, delMsg } from '@/api/system/msgManage'
 import useTable from '@/hook/useTable.js'
 import { ref } from 'vue'
 import useSendMsg from './useSendMsg'
+import CodeMirror from '@/views/components/codemirror/CodeMirror.vue'
 
 const { handelSendMsg } = useSendMsg()
 // form value
@@ -70,7 +80,6 @@ const columns = ref([
   { prop: 'componentsType', label: '消息组件类型', width: 120 },
   { prop: 'statusType', label: '消息状态类型', width: 120 },
   { prop: 'content', label: '提示内容', width: 80 },
-  { prop: 'options', label: '配置', width: 100 },
   { prop: 'updateTime', label: '更新时间', width: 180 }
 ])
 
@@ -117,6 +126,18 @@ const handleDel = async (row) => {
     margin: 10px;
     .table {
       margin-bottom: 10px;
+    }
+  }
+  .display-options {
+    width: 100%;
+    padding: 16px;
+    height: 250px;
+  }
+  .action-warp {
+    display: flex;
+    flex-wrap: wrap;
+    .remove-m-l {
+      margin-left: 6px;
     }
   }
 }
