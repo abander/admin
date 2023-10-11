@@ -65,6 +65,14 @@ export default {
       meta: {
         title: '合并组件简便'
       }
+    },
+    {
+      path: 'tooltip',
+      name: 'tooltip',
+      component: () => import('@/views/components/tooltip/index.vue'),
+      meta: {
+        title: 'tooltip'
+      }
     }
   ]
 }
