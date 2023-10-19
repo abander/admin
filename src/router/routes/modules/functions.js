@@ -49,6 +49,15 @@ export default {
       meta: {
         title: 'dynamicForm'
       }
+    },
+    // 表格跨页多选
+    {
+      path: 'spread-multiple-selection',
+      name: 'spread-multiple-selection',
+      component: () => import('@/views/functions/spread-multiple-selection/index.vue'),
+      meta: {
+        title: '表格跨页多选'
+      }
     }
   ]
 }
