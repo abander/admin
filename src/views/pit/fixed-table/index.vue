@@ -9,7 +9,7 @@
     <el-button
       size="small"
       type="primary"
-      @click="submitForm('formRef')"
+      @click="submitForm(formRef)"
     >
       校验
     </el-button>
@@ -32,7 +32,7 @@
           label="id"
           width="300"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.id'"
               :rules="formData.rules.id"
@@ -48,7 +48,7 @@
           label="sex"
           width="300"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.sex'"
               :rules="formData.rules.sex"
@@ -63,7 +63,7 @@
           label="name"
           width="180"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.name'"
               :rules="formData.rules.name"
@@ -78,7 +78,7 @@
           width="300"
           label="address"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' +scope.$index + '.address'"
               :rules="formData.rules.address"
@@ -131,51 +131,18 @@ const formData = reactive  ({
       { id: '', sex: '', name: '', address: '' }
     ]
   })
-const formRef = ref(null)
+const formRef = ref()
 
-const submitForm = (formEl) =>{
-  formEl.validate((valid) => {
+const submitForm = async (formEl) =>{
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
     if (valid) {
       alert('submit!')
     } else {
-      console.log('error submit!!')
-      return false
+      console.log('error submit!!', fields)
     }
   })
 }
-
-/*async doLayout (scope, fixed) {
-    await this.$nextTick()
-    setTimeout(() => {
-      const domId = scope.column.id
-      const targetIndex = scope.$index
-      const tableDOM = this.$refs['k-table-com-edit'].$el
-      // 右边固定列高度
-      const fixRow = tableDOM.querySelectorAll('.el-table__fixed .el-table__fixed-body-wrapper tbody tr')[targetIndex]
-      // 右边
-      const fixRowRight = tableDOM.querySelectorAll('.el-table__fixed-right .el-table__fixed-body-wrapper tbody tr')[targetIndex]
-      // 中间
-      const targetRow = tableDOM.querySelectorAll('.el-table__body-wrapper tbody tr')[targetIndex]
-
-      const fixCellDOM = fixRow.querySelectorAll(`td.${domId}`)
-      const fixCellDOMRight = fixRowRight.querySelectorAll(`td.${domId}`)
-      const targetCellDOM = targetRow.querySelectorAll(`td.${domId}`)
-      /!*  const height = targetRow.getBoundingClientRect().height
-      console.log(height, 'height') *!/
-      if (targetCellDOM[0].children[0] && fixCellDOM[0].children[0] && fixCellDOMRight[0].children[0]) {
-        // 右边不固定列同步两边固定列高度
-        if (fixed === 'right') {
-          console.log(targetCellDOM[0].children[0], 'targetCellDOM[0].children[0].innerHTML')
-          fixCellDOM[0].children[0].innerHTML = targetCellDOM[0].children[0].innerHTML
-          fixCellDOMRight[0].children[0].innerHTML = targetCellDOM[0].children[0].innerHTML
-        } else {
-          // 左边固定列同步中间以及右边固定列
-          targetCellDOM[0].children[0].innerHTML = fixCellDOM[0].children[0].innerHTML
-          fixCellDOMRight[0].children[0].innerHTML = fixCellDOM[0].children[0].innerHTML
-        }
-      }
-    }, 500)
-  },*/
 </script>
 <style lang="scss">
 .fixed-table{
@@ -234,7 +201,7 @@ const submitForm = (formEl) =>{
           label="sex"
           width="300"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.sex'"
               :rules="formData.rules.sex"
@@ -331,6 +298,38 @@ export default {
         }
       })
     }
+    /*async doLayout (scope, fixed) {
+      await this.$nextTick()
+      setTimeout(() => {
+        const domId = scope.column.id
+        const targetIndex = scope.$index
+        const tableDOM = this.$refs['k-table-com-edit'].$el
+        // 右边固定列高度
+        const fixRow = tableDOM.querySelectorAll('.el-table__fixed .el-table__fixed-body-wrapper tbody tr')[targetIndex]
+        // 右边
+        const fixRowRight = tableDOM.querySelectorAll('.el-table__fixed-right .el-table__fixed-body-wrapper tbody tr')[targetIndex]
+        // 中间
+        const targetRow = tableDOM.querySelectorAll('.el-table__body-wrapper tbody tr')[targetIndex]
+
+        const fixCellDOM = fixRow.querySelectorAll(`td.${domId}`)
+        const fixCellDOMRight = fixRowRight.querySelectorAll(`td.${domId}`)
+        const targetCellDOM = targetRow.querySelectorAll(`td.${domId}`)
+          /!*  const height = targetRow.getBoundingClientRect().height
+        console.log(height, 'height') *!/
+        if (targetCellDOM[0].children[0] && fixCellDOM[0].children[0] && fixCellDOMRight[0].children[0]) {
+          // 右边不固定列同步两边固定列高度
+          if (fixed === 'right') {
+            console.log(targetCellDOM[0].children[0], 'targetCellDOM[0].children[0].innerHTML')
+            fixCellDOM[0].children[0].innerHTML = targetCellDOM[0].children[0].innerHTML
+            fixCellDOMRight[0].children[0].innerHTML = targetCellDOM[0].children[0].innerHTML
+          } else {
+            // 左边固定列同步中间以及右边固定列
+            targetCellDOM[0].children[0].innerHTML = fixCellDOM[0].children[0].innerHTML
+            fixCellDOMRight[0].children[0].innerHTML = fixCellDOM[0].children[0].innerHTML
+          }
+        }
+      }, 500)
+    },*/
   }
 }
 </script>

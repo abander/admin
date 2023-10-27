@@ -9,7 +9,7 @@
     <el-button
       size="small"
       type="primary"
-      @click="submitForm('formRef')"
+      @click="submitForm(formRef)"
     >
       校验
     </el-button>
@@ -29,7 +29,7 @@
           prop="id"
           label="id"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.id'"
               :rules="formData.rules.id"
@@ -43,7 +43,7 @@
           prop="sex"
           label="sex"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.sex'"
               :rules="formData.rules.sex"
@@ -57,7 +57,7 @@
           prop="name"
           label="name"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' + scope.$index + '.name'"
               :rules="formData.rules.name"
@@ -71,7 +71,7 @@
           prop="address"
           label="address"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-form-item
               :prop="'tableData.' +scope.$index + '.address'"
               :rules="formData.rules.address"
@@ -84,7 +84,7 @@
         <el-table-column
           label="操作"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button
               size="small"
               @click="btn(scope)"
@@ -125,22 +125,21 @@ const formData = reactive  ({
     { id: '', sex: '', name: '3', address: '' }
   ]
 })
-const formRef = ref(null)
+const formRef = ref()
 
-const submitForm = (formEl) =>{
-  formEl.validate((valid) => {
+const submitForm = async (formEl) =>{
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
     if (valid) {
       alert('submit!')
     } else {
-      console.log('error submit!!')
-      return false
+      console.log('error submit!!', fields)
     }
   })
 }
 
 const btn = (scope)=>{
-  this.formData.tableData = this.formData.tableData.filter(item => item.name !== scope.row.name)
-  console.log(this.formData.tableData, 'scope')
+  formData.tableData = formData.tableData.filter(item => item.name !== scope.row.name)
 }
 </script>
 
