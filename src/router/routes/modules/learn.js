@@ -58,6 +58,14 @@ export default {
       meta: {
         title: 'slot'
       }
+    },
+    {
+      path: 'descendant-menu.vue',
+      name: 'descendant-menu.vue',
+      component: () => import('@/views/learn/css/descendant-menu.vue'),
+      meta: {
+        title: 'menu后代选择器'
+      }
     }
   ]
 }
