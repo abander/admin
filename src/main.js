@@ -13,7 +13,8 @@ import 'element-plus/dist/index.css'
 import '@/router/permission'
 // 样式
 import './styles/common.scss'
-
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
 async function setupApp() {
   // app loading
   const appLoading = createApp(AppLoading)
@@ -27,6 +28,7 @@ async function setupApp() {
 
   // vue router
   app.use(router)
+  app.use(VXETable)
   await router.isReady()
 
   appLoading.unmount()
