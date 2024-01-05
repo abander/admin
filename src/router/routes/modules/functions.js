@@ -58,6 +58,16 @@ export default {
       meta: {
         title: '表格跨页多选'
       }
-    }
+    },
+    // vxe虚拟滚动 实现 自动滚动
+
+    {
+      path: 'autoScrollTable',
+      name: 'autoScrollTable',
+      component: () => import('@/views/functions/auto-scroll-table/index.vue'),
+      meta: {
+        title: 'autoScrollTable'
+      }
+    },
   ]
 }

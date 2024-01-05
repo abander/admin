@@ -25,7 +25,8 @@
     "vite-plugin-html": "^3.2.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
-    "xe-utils": "^3.5.13"
+    "vxe-table": "^4.5.9",
+    "xe-utils": "^3.5.14"
   },
   "devDependencies": {
     "eslint": "^8.49.0",
