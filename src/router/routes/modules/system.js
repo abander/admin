@@ -56,6 +56,14 @@ export default {
       meta: {
         title: '消息管理'
       }
+    },
+    {
+      path: 'fund',
+      name: 'fund',
+      component: () => import('@/views/system/fund/index.vue'),
+      meta: {
+        title: 'fund'
+      }
     }
   ]
 }

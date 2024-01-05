@@ -1,0 +1,13 @@
+:deep(.el-dialog__body) {
+  height: 500px;
+  padding: 10px 24px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+:deep(.el-dialog__footer) {
+  padding: 0;
+}
+
