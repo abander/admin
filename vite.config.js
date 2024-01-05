@@ -30,7 +30,7 @@ export default defineConfig(({ command, mode }) => {
           rewrite: (path) => path.replace(/^\/api/, '')
         },
         '/smq': {
-          target: 'https://1270001.xyz/',
+          target: 'http://39.107.248.238',
           changeOrigin: true
         }
       }
