@@ -17,16 +17,13 @@ export default function useTableScroll(options = {}) {
   const stop = ref(true)
   const { step = 48, speed = 1000 } = options
   const calcStep = (current) => {
-    console.log(current.value)
     const updateTime = speed / 150
     const miniStep = step / updateTime
     const target = current.value + step
     const toView = () => {
       current.value = miniStep + current.value
     }
-
     const timer = setInterval(() => {
-      console.log(current.value, target)
       if (current.value >= target) {
         clearInterval(timer)
         return
@@ -61,7 +58,6 @@ export default function useTableScroll(options = {}) {
 
     // // 设置每秒滚动一行
     timer = setInterval(() => {
-      console.log(realDom.style.cssText)
       if (stop.value) {
         // 设置每次滚动的像素
         //y.value += step
@@ -75,7 +71,6 @@ export default function useTableScroll(options = {}) {
 
   onBeforeMount(() => {
     if (timer) clearInterval(timer)
-    console.log(44444)
   })
   return {
     stop,

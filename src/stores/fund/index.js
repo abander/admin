@@ -14,7 +14,7 @@ export const useFundStore = defineStore('fund-store', {
   actions: {
     async getAllFunds() {
       const funds = localStorage.getItem('funds')
-      if (funds) {
+      if (!isEmpty(funds)) {
         this.allFunds = JSON.parse(funds || [])
         return
       }
