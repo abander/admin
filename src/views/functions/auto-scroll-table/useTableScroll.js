@@ -3,7 +3,7 @@
  * useScroll  监听滚动事件
  */
 import { useScroll, useEventListener, useElementSize } from '@vueuse/core'
-import { nextTick, onBeforeMount, ref, watchEffect } from 'vue'
+import {nextTick, onBeforeMount, onBeforeUnmount, ref, watchEffect} from 'vue'
 
 /**
  *
@@ -13,6 +13,7 @@ import { nextTick, onBeforeMount, ref, watchEffect } from 'vue'
  */
 export default function useTableScroll(options = {}) {
   let timer = null
+  let timer2 = null
   const tableRef = ref(null)
   const stop = ref(true)
   const { step = 48, speed = 1000 } = options
@@ -23,9 +24,10 @@ export default function useTableScroll(options = {}) {
     const toView = () => {
       current.value = miniStep + current.value
     }
-    const timer = setInterval(() => {
+    timer2 = setInterval(() => {
+      console.log('timer2')
       if (current.value >= target) {
-        clearInterval(timer)
+        clearInterval(timer2)
         return
       }
       toView()
@@ -58,6 +60,7 @@ export default function useTableScroll(options = {}) {
 
     // // 设置每秒滚动一行
     timer = setInterval(() => {
+      console.log('timer')
       if (stop.value) {
         // 设置每次滚动的像素
         //y.value += step
@@ -69,8 +72,9 @@ export default function useTableScroll(options = {}) {
     }, speed)
   }
 
-  onBeforeMount(() => {
-    if (timer) clearInterval(timer)
+  onBeforeUnmount(() => {
+    if (timer) window.clearInterval(timer)
+    if (timer2) window.clearInterval(timer2)
   })
   return {
     stop,
