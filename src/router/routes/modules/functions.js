@@ -49,6 +49,25 @@ export default {
       meta: {
         title: 'dynamicForm'
       }
-    }
+    },
+    // 表格跨页多选
+    {
+      path: 'spread-multiple-selection',
+      name: 'spread-multiple-selection',
+      component: () => import('@/views/functions/spread-multiple-selection/index.vue'),
+      meta: {
+        title: '表格跨页多选'
+      }
+    },
+    // vxe虚拟滚动 实现 自动滚动
+
+    {
+      path: 'autoScrollTable',
+      name: 'autoScrollTable',
+      component: () => import('@/views/functions/auto-scroll-table/index.vue'),
+      meta: {
+        title: 'autoScrollTable'
+      }
+    },
   ]
 }

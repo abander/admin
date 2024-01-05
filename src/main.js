@@ -13,8 +13,19 @@ import 'element-plus/dist/index.css'
 import '@/router/permission'
 // 样式
 import './styles/common.scss'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
 
 async function setupApp() {
+  VXETable.setup({
+    table: {
+      scrollY: {
+        enabled: true, // 是否默认开启纵向虚拟滚动
+        gt: 1 // 当数据大于指定数量时自动触发启用虚拟滚动
+      }
+    }
+  })
+  console.log(VXETable)
   // app loading
   const appLoading = createApp(AppLoading)
 
@@ -27,6 +38,7 @@ async function setupApp() {
 
   // vue router
   app.use(router)
+  app.use(VXETable)
   await router.isReady()
 
   appLoading.unmount()
