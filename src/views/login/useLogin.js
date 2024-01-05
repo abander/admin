@@ -14,7 +14,7 @@ export default function useArchive() {
   const form = ref({
     username: 'admin',
     password: '123456',
-    captcha: '',
+    captcha: ''
   })
 
   const formRef = ref(null)
@@ -24,23 +24,23 @@ export default function useArchive() {
       {
         required: true,
         message: 'Please input Activity name',
-        trigger: 'blur',
-      },
+        trigger: 'blur'
+      }
     ],
     password: [
       {
         required: true,
         message: 'Please input Activity password',
-        trigger: 'blur',
-      },
+        trigger: 'blur'
+      }
     ],
     captcha: [
       {
         required: true,
-        message: 'Please input Activity name',
-        trigger: 'blur',
-      },
-    ],
+        message: 'Please input captcha',
+        trigger: 'blur'
+      }
+    ]
   })
 
   const [store, router] = [userStore(), useRouter()]
@@ -50,38 +50,49 @@ export default function useArchive() {
   const src = ref(null)
 
   // 表单提交
+
+  const submitLoading = ref(false)
   const submit = () => {
     //判断formEl是否为空，为空
     if (!formRef.value) return
     formRef.value.validate(async (valid) => {
-      if (valid) {
-        //如果校验成功 请求数据
-        const {
-          data: { token },
-        } = await login({ ...form.value, sid: sid })
-        if (token) {
-          //如果token有内容
-          // 登录成功，储存token
-          setToken(token)
-          const { data } = await getUserInfo()
-          // 用户信息存起来
-          store.setUser(data)
-          $Message({ message: '用户登录成功！！！', type: 'success' })
-          router.push('/')
+      try {
+        if (valid) {
+          //如果校验成功 请求数据
+          submitLoading.value = true
+          const {
+            data: { token }
+          } = await login({ ...form.value, sid: sid })
+          if (token) {
+            //如果token有内容
+            // 登录成功，储存token
+            setToken(token)
+            const { data } = await getUserInfo()
+            // 用户信息存起来
+            store.setUser(data)
+            $Message({ message: '用户登录成功！！！', type: 'success' })
+            router.push('/')
+          }
+          submitLoading.value = false
         }
-      } else {
-        $Message({ message: '该账号已被注册', type: 'warning' })
-        return false
+      } catch (e) {
+        submitLoading.value = false
+        captcha()
       }
     })
   }
 
+  const captchaLoading = ref(false)
   const captcha = async () => {
     try {
+      captchaLoading.value = true
       const data = await getCaptcha(sid)
       let blob = new Blob([data], { type: 'image/svg+xml' }) // 此处为生成doc
       src.value = window.URL.createObjectURL(blob)
-    } catch (e) {}
+      captchaLoading.value = false
+    } catch (e) {
+      captchaLoading.value = false
+    }
   }
   onMounted(() => {
     captcha()
@@ -94,5 +105,7 @@ export default function useArchive() {
     submit,
     src,
     captcha,
+    captchaLoading,
+    submitLoading
   }
 }

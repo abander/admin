@@ -1,10 +1,7 @@
 export default {
   set(key, value, exdays) {
     var curTime = new Date().getTime()
-    localStorage.setItem(
-      key,
-      JSON.stringify({ data: value, time: curTime, exdays: exdays }),
-    )
+    localStorage.setItem(key, JSON.stringify({ data: value, time: curTime, exdays: exdays }))
   },
 
   get(key) {
@@ -30,5 +27,5 @@ export default {
   clearLocalStorage() {
     //全部清空
     localStorage.clear()
-  },
+  }
 }

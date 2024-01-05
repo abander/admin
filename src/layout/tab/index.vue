@@ -1,49 +1,108 @@
 <template>
-  <div
-    class="global-tab flex-y-center w-full pl-16px"
-  >
-    <div ref="bsWrapper" class="flex-1-hidden h-full">
-      <better-scroll
-        ref="bsScroll"
-        :options="{ scrollX: true, scrollY: false, click: canClick }"
-      >
-        <tab-detail @scroll="handleScroll" />
-      </better-scroll>
+  <div class="global-tab flex-y-center w-full pl-16px">
+    <!-- 前翻 -->
+    <span class="home">
+      <SvgIcon code="icon-home" @handleClick="router.push('/home')" />
+    </span>
+    <span class="prev" v-show="translateX < 0">
+      <SvgIcon code="icon-Previoustrack" @handleClick="handleScroll(200)" />
+    </span>
+    <div class="tab-wrap" ref="tabsOutRef">
+      <div ref="tabsRef" class="h-full" :style="{ transform: `translateX(${translateX}px)` }" @scroll="handleScroll">
+        <el-tag
+          v-for="item in tab.tabs"
+          :key="item.fullPath"
+          :class="tab.activeTab === item.fullPath ? 'tab-active' : null"
+          class="mx-1 tag"
+          effect="light"
+          type="info"
+          :closable="item.fullPath !== '/home'"
+          size="large"
+          :disable-transitions="false"
+          @close="tab.removeTab(item.fullPath)"
+          @click="tab.handleClickTab(item.fullPath)"
+        >
+          {{ item.meta.title }}
+        </el-tag>
+      </div>
     </div>
+    <!-- 后翻 -->
+    <span class="next" v-show="translateXLeftMaxVal < translateX">
+      <SvgIcon code="icon-Nexttrack" @handleClick="handleScroll(-200)" />
+    </span>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useElementBounding } from '@vueuse/core'
+import { computed, nextTick, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useTabStore } from '@/stores/tab'
-import BetterScroll from './components/better-scroll.vue'
-import TabDetail from '@/layout/tab/components/tab-detail.vue'
-
-// defineOptions({ name: 'GlobalTab' });
+import SvgIcon from '@/components/svg-icon'
 
 const route = useRoute()
+const router = useRouter()
 const tab = useTabStore()
-const deviceInfo = { device: 9 }
 
-const bsWrapper = ref()
-const { width: bsWrapperWidth, left: bsWrapperLeft } =
-  useElementBounding(bsWrapper)
+// 设置最大tab-width
+const maxTabTitleWidth = 121
+const maxTitleWidthCss = maxTabTitleWidth + 'px'
+const tabsOutRef = ref(null) // 外侧容器对象
+const tabsRef = ref(null) // 实际容器大小
+const translateX = ref(0)
+const translateXLeftMaxVal = ref(0)
 
-const bsScroll = ref()
+const containerPadding = computed(() => {
+  const showPrev = translateX.value < 0
+  let padding = '0 40px 0 70px'
+  if (!showPrev) {
+    padding = '0 40px 0 40px'
+  }
+  return padding
+})
 
-const canClick = Boolean(deviceInfo.device.type)
+const moveToView = (index) => {
+  console.log(tabsRef.value)
+  const itemDom = tabsRef.value?.children[index]
+  if (!itemDom) {
+    return
+  }
+  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0
+  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0
+  const itemOffsetLeft = itemDom.offsetLeft
+  const itemClientWidth = itemDom.clientWidth + 1
+  console.log(boxWidth, contentWidth)
+  translateXLeftMaxVal.value = boxWidth - contentWidth // 设置向左最大滚动距离
 
-function handleScroll(clientX) {
-  const currentX = clientX - bsWrapperLeft.value
-  const deltaX = currentX - bsWrapperWidth.value / 2
-  if (bsScroll.value) {
-    const { maxScrollX, x: leftX } = bsScroll.value.instance
-    const rightX = maxScrollX - leftX
-    const update =
-      deltaX > 0 ? Math.max(-deltaX, rightX) : Math.min(-deltaX, -leftX)
-    bsScroll.value?.instance.scrollBy(update, 0, 300)
+  if (contentWidth < boxWidth || itemOffsetLeft === 0) {
+    // 所有item的集合长度小于box宽度或者当前是第一个item
+    translateX.value = 0
+  } else if (itemOffsetLeft < -translateX.value) {
+    // 标签在可视区域左侧
+    translateX.value = -itemOffsetLeft
+  } else if (itemOffsetLeft > -translateX.value && itemOffsetLeft + itemClientWidth < -translateX.value + boxWidth) {
+    // 标签在可视区域
+    translateX.value = Math.min(0, boxWidth - itemClientWidth - itemOffsetLeft)
+  } else {
+    // 标签在可视区域右侧
+    translateX.value = -(itemOffsetLeft - (boxWidth - itemClientWidth)) - 10
+  }
+}
+
+const handleScroll = (offset) => {
+  const boxWidth = tabsOutRef.value ? tabsOutRef.value.clientWidth : 0
+  const contentWidth = tabsRef.value ? tabsRef.value.clientWidth : 0
+  console.log(4444, offset, contentWidth, boxWidth)
+
+  if (offset > 0) {
+    translateX.value = Math.min(0, translateX.value + offset)
+  } else {
+    if (boxWidth < contentWidth) {
+      if (translateX.value >= -(contentWidth - boxWidth)) {
+        translateX.value = Math.max(translateX.value + offset, boxWidth - contentWidth)
+      }
+    } else {
+      translateX.value = 0
+    }
   }
 }
 
@@ -54,98 +113,97 @@ function init() {
 watch(
   () => route.fullPath,
   () => {
-    tab.addTab(route)
-    tab.setActiveTab(route.fullPath)
-  },
+    if (!route.meta.notTab) {
+      tab.addTab(route)
+      tab.setActiveTab(route.fullPath)
+      // 滚动到当前activetab
+      nextTick(() => {
+        const findIndex = tab.tabs.findIndex((s) => s.fullPath === route.fullPath)
+        const index = findIndex === -1 ? 0 : findIndex
+        moveToView(index || 0)
+      })
+    }
+  }
 )
 
 // 初始化
 init()
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .global-tab {
+  height: 42px;
+  border: 1px solid #eeeeee;
+  background-color: #fafafa;
   box-shadow: 0 1px 2px rgb(0 21 41 / 8%);
-}
-.tab-box {
-// border: solid 1px red;
-  width: calc(100% - 50px - 64px);
-  display: flex;
-  align-items: center;
-  height: 32px;
-  overflow: hidden;
-  padding: 0 16px;
-
-  .tab-panel {
-  // background-color: #48a148;
-    box-sizing: border-box;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    transition: transform 0.5s;
-    flex-shrink: 0;
-    .tab-item {
-      flex-shrink: 0;
-      cursor: pointer;
-      //@include vertical-center;
-      color: #515a6e;
-      border: 1px solid #e8eaec !important;
-      border-radius: 2px;
-      box-sizing: border-box;
-      height: 100%;
-      margin-right: 4px;
-      // 垂直水平居中
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 12px;
-
-      .item-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #e8eaec;
-      }
-
-      &:hover {
-        i {
-          cursor: pointer;
-          color: red;
-        }
-      }
-
-      .name {
-        display: inline-block;
-        margin: 0 12px;
-      }
-
-      i {
-        font-size: 12px;
-      }
-
-      .icon-close {
-        font-size: 12px;
-        transform: scale(0.8);
-        color: #b5b5b5;
-      }
-    }
-  }
 }
 
 .el-tab-close {
   box-sizing: border-box;
   font-size: 16px;
-// border: solid 1px red;
+  // border: solid 1px red;
   width: 44px;
 }
 .global-tab {
   box-shadow: 0 1px 2px rgb(0 21 41 / 8%);
-  //flex-y-center w-full pl-16px
   width: 100%;
   display: flex;
+  //padding: 0 40px 0 70px;
+  padding: v-bind(containerPadding);
+  box-sizing: border-box;
   .flex-1-hidden {
     flex: 1;
     overflow: hidden;
   }
+  position: relative;
+  .prev {
+    position: absolute;
+    left: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .home {
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .next {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+.tag {
+  color: #333;
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    color: var(--el-color-primary);
+  }
+}
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.h-full {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: transform 0.5s;
+  flex-shrink: 0;
+}
+
+.tab-active {
+  color: var(--el-color-primary);
+}
+
+.tab-wrap {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 </style>

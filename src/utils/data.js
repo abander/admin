@@ -13,9 +13,7 @@ export const obj2UrlForm = function (object, escape) {
   let result = ''
   for (var item in object) {
     if (object.hasOwnProperty(item)) {
-      escape
-        ? (result += `${item}=${encodeURIComponent(object[item])}&`)
-        : (result += `${item}=${object[item]}&`)
+      escape ? (result += `${item}=${encodeURIComponent(object[item])}&`) : (result += `${item}=${object[item]}&`)
     }
   }
   return result.substr(0, result.length - 1)
@@ -124,9 +122,7 @@ export function mergeNotInObject(target, source) {
  * @param {*对象} object
  */
 export function objIsEmpty(object) {
-  return (
-    object === undefined || object === null || JSON.stringify(object) === '{}'
-  )
+  return object === undefined || object === null || JSON.stringify(object) === '{}'
 }
 
 /**
@@ -251,17 +247,10 @@ export function arrayObj2Arr(arr, key, canRepeat) {
   return res
 }
 // 联动赋值 cover-有值得话是否覆盖
-export function linkageToSetOtherData(
-  linkObj,
-  value,
-  linkList,
-  extObj,
-  cover = true,
-) {
+export function linkageToSetOtherData(linkObj, value, linkList, extObj, cover = true) {
   if (value) {
     linkList.forEach((item) => {
-      let itemKeyObj =
-        typeof item === 'string' ? { from: item, to: item } : item
+      let itemKeyObj = typeof item === 'string' ? { from: item, to: item } : item
       if (cover) {
         linkObj[itemKeyObj.to] = extObj[itemKeyObj.from] || ''
       } else if (!cover && isNull(linkObj[itemKeyObj.to])) {

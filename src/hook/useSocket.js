@@ -1,0 +1,19 @@
+import { onMounted } from 'vue'
+import io from 'socket.io-client'
+
+const url = import.meta.env.VITE_SOCKET_BASE
+
+export default function useSocket() {
+  const socket = io(`${url}/chat`)
+
+  // onMounted(() => {
+  //   socket.on('connect', () => {
+  //     socket.emit('online')
+  //     console.log(socket.id, '监听客户端连接成功-connect')
+  //   })
+  // })
+
+  return {
+    socket
+  }
+}

@@ -8,8 +8,7 @@ export const objEqual = (obj1, obj2) => {
   const keysArr2 = Object.keys(obj2)
   if (keysArr1.length !== keysArr2.length) return false
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
-  /* eslint-disable-next-line */ else
-    return !keysArr1.some((key) => obj1[key] != obj2[key])
+  /* eslint-disable-next-line */ else return !keysArr1.some((key) => obj1[key] != obj2[key])
 }
 
 /**
@@ -129,7 +128,7 @@ export function exitFullscreen() {
  */
 export const smoothScroll = (element) => {
   document.querySelector(element).scrollIntoView({
-    behavior: 'smooth',
+    behavior: 'smooth'
   })
 }
 
@@ -202,8 +201,7 @@ export const sessionStorageSetExpire = (key, value, expire) => {
  *  @param { number } num
  *  @description 金钱格式化，三位加逗号
  */
-export const formatMoney = (num) =>
-  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+export const formatMoney = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 /**
  * @param file
@@ -219,7 +217,7 @@ export function fileToBase64String(
   format = ['jpg', 'jpeg', 'png', 'gif'],
   size = 20 * 1024 * 1024,
   formatMsg = '文件格式不正确',
-  sizeMsg = '文件大小超出限制',
+  sizeMsg = '文件大小超出限制'
 ) {
   return new Promise((resolve, reject) => {
     // 格式过滤
@@ -278,25 +276,12 @@ export const base64ToFile = (base64, filename) => {
  * @param key
  * @returns {*[]}
  */
-export function getTreeData(
-  data,
-  pid,
-  pidName = 'parentId',
-  idName = 'id',
-  childrenName = 'children',
-  key,
-) {
+export function getTreeData(data, pid, pidName = 'parentId', idName = 'id', childrenName = 'children', key) {
   let arr = []
   for (let i = 0; i < data.length; i++) {
     if (data[i][pidName] == pid) {
       data[i].key = data[i][idName]
-      data[i][childrenName] = getTreeData(
-        data,
-        data[i][idName],
-        pidName,
-        idName,
-        childrenName,
-      )
+      data[i][childrenName] = getTreeData(data, data[i][idName], pidName, idName, childrenName)
       arr.push(data[i])
     }
   }
@@ -390,7 +375,7 @@ export function type(target) {
     '[object Object]': 'object',
     '[object Number]': 'number - object',
     '[object Boolean]': 'boolean - object',
-    '[object String]': 'string-object',
+    '[object String]': 'string-object'
   }
 
   if (target === null) {
@@ -408,8 +393,7 @@ export function type(target) {
  * @param { number } min
  * @param { number } max
  */
-export const RandomNum = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min
+export const RandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
 /**
  * @description 数组中 某个元素出现的次数
@@ -473,8 +457,8 @@ export const escapeHTML = (str) => {
         '<': '&lt;',
         '>': '&gt;',
         "'": '&#39;',
-        '"': '&quot;',
-      })[tag] || tag,
+        '"': '&quot;'
+      })[tag] || tag
   )
 }
 
@@ -500,8 +484,7 @@ export const outOfNum = (val, maxNum) => {
  */
 export const arrayToHtmlList = (arr, listID) =>
   ((el) => (
-    (el = document.querySelector('#' + listID)),
-    (el.innerHTML += arr.map((item) => `<li>${item}</li>`).join(''))
+    (el = document.querySelector('#' + listID)), (el.innerHTML += arr.map((item) => `<li>${item}</li>`).join(''))
   ))()
 
 /**
@@ -529,8 +512,7 @@ export const onceFn = (fn) => {
 export const equals = (a, b) => {
   if (a === b) return true
   if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime()
-  if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
-    return a === b
+  if (!a || !b || (typeof a !== 'object' && typeof b !== 'object')) return a === b
   if (a.prototype !== b.prototype) return false
   let keys = Object.keys(a)
   if (keys.length !== Object.keys(b).length) return false
@@ -543,12 +525,10 @@ export const equals = (a, b) => {
  * @param {*} decimals 位数
  * @returns {number}
  */
-export const round = (n, decimals = 0) =>
-  Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`)
+export const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`)
 
 /**
  * @description 隐藏指定元素
  * @param el
  */
-export const hide = (...el) =>
-  [...el].forEach((e) => (e.style.display = 'none'))
+export const hide = (...el) => [...el].forEach((e) => (e.style.display = 'none'))

@@ -7,9 +7,10 @@ import {
   getIndexInTabRoutesByRouteName,
   getTabRouteByVueRoute,
   getTabRoutes,
-  isInTabRoutes,
+  isInTabRoutes
 } from './helpers'
-import router, { routes } from '@/router/index.js'
+import router, { allRoutes } from '@/router/index.js'
+import { useRouter } from 'vue-router'
 
 function routerPush(to, newTab = false) {
   if (newTab) {
@@ -20,22 +21,23 @@ function routerPush(to, newTab = false) {
   return router.push(to)
 }
 
+export const homeTab = {
+  name: 'root',
+  fullPath: '/home',
+  meta: {
+    title: '首页'
+  },
+  scrollPosition: {
+    left: 0,
+    top: 0
+  }
+}
 export const useTabStore = defineStore('tab-store', {
   state: () => ({
     tabs: [],
-    homeTab: {
-      name: 'root',
-      fullPath: '/',
-      meta: {
-        title: 'Root',
-      },
-      scrollPosition: {
-        left: 0,
-        top: 0,
-      },
-    },
+    homeTab,
     activeTab: '',
-    menus: [],
+    menus: []
   }),
   getters: {
     /** 当前激活状态的页签索引 */
@@ -43,10 +45,18 @@ export const useTabStore = defineStore('tab-store', {
       const { tabs, activeTab } = state
       return tabs.findIndex((tab) => tab.fullPath === activeTab)
     },
+
+    activeTabKey(state) {
+      const { activeTab } = state
+      const menus = state.menus.map((v) => v.children).flat()
+      console.log(menus)
+      return menus.find((tab) => tab.menu.routePath === activeTab)?.index ?? ''
+    }
   },
   actions: {
     initMenus() {
-      this.menus = transformAuthRouteToMenu(routes)
+      // 生成菜单
+      this.menus = transformAuthRouteToMenu(allRoutes)
     },
     /** 重置Tab状态 */
     resetTabStore() {
@@ -112,10 +122,12 @@ export const useTabStore = defineStore('tab-store', {
       const { multiTab = false } = route.meta
       if (!multiTab) {
         this.tabs.splice(index, 1, tab)
+        localStg.set('multiTabRoutes', this.tabs)
         return
       }
 
       this.tabs.push(tab)
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 删除多页签
@@ -139,7 +151,11 @@ export const useTabStore = defineStore('tab-store', {
           this.tabs = updateTabs
           this.setActiveTab(activePath)
         }
+      } else {
+        this.tabs = []
+        router.push('/home')
       }
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 清空多页签(多页签首页保留)
@@ -149,9 +165,7 @@ export const useTabStore = defineStore('tab-store', {
       const homePath = this.homeTab.fullPath
       const remain = [homePath, ...excludes]
       const hasActive = remain.includes(this.activeTab)
-      const updateTabs = this.tabs.filter((tab) =>
-        remain.includes(tab.fullPath),
-      )
+      const updateTabs = this.tabs.filter((tab) => remain.includes(tab.fullPath))
       if (hasActive) this.tabs = updateTabs
       if (!hasActive && updateTabs.length) {
         const activePath = updateTabs[updateTabs.length - 1].fullPath
@@ -161,6 +175,7 @@ export const useTabStore = defineStore('tab-store', {
           this.setActiveTab(activePath)
         }
       }
+      localStg.set('multiTabRoutes', this.tabs)
     },
     /**
      * 清除左边多页签
@@ -180,9 +195,7 @@ export const useTabStore = defineStore('tab-store', {
     clearRightTab(fullPath) {
       const index = getIndexInTabRoutes(this.tabs, fullPath)
       if (index > -1) {
-        const excludes = this.tabs
-          .slice(0, index + 1)
-          .map((item) => item.fullPath)
+        const excludes = this.tabs.slice(0, index + 1).map((item) => item.fullPath)
         this.clearTab(excludes)
       }
     },
@@ -219,7 +232,7 @@ export const useTabStore = defineStore('tab-store', {
     getTabScrollPosition(fullPath) {
       const position = {
         left: 0,
-        top: 0,
+        top: 0
       }
       const index = getIndexInTabRoutes(this.tabs, fullPath)
       if (index > -1) {
@@ -230,8 +243,7 @@ export const useTabStore = defineStore('tab-store', {
     /** 初始化Tab状态 */
     iniTabStore(currentRoute) {
       const tabs = getTabRoutes()
-      const hasHome =
-        getIndexInTabRoutesByRouteName(tabs, this.homeTab.name) > -1
+      const hasHome = getIndexInTabRoutesByRouteName(tabs, this.homeTab.name) > -1
       if (!hasHome && this.homeTab.name !== 'root') {
         tabs.unshift(this.homeTab)
       }
@@ -256,6 +268,6 @@ export const useTabStore = defineStore('tab-store', {
       this.initMenus()
       this.tabs = tabs
       this.setActiveTab(currentRoute.fullPath)
-    },
-  },
+    }
+  }
 })

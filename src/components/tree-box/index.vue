@@ -83,44 +83,44 @@ export default {
     // 是否显示筛选框
     filterInput: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // tree数据
     treeData: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // tree当前高亮的节点
     currentNodeKey: {
       type: String,
-      default: '',
+      default: ''
     },
     // img、tooltip
     treeLabelParams: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     // 根据业务需求 ...显示3个还是6个下拉
     liDataSix: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     // 根据业务需求 ...显示3个还是6个下拉
     liDataThree: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
-      filterText: null,
+      filterText: null
     }
   },
   watch: {
     // tree filter
     filterText(val) {
       this.$refs.tree && this.$refs.tree.filter(val)
-    },
+    }
   },
   methods: {
     // 禁止输入空格方法
@@ -133,8 +133,8 @@ export default {
       return data.label.indexOf(value) !== -1
     },
     // dropdown-menu click方法
-    getTreeOperateItem() {},
-  },
+    getTreeOperateItem() {}
+  }
 }
 </script>
 

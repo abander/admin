@@ -8,7 +8,7 @@ export default function useArchive() {
       .confirm('真的要退出登陆吗?', '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
-        type: 'warning',
+        type: 'warning'
       })
       .then(() => {
         toLogin()
@@ -19,6 +19,6 @@ export default function useArchive() {
   }
 
   return {
-    exitLogin,
+    exitLogin
   }
 }
